@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f2a31'/%3E%3Cpath d='M5 25 C13 25 14 7 27 7' stroke='%233cc89b' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<title>NovaGen Bioinformatics</title>
+<meta name="description" content="Independent bioinformatics analysis for miRNA biomarker, qPCR and cancer genomics research.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+/* Layout: left-aligned editorial column; hero pairs the pitch with a live qPCR amplification plot; sections stack on a single 68rem measure. */
+:root {
+  --paper: #f4f7f6;
+  --surface: #ffffff;
+  --ink: #0f2a31;
+  --ink-soft: #49616a;
+  --rule: #d5e0dd;
+  --fam: #0b7d5f;          /* accent: FAM-channel green */
+  --fam-wash: #e2f1ec;
+  --threshold: #b86a00;    /* threshold line */
+  --display: "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --measure: 68rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0c1a1e; --surface: #12252a; --ink: #e2ece9; --ink-soft: #9db3b0;
+    --rule: #24403f; --fam: #3cc89b; --fam-wash: #143a33; --threshold: #e7a443;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0c1a1e; --surface: #12252a; --ink: #e2ece9; --ink-soft: #9db3b0;
+  --rule: #24403f; --fam: #3cc89b; --fam-wash: #143a33; --threshold: #e7a443;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--paper); color: var(--ink);
+  font-family: var(--body); font-size: 1.0625rem; line-height: 1.6;
+  padding-inline: 20px; padding-block: 0;
+}
+.wrap { max-width: var(--measure); margin-inline: auto; }
+a { color: var(--fam); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--fam); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.12; text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+p { margin: 0; }
+.label {
+  font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* Top bar */
+.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule);
+  margin-inline: -20px; padding-inline: 20px;
+}
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; flex-wrap: wrap; }
+.brand { display: flex; align-items: baseline; gap: 10px; text-decoration: none; color: var(--ink); }
+.brand b { font-family: var(--display); font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; }
+.brand span { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-soft); }
+.nav { display: flex; gap: 20px; flex-wrap: wrap; font-family: var(--display); font-size: 0.98rem; }
+.nav a { color: var(--ink); text-decoration: none; }
+.nav a:hover { color: var(--fam); }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 48px; align-items: center; padding-block: 64px 48px; }
+.hero h1 { font-size: clamp(2.3rem, 5.2vw, 3.9rem); font-weight: 700; }
+.hero h1 em { font-style: normal; color: var(--fam); }
+.hero .lede { margin-top: 20px; font-size: 1.2rem; color: var(--ink-soft); max-width: 34rem; }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 999px;
+  font-family: var(--display); font-weight: 600; font-size: 1rem; text-decoration: none;
+  border: 1.5px solid var(--fam); transition: background .15s, color .15s;
+}
+.btn.primary { background: var(--fam); color: var(--paper); }
+.btn.primary:hover { background: var(--ink); border-color: var(--ink); }
+.btn.ghost { color: var(--fam); background: transparent; }
+.btn.ghost:hover { background: var(--fam-wash); }
+
+.plot { background: var(--surface); border: 1px solid var(--rule); border-radius: 14px; padding: 16px 16px 12px; }
+.plot-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.plot canvas { display: block; width: 100%; height: 300px; margin-top: 8px; }
+.readout { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-soft); min-height: 1.3em; margin-top: 6px; font-variant-numeric: tabular-nums; }
+
+.proof {
+  display: flex; flex-wrap: wrap; gap: 10px 28px; padding-block: 20px; border-block: 1px solid var(--rule);
+  font-family: var(--display); font-size: 1rem;
+}
+.proof span { display: inline-flex; gap: 8px; align-items: baseline; }
+.proof b { color: var(--fam); font-weight: 700; }
+
+/* Sections */
+section { padding-block: 72px 8px; }
+.sec-head { display: grid; grid-template-columns: minmax(0, 16rem) minmax(0, 1fr); gap: 32px; align-items: start; margin-bottom: 36px; }
+.sec-head h2 { font-size: clamp(1.8rem, 3.4vw, 2.5rem); font-weight: 700; }
+.sec-head p { color: var(--ink-soft); max-width: 40rem; }
+
+.services { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); gap: 0; border-top: 1px solid var(--rule); }
+.svc { padding: 26px 26px 28px 0; border-bottom: 1px solid var(--rule); min-width: 0; }
+.svc h3 { font-size: 1.3rem; font-weight: 600; }
+.svc p { margin-top: 10px; color: var(--ink-soft); }
+.svc .tags { margin-top: 14px; font-family: var(--mono); font-size: 0.78rem; color: var(--fam); line-height: 1.7; }
+
+.deliver { margin-top: 32px; padding: 22px 24px; background: var(--fam-wash); border-radius: 12px; display: grid; grid-template-columns: minmax(0, 14rem) minmax(0, 1fr); gap: 20px; }
+.deliver h3 { font-size: 1.1rem; }
+.deliver ul { margin: 0; padding-left: 1.1rem; columns: 2 16rem; column-gap: 32px; }
+.deliver li { margin-bottom: 6px; break-inside: avoid; }
+
+/* App feature */
+.app { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0; border: 1px solid var(--rule); border-radius: 16px; overflow: hidden; background: var(--surface); }
+.app-copy { padding: 32px; min-width: 0; }
+.app-copy h3 { font-size: 1.7rem; font-weight: 700; }
+.app-copy .url { font-family: var(--mono); font-size: 0.82rem; color: var(--ink-soft); margin-top: 6px; overflow-wrap: anywhere; }
+.app-copy p.desc { margin-top: 16px; }
+.checks { margin: 20px 0 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.checks li { display: grid; grid-template-columns: 1.4rem minmax(0, 1fr); gap: 8px; }
+.checks li::before { content: ""; width: 0.7rem; height: 0.7rem; margin-top: 0.45rem; border-radius: 50%; background: var(--fam); }
+.app-side { background: var(--fam-wash); padding: 32px; display: flex; flex-direction: column; gap: 14px; justify-content: center; min-width: 0; }
+.qc-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: baseline; font-family: var(--mono); font-size: 0.85rem; border-bottom: 1px dashed var(--rule); padding-bottom: 10px; font-variant-numeric: tabular-nums; }
+.qc-row:last-of-type { border-bottom: 0; }
+.pill { font-family: var(--display); font-size: 0.78rem; font-weight: 600; padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+.pill.ok { background: var(--surface); color: var(--fam); border: 1px solid var(--fam); }
+.pill.flag { background: var(--threshold); color: var(--surface); }
+.qc-note { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-soft); }
+
+/* Process */
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: 28px; counter-reset: step; list-style: none; padding: 0; margin: 0; }
+.steps li { counter-increment: step; border-top: 2px solid var(--ink); padding-top: 16px; min-width: 0; }
+.steps li::before { content: counter(step); font-family: var(--mono); font-size: 0.8rem; color: var(--fam); display: block; margin-bottom: 8px; }
+.steps h3 { font-size: 1.15rem; font-weight: 600; }
+.steps p { margin-top: 8px; color: var(--ink-soft); font-size: 1rem; }
+
+/* About */
+.about { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 48px; }
+.about p + p { margin-top: 16px; }
+.cv { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--rule); }
+.cv li { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 16px; padding-block: 14px; border-bottom: 1px solid var(--rule); }
+.cv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr)); column-gap: 48px; }
+.cv .yr { font-family: var(--mono); font-size: 0.82rem; color: var(--ink-soft); padding-top: 3px; font-variant-numeric: tabular-nums; }
+.cv b { font-family: var(--display); font-weight: 600; display: block; }
+.cv span { color: var(--ink-soft); font-size: 0.98rem; }
+
+/* Contact */
+.contact { margin-top: 72px; padding: 48px 40px; border-radius: 18px; background: var(--ink); color: var(--paper); display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 32px; align-items: center; }
+.contact h2 { font-size: clamp(1.8rem, 3.6vw, 2.6rem); font-weight: 700; color: var(--paper); }
+.contact p { margin-top: 14px; color: color-mix(in srgb, var(--paper) 78%, var(--ink)); }
+.contact .actions { margin-top: 0; justify-content: flex-start; }
+.contact .btn.primary { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+.contact .btn.primary:hover { background: var(--fam-wash); }
+.contact .btn.ghost { color: var(--paper); border-color: color-mix(in srgb, var(--paper) 55%, var(--ink)); }
+.contact .btn.ghost:hover { background: color-mix(in srgb, var(--paper) 12%, var(--ink)); }
+
+footer { padding-block: 32px 40px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-family: var(--mono); font-size: 0.78rem; color: var(--ink-soft); }
+
+@media (max-width: 860px) {
+  .hero, .about, .app, .contact, .sec-head, .deliver { grid-template-columns: minmax(0, 1fr); }
+  .hero { gap: 32px; padding-block: 40px 32px; }
+  .sec-head { gap: 12px; }
+  .contact { padding: 32px 24px; }
+  .svc { padding-right: 0; }
+}
+@media (max-width: 520px) {
+  .nav { gap: 14px; font-size: 0.92rem; }
+  .app-copy, .app-side { padding: 24px; }
+  .cv li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+}
+</style>
+<style>
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+body { margin: 0; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="wrap">
+    <a class="brand" href="#home"><b>NovaGen</b><span>Bioinformatics</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#tools">Free tools</a>
+      <a href="#process">How it works</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</div>
+
+<main class="wrap" id="home">
+  <div class="hero">
+    <div>
+      <p class="label">miRNA · qPCR · cancer genomics</p>
+      <h1 style="margin-top:14px">Your expression data, analysed <em>properly</em> and reproducibly.</h1>
+      <p class="lede">I am an independent bioinformatician helping labs, clinicians and PhD researchers turn qPCR runs, miRNA panels and public cancer datasets into results they can trust, with figures, tables and code they can rerun.</p>
+      <div class="actions">
+        <a class="btn primary" href="https://www.linkedin.com/in/tooba-mujtabaa247ba190" target="_blank" rel="noopener">Discuss your project</a>
+        <a class="btn ghost" href="https://mirna-qpcr-analyzer.streamlit.app" target="_blank" rel="noopener">Try the qPCR analyzer</a>
+      </div>
+    </div>
+    <figure class="plot" style="margin:0">
+      <div class="plot-head">
+        <span class="label">Amplification plot · ΔRn vs cycle</span>
+        <span class="label" style="color:var(--threshold)">— threshold 0.20</span>
+      </div>
+      <canvas id="amp" aria-label="Illustrative qPCR amplification curves for six miRNA assays crossing a threshold line at different cycles" role="img"></canvas>
+      <figcaption class="readout" id="readout">Illustrative curves. Hover or tap to read Ct.</figcaption>
+    </figure>
+  </div>
+
+
+  <section id="services">
+    <div class="sec-head">
+      <h2>Services</h2>
+      <p>Focused on gene expression and biomarker work, where small analysis choices change the conclusion. Every project starts with quality control, so problems in the data are found before they reach your results.</p>
+    </div>
+    <div class="services">
+      <div class="svc">
+        <h3>miRNA biomarker analysis</h3>
+        <p>Differential expression, diagnostic performance and survival analysis for tissue and circulating miRNAs.</p>
+        <p class="tags">limma · DESeq2 · ROC / AUC · Kaplan–Meier · Cox regression</p>
+      </div>
+      <div class="svc">
+        <h3>qPCR data analysis</h3>
+        <p>ΔΔCt and efficiency-corrected quantification, reference gene selection, hemolysis and spike-in checks, statistics and publication figures.</p>
+        <p class="tags">2^-ΔΔCt · geNorm · global mean · Dunnett · 300 dpi figures</p>
+      </div>
+      <div class="svc">
+        <h3>Public cancer data</h3>
+        <p>TCGA and GEO re-analysis: automated download through the GDC API, clinical data merging and validation across cohorts.</p>
+        <p class="tags">TCGA / GDC API · GEO · clinical annotation · batch handling</p>
+      </div>
+      <div class="svc">
+        <h3>Clinical and survey statistics</h3>
+        <p>Descriptive statistics, group comparisons and regression for clinical studies and knowledge, attitude and practice surveys.</p>
+        <p class="tags">chi-square · logistic regression · Likert scales · sample size</p>
+      </div>
+      <div class="svc">
+        <h3>Custom analysis apps</h3>
+        <p>A private web app built around your lab's own workflow, so everyone runs the same validated analysis on every new dataset.</p>
+        <p class="tags">Python · Streamlit · automated tests · your instrument's files</p>
+      </div>
+      <div class="svc">
+        <h3>Reproducible pipelines</h3>
+        <p>Messy scripts and spreadsheets turned into documented, version-controlled pipelines that give the same answer every time.</p>
+        <p class="tags">Python · Google Colab · GitHub · documented notebooks</p>
+      </div>
+    </div>
+    <div class="deliver">
+      <h3>What you receive</h3>
+      <ul>
+        <li>Results tables in Excel</li>
+        <li>Publication-ready figures (PNG, SVG, PDF)</li>
+        <li>Documented code or notebook you can rerun</li>
+        <li>A technical summary of every step and parameter</li>
+        <li>Quality-control results for your samples</li>
+        <li>Your data kept confidential</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="tools">
+    <div class="sec-head">
+      <h2>Free tools</h2>
+      <p>Open-source apps I build for problems I see repeatedly in client data. Free to use, with the code on GitHub.</p>
+    </div>
+    <article class="app">
+      <div class="app-copy">
+        <p class="label">Web app · free · open source</p>
+        <h3 style="margin-top:10px">miRNA qPCR Analyzer</h3>
+        <p class="url">mirna-qpcr-analyzer.streamlit.app</p>
+        <p class="desc">Upload a QuantStudio or Bio-Rad CFX export as it is. The app checks your samples before it calculates anything, then gives fold changes, statistics and a publication-ready figure.</p>
+        <ul class="checks">
+          <li>Hemolysis check for serum and plasma (miR-23a / miR-451a)</li>
+          <li>Spike-in recovery to catch failed extractions</li>
+          <li>Reference gene, spike-in or global mean normalisation</li>
+          <li>44 automated tests against independent calculations</li>
+        </ul>
+        <div class="actions">
+          <a class="btn primary" href="https://mirna-qpcr-analyzer.streamlit.app" target="_blank" rel="noopener">Open the app</a>
+          <a class="btn ghost" href="https://github.com/ToobaAwais/qpcr-analyzer" target="_blank" rel="noopener">View the code</a>
+        </div>
+      </div>
+      <div class="app-side" aria-label="Example sample quality output from the simulated plasma dataset">
+        <p class="label">Sample quality · example output</p>
+        <div class="qc-row"><span>Healthy_01 · ΔCq 4.14</span><span class="pill ok">Low risk</span></div>
+        <div class="qc-row"><span>Healthy_03 · ΔCq 7.95</span><span class="pill flag">Hemolysed</span></div>
+        <div class="qc-row"><span>HCC_02 · ΔCq 5.60</span><span class="pill flag">Borderline</span></div>
+        <div class="qc-row"><span>HCC_05 · cel-miR-39 +2.95 Cq</span><span class="pill flag">Check extraction</span></div>
+        <p class="qc-note">From the app's simulated plasma example dataset.</p>
+      </div>
+    </article>
+  </section>
+
+  <section id="process">
+    <div class="sec-head">
+      <h2>How it works</h2>
+      <p>Clear scope and a fixed price before any work starts.</p>
+    </div>
+    <ol class="steps">
+      <li><h3>Share your question</h3><p>Send a short description of the study and a sample of the data or its format.</p></li>
+      <li><h3>Agree the scope</h3><p>I confirm the analysis plan, timeline and price in writing before starting.</p></li>
+      <li><h3>Analysis with checks</h3><p>Quality control first, then the analysis, with any data problems reported as I find them.</p></li>
+      <li><h3>Delivery</h3><p>Figures, tables, code and a technical summary, organised so you can find and rerun everything.</p></li>
+    </ol>
+  </section>
+
+
+  <div class="contact" id="contact">
+    <div>
+      <h2>Have data that needs a careful second look?</h2>
+      <p>Tell me about your study and the data you have. I will reply with an analysis plan and a fixed quote.</p>
+    </div>
+    <div class="actions">
+      <a class="btn primary" href="https://www.linkedin.com/in/tooba-mujtabaa247ba190" target="_blank" rel="noopener">Message me on LinkedIn</a>
+      <a class="btn ghost" href="https://mirna-qpcr-analyzer.streamlit.app" target="_blank" rel="noopener">Try the free app</a>
+    </div>
+  </div>
+
+  <footer>
+    <span>© 2026 NovaGen Bioinformatics</span>
+    <span>Working remotely with research teams worldwide</span>
+  </footer>
+</main>
+
+<script>
+(function () {
+  const canvas = document.getElementById("amp");
+  const readout = document.getElementById("readout");
+  // Six illustrative assays: name and Ct where the curve crosses the threshold
+  const assays = [
+    { name: "cel-miR-39", ct: 18.6 }, { name: "miR-16-5p", ct: 21.9 }, { name: "miR-451a", ct: 23.4 },
+    { name: "miR-21-5p", ct: 26.2 }, { name: "miR-122-5p", ct: 29.1 }, { name: "miR-375-3p", ct: 33.0 },
+  ];
+  const THRESH = 0.2, PLATEAU = 1.6, SLOPE = 1.55, CYCLES = 40;
+  // Logistic curve with midpoint chosen so the curve crosses the threshold exactly at Ct
+  const mid = ct => ct + SLOPE * Math.log(PLATEAU / THRESH - 1);
+  const f = (c, ct) => PLATEAU / (1 + Math.exp(-(c - mid(ct)) / SLOPE));
+  let hover = -1, geom = null;
+
+  function tokens() {
+    const s = getComputedStyle(document.documentElement);
+    const v = n => s.getPropertyValue(n).trim();
+    return { ink: v("--ink"), soft: v("--ink-soft"), rule: v("--rule"), fam: v("--fam"), thr: v("--threshold"), mono: v("--mono") };
+  }
+
+  function draw() {
+    const dpr = window.devicePixelRatio || 1;
+    const w = canvas.clientWidth, h = canvas.clientHeight;
+    if (!w || !h) return;
+    canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+    const ctx = canvas.getContext("2d");
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, h);
+    const t = tokens();
+    const L = 34, R = 10, T = 10, B = 26;
+    const pw = w - L - R, ph = h - T - B;
+    const x = c => L + (c / CYCLES) * pw;
+    const y = v => T + ph - (v / 1.8) * ph;
+    geom = { x, y, L, pw };
+
+    ctx.font = `11px ${t.mono}`;
+    ctx.textBaseline = "middle";
+    // grid and axes
+    ctx.strokeStyle = t.rule; ctx.lineWidth = 1;
+    for (let v = 0; v <= 1.6; v += 0.4) {
+      ctx.beginPath(); ctx.moveTo(L, y(v)); ctx.lineTo(L + pw, y(v)); ctx.stroke();
+      ctx.fillStyle = t.soft; ctx.textAlign = "right"; ctx.fillText(v.toFixed(1), L - 6, y(v));
+    }
+    ctx.textAlign = "center"; ctx.textBaseline = "top";
+    for (let c = 0; c <= CYCLES; c += 10) ctx.fillText(String(c), x(c), T + ph + 8);
+
+    // threshold
+    ctx.strokeStyle = t.thr; ctx.lineWidth = 1.5; ctx.setLineDash([5, 4]);
+    ctx.beginPath(); ctx.moveTo(L, y(THRESH)); ctx.lineTo(L + pw, y(THRESH)); ctx.stroke();
+    ctx.setLineDash([]);
+
+    // curves
+    assays.forEach((a, i) => {
+      const active = hover === -1 || hover === i;
+      ctx.strokeStyle = t.fam; ctx.globalAlpha = active ? 1 : 0.25;
+      ctx.lineWidth = hover === i ? 2.6 : 2;
+      ctx.beginPath();
+      for (let c = 0; c <= CYCLES; c += 0.25) {
+        const px = x(c), py = y(f(c, a.ct));
+        c === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+      }
+      ctx.stroke();
+      // Ct marker
+      ctx.fillStyle = t.thr;
+      ctx.beginPath(); ctx.arc(x(a.ct), y(THRESH), hover === i ? 4.5 : 3, 0, Math.PI * 2); ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+  }
+
+  function pick(evt) {
+    if (!geom) return;
+    const r = canvas.getBoundingClientRect();
+    const px = (evt.touches ? evt.touches[0].clientX : evt.clientX) - r.left;
+    const cyc = ((px - geom.L) / geom.pw) * CYCLES;
+    let best = 0, d = Infinity;
+    assays.forEach((a, i) => { const dd = Math.abs(a.ct - cyc); if (dd < d) { d = dd; best = i; } });
+    hover = best;
+    readout.textContent = `${assays[best].name} · Ct ${assays[best].ct.toFixed(1)} (illustrative)`;
+    draw();
+  }
+
+  canvas.addEventListener("mousemove", pick);
+  canvas.addEventListener("touchstart", pick, { passive: true });
+  canvas.addEventListener("mouseleave", () => { hover = -1; readout.textContent = "Illustrative curves. Hover or tap to read Ct."; draw(); });
+  window.addEventListener("resize", draw);
+  try { matchMedia("(prefers-color-scheme: dark)").addEventListener("change", draw); } catch (e) {}
+  new MutationObserver(draw).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
+  draw();
+})();
+</script>
+</body>
+</html>
