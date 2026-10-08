@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f2a31'/%3E%3Cpath d='M5 25 C13 25 14 7 27 7' stroke='%233cc89b' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
-<title>NovaGen Bioinformatics</title>
-<meta name="description" content="Independent bioinformatics analysis for miRNA biomarker, qPCR and cancer genomics research.">
+<title>NovaBiolytics</title>
+<meta name="description" content="Biomarker discovery, cancer genomics and research statistics for hospitals, universities and diagnostics companies.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
@@ -116,6 +116,18 @@ section { padding-block: 72px 8px; }
 .deliver ul { margin: 0; padding-left: 1.1rem; columns: 2 16rem; column-gap: 32px; }
 .deliver li { margin-bottom: 6px; break-inside: avoid; }
 
+/* Work with us */
+.audience { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: 28px; }
+.audience > div { border-top: 2px solid var(--ink); padding-top: 16px; min-width: 0; }
+.audience h3 { font-size: 1.15rem; font-weight: 600; }
+.audience p { margin-top: 8px; color: var(--ink-soft); font-size: 1rem; }
+.options { margin-top: 36px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: 16px; }
+.option { background: var(--surface); border: 1px solid var(--rule); border-radius: 14px; padding: 26px; min-width: 0; }
+.option.featured { border: 1.5px solid var(--fam); background: var(--fam-wash); }
+.option h3 { font-size: 1.35rem; font-weight: 700; margin-top: 8px; }
+.option p:not(.label) { margin-top: 10px; }
+.option .fit { font-family: var(--display); font-size: 0.95rem; color: var(--fam); }
+
 /* App feature */
 .app { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0; border: 1px solid var(--rule); border-radius: 16px; overflow: hidden; background: var(--surface); }
 .app-copy { padding: 32px; min-width: 0; }
@@ -185,9 +197,10 @@ img { max-width: 100%; }
 <body>
 <div class="top">
   <div class="wrap">
-    <a class="brand" href="#home"><b>NovaGen</b><span>Bioinformatics</span></a>
+    <a class="brand" href="#home"><b>NovaBiolytics</b><span>Biomarker &amp; research analytics</span></a>
     <nav class="nav" aria-label="Main">
       <a href="#services">Services</a>
+      <a href="#engage">Work with us</a>
       <a href="#tools">Free tools</a>
       <a href="#process">How it works</a>
       <a href="#contact">Contact</a>
@@ -198,9 +211,9 @@ img { max-width: 100%; }
 <main class="wrap" id="home">
   <div class="hero">
     <div>
-      <p class="label">miRNA · qPCR · cancer genomics</p>
-      <h1 style="margin-top:14px">Your expression data, analysed <em>properly</em> and reproducibly.</h1>
-      <p class="lede">I am an independent bioinformatician helping labs, clinicians and PhD researchers turn qPCR runs, miRNA panels and public cancer datasets into results they can trust, with figures, tables and code they can rerun.</p>
+      <p class="label">Biomarkers · cancer genomics · research statistics</p>
+      <h1 style="margin-top:14px">From cancer data to <em>biomarker results</em> you can publish and defend.</h1>
+      <p class="lede">NovaBiolytics helps hospitals, university research groups and diagnostics companies turn TCGA/GEO data, miRNA panels, qPCR runs and clinical studies into validated results, with figures, tables and code they can rerun.</p>
       <div class="actions">
         <a class="btn primary" href="https://www.linkedin.com/company/novagenbioinformatics-company/" target="_blank" rel="noopener">Discuss your project</a>
         <a class="btn ghost" href="https://mirna-qpcr-analyzer.streamlit.app" target="_blank" rel="noopener">Try the qPCR analyzer</a>
@@ -220,36 +233,42 @@ img { max-width: 100%; }
   <section id="services">
     <div class="sec-head">
       <h2>Services</h2>
-      <p>Focused on gene expression and biomarker work, where small analysis choices change the conclusion. Every project starts with quality control, so problems in the data are found before they reach your results.</p>
+      <p>Focused on biomarker and clinical research, where small analysis choices change the conclusion. Every project starts with quality control, so problems in the data are found before they reach your results.</p>
     </div>
     <div class="services">
       <div class="svc">
-        <h3>miRNA biomarker analysis</h3>
-        <p>Differential expression, diagnostic performance and survival analysis for tissue and circulating miRNAs.</p>
-        <p class="tags">limma · DESeq2 · ROC / AUC · Kaplan–Meier · Cox regression</p>
+        <p class="label">Report</p>
+        <h3 style="margin-top:6px">Biomarker discovery report</h3>
+        <p>Candidate biomarkers from TCGA and GEO for your cancer type: differential expression, survival and diagnostic performance, validated across independent cohorts and delivered as a ranked panel.</p>
+        <p class="tags">TCGA / GDC API · GEO · limma · DESeq2 · Kaplan–Meier · Cox · ROC / AUC</p>
       </div>
       <div class="svc">
-        <h3>qPCR data analysis</h3>
+        <p class="label">Report</p>
+        <h3 style="margin-top:6px">Gene or miRNA evidence report</h3>
+        <p>Everything public data says about one target: tumour vs normal expression, stage and survival associations, and pan-cancer patterns. Useful before a grant, an assay or a partnership decision.</p>
+        <p class="tags">tumour vs normal · clinical stage · survival · pan-cancer · co-expression</p>
+      </div>
+      <div class="svc">
+        <p class="label">Analysis</p>
+        <h3 style="margin-top:6px">Clinical and survey statistics</h3>
+        <p>Statistical analysis for clinical studies and knowledge, attitude and practice surveys, delivered as journal-format tables and figures with a full record of every test.</p>
+        <p class="tags">regression · survival analysis · chi-square · Likert scales · sample size</p>
+      </div>
+      <div class="svc">
+        <p class="label">Analysis</p>
+        <h3 style="margin-top:6px">qPCR and miRNA panel analysis</h3>
         <p>ΔΔCt and efficiency-corrected quantification, reference gene selection, hemolysis and spike-in checks, statistics and publication figures.</p>
         <p class="tags">2^-ΔΔCt · geNorm · global mean · Dunnett · 300 dpi figures</p>
       </div>
       <div class="svc">
-        <h3>Public cancer data</h3>
-        <p>TCGA and GEO re-analysis: automated download through the GDC API, clinical data merging and validation across cohorts.</p>
-        <p class="tags">TCGA / GDC API · GEO · clinical annotation · batch handling</p>
-      </div>
-      <div class="svc">
-        <h3>Clinical and survey statistics</h3>
-        <p>Descriptive statistics, group comparisons and regression for clinical studies and knowledge, attitude and practice surveys.</p>
-        <p class="tags">chi-square · logistic regression · Likert scales · sample size</p>
-      </div>
-      <div class="svc">
-        <h3>Custom analysis apps</h3>
+        <p class="label">Build</p>
+        <h3 style="margin-top:6px">Custom analysis apps</h3>
         <p>A private web app built around your lab's own workflow, so everyone runs the same validated analysis on every new dataset.</p>
         <p class="tags">Python · Streamlit · automated tests · your instrument's files</p>
       </div>
       <div class="svc">
-        <h3>Reproducible pipelines</h3>
+        <p class="label">Build</p>
+        <h3 style="margin-top:6px">Reproducible pipelines</h3>
         <p>Messy scripts and spreadsheets turned into documented, version-controlled pipelines that give the same answer every time.</p>
         <p class="tags">Python · Google Colab · GitHub · documented notebooks</p>
       </div>
@@ -262,15 +281,50 @@ img { max-width: 100%; }
         <li>Documented code or notebook you can rerun</li>
         <li>A technical summary of every step and parameter</li>
         <li>Quality-control results for your samples</li>
-        <li>Your data kept confidential</li>
+        <li>Confidential handling: anonymised data only, confidentiality agreement on request</li>
       </ul>
+    </div>
+  </section>
+
+  <section id="engage">
+    <div class="sec-head">
+      <h2>Work with us</h2>
+      <p>Research teams in Saudi Arabia, the Gulf and worldwide, working remotely with clear scope and fixed prices.</p>
+    </div>
+    <div class="audience">
+      <div>
+        <h3>Hospitals and research centres</h3>
+        <p>Clinical and genomic data analysed by a dedicated analyst, without hiring an in-house statistician.</p>
+      </div>
+      <div>
+        <h3>University research groups</h3>
+        <p>Faculty, residents and graduate students with data waiting to be analysed for a paper, thesis or grant.</p>
+      </div>
+      <div>
+        <h3>Diagnostics and biotech companies</h3>
+        <p>Biomarker candidates and proof-of-concept evidence from public cancer data, ready for partners and investors.</p>
+      </div>
+    </div>
+    <div class="options">
+      <article class="option">
+        <p class="label">Per project</p>
+        <h3>Fixed-price analysis</h3>
+        <p>One study, one agreed scope. You receive an analysis plan and a fixed quote before any work starts.</p>
+        <p class="fit">Best for a single paper, thesis chapter or report.</p>
+      </article>
+      <article class="option featured">
+        <p class="label">Monthly</p>
+        <h3>Research analytics support</h3>
+        <p>A set number of analysis hours each month for your department or group, with priority turnaround and one analyst who knows your data.</p>
+        <p class="fit">Best for teams with a steady flow of studies.</p>
+      </article>
     </div>
   </section>
 
   <section id="tools">
     <div class="sec-head">
       <h2>Free tools</h2>
-      <p>Open-source apps I build for problems I see repeatedly in client data. Free to use, with the code on GitHub.</p>
+      <p>Open-source apps we build for problems we see repeatedly in client data. Free to use, with the code on GitHub.</p>
     </div>
     <article class="app">
       <div class="app-copy">
@@ -307,8 +361,8 @@ img { max-width: 100%; }
     </div>
     <ol class="steps">
       <li><h3>Share your question</h3><p>Send a short description of the study and a sample of the data or its format.</p></li>
-      <li><h3>Agree the scope</h3><p>I confirm the analysis plan, timeline and price in writing before starting.</p></li>
-      <li><h3>Analysis with checks</h3><p>Quality control first, then the analysis, with any data problems reported as I find them.</p></li>
+      <li><h3>Agree the scope</h3><p>We confirm the analysis plan, timeline and price in writing before starting.</p></li>
+      <li><h3>Analysis with checks</h3><p>Quality control first, then the analysis, with any data problems reported as they are found.</p></li>
       <li><h3>Delivery</h3><p>Figures, tables, code and a technical summary, organised so you can find and rerun everything.</p></li>
     </ol>
   </section>
@@ -316,18 +370,18 @@ img { max-width: 100%; }
 
   <div class="contact" id="contact">
     <div>
-      <h2>Have data that needs a careful second look?</h2>
-      <p>Tell me about your study and the data you have. I will reply with an analysis plan and a fixed quote.</p>
+      <h2>Have data waiting to become results?</h2>
+      <p>Tell us about your study and the data you have. You will receive an analysis plan and a fixed quote.</p>
     </div>
     <div class="actions">
-      <a class="btn primary" href="https://www.linkedin.com/company/novagenbioinformatics-company/" target="_blank" rel="noopener">Contact NovaGen on LinkedIn</a>
+      <a class="btn primary" href="https://www.linkedin.com/company/novagenbioinformatics-company/" target="_blank" rel="noopener">Contact us on LinkedIn</a>
       <a class="btn ghost" href="https://mirna-qpcr-analyzer.streamlit.app" target="_blank" rel="noopener">Try the free app</a>
     </div>
   </div>
 
   <footer>
-    <span>© 2026 NovaGen Bioinformatics</span>
-    <span>Working remotely with research teams worldwide</span>
+    <span>© 2026 NovaBiolytics</span>
+    <span>Based in Saudi Arabia · working remotely with research teams worldwide</span>
   </footer>
 </main>
 
