@@ -1,5 +1,5 @@
-# NovaBiolytics
+# NovaGen Bioinformatics
 
-Website for NovaBiolytics: biomarker discovery, cancer genomics and research statistics.
+Website for NovaGen Bioinformatics: biomarker discovery, cancer genomics and research statistics.
 
 Live site: https://toobaawais.github.io/novagen/
