@@ -510,10 +510,10 @@ footer a { color: var(--ink-soft); }
       <div class="ticker">
         <div class="ticker-track">
           <ul>
-            <li>Single-cell RNA-seq</li><li>Bulk RNA-seq</li><li>TCGA and GDC</li><li>GEO</li><li>Serum and plasma miRNA</li><li>QuantStudio and Bio-Rad CFX</li><li>Clinical records</li><li>Surveys and questionnaires</li><li>Published studies</li>
+            <li>Single-cell RNA-seq</li><li>Bulk RNA-seq</li><li>TCGA and GDC</li><li>GEO</li><li>Serum and plasma miRNA</li><li>Clinical records</li><li>Published studies</li>
           </ul>
           <ul aria-hidden="true">
-            <li>Single-cell RNA-seq</li><li>Bulk RNA-seq</li><li>TCGA and GDC</li><li>GEO</li><li>Serum and plasma miRNA</li><li>QuantStudio and Bio-Rad CFX</li><li>Clinical records</li><li>Surveys and questionnaires</li><li>Published studies</li>
+            <li>Single-cell RNA-seq</li><li>Bulk RNA-seq</li><li>TCGA and GDC</li><li>GEO</li><li>Serum and plasma miRNA</li><li>Clinical records</li><li>Published studies</li>
           </ul>
         </div>
       </div>
@@ -532,8 +532,8 @@ footer a { color: var(--ink-soft); }
           <button class="choice" data-pick="rnaseq" aria-pressed="true"><svg aria-hidden="true" style="color:var(--haem)"><use href="#s-seq"/></svg><b>RNA-seq data</b></button>
           <button class="choice" data-pick="sc" aria-pressed="false"><svg aria-hidden="true" style="color:var(--haem)"><use href="#s-cells"/></svg><b>Single-cell data</b></button>
           <button class="choice" data-pick="idea" aria-pressed="false"><svg aria-hidden="true" style="color:var(--eosin)"><use href="#s-target"/></svg><b>A gene, miRNA or cancer type to explore</b></button>
-          <button class="choice" data-pick="liquid" aria-pressed="false"><svg aria-hidden="true" style="color:var(--eosin)"><use href="#s-drop"/></svg><b>Serum, plasma or qPCR results</b></button>
-          <button class="choice" data-pick="clinical" aria-pressed="false"><svg aria-hidden="true" style="color:var(--haem)"><use href="#s-bars"/></svg><b>Clinical records or a survey</b></button>
+          <button class="choice" data-pick="liquid" aria-pressed="false"><svg aria-hidden="true" style="color:var(--eosin)"><use href="#s-drop"/></svg><b>Serum or plasma samples</b></button>
+          <button class="choice" data-pick="clinical" aria-pressed="false"><svg aria-hidden="true" style="color:var(--haem)"><use href="#s-bars"/></svg><b>Clinical or hospital data</b></button>
           <button class="choice" data-pick="plan" aria-pressed="false"><svg aria-hidden="true" style="color:var(--haem)"><use href="#s-plan"/></svg><b>A study I'm still planning</b></button>
           <button class="choice" data-pick="review" aria-pressed="false"><svg aria-hidden="true" style="color:var(--eosin)"><use href="#s-review"/></svg><b>A manuscript under review</b></button>
           <button class="choice" data-pick="studies" aria-pressed="false"><svg aria-hidden="true" style="color:var(--eosin)"><use href="#s-forest"/></svg><b>Results from published studies</b></button>
@@ -622,14 +622,6 @@ footer a { color: var(--ink-soft); }
             <button class="ask">Ask about this service</button>
           </div></div></div>
         </article>
-        <article class="svc cat-bio" data-cat="bio" id="svc-qpcr" data-name="qPCR and miRNA panel analysis">
-          <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-curve"/></svg></span><span><h3>qPCR and miRNA panel analysis</h3><p>Fold changes you can defend in peer review.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
-          <div class="svc-body"><div><div class="inner">
-            <p class="get"><b>You receive:</b> ΔΔCt and efficiency-corrected quantification, reference gene stability, sample quality flags, statistics and publication figures.</p>
-            <ul class="methods"><li>2<sup>−ΔΔCt</sup></li><li>geNorm</li><li>Global mean</li><li>Efficiency correction</li></ul>
-            <button class="ask">Ask about this service</button>
-          </div></div></div>
-        </article>
         <article class="svc cat-bio" data-cat="bio" id="svc-ai" data-name="AI and machine learning models">
           <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-ai"/></svg></span><span><h3>AI and machine learning models<span class="new">In demand</span></h3><p>Diagnostic and prognostic models you can explain.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
           <div class="svc-body"><div><div class="inner">
@@ -647,11 +639,11 @@ footer a { color: var(--ink-soft); }
             <button class="ask">Ask about this service</button>
           </div></div></div>
         </article>
-        <article class="svc cat-stats" data-cat="stats" id="svc-clinical" data-name="Clinical and survey statistics">
-          <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-bars"/></svg></span><span><h3>Clinical and survey statistics</h3><p>Clinical studies and KAP surveys, analysed to journal standard.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
+        <article class="svc cat-stats" data-cat="stats" id="svc-clinical" data-name="Clinical statistics">
+          <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-bars"/></svg></span><span><h3>Clinical statistics</h3><p>Clinical and hospital studies, analysed to journal standard.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
           <div class="svc-body"><div><div class="inner">
-            <p class="get"><b>You receive:</b> descriptive tables, the right test for each question, regression and survival models, scale reliability, and journal-format tables with a full record of every test.</p>
-            <ul class="methods"><li>Regression</li><li>Survival analysis</li><li>Cronbach's α</li><li>Chi-square</li><li>Mixed models</li></ul>
+            <p class="get"><b>You receive:</b> descriptive tables, the right test for each question, regression and survival models, and journal-format tables with a full record of every test.</p>
+            <ul class="methods"><li>Regression</li><li>Survival analysis</li><li>Mixed models</li><li>Propensity scores</li></ul>
             <button class="ask">Ask about this service</button>
           </div></div></div>
         </article>
@@ -861,7 +853,7 @@ footer a { color: var(--ink-soft); }
           <details><summary>What if our data cannot leave the hospital?<span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p>We can develop and test the analysis on a sample or a simulated dataset, then give you documented code to run on your own system.</p></details>
         </div>
         <div class="faq-col">
-          <details><summary>What file formats do you accept?<span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p>FASTQ, count matrices, 10x Genomics outputs, instrument exports from QuantStudio and Bio-Rad CFX, Excel, CSV and SPSS files. If yours isn't listed, ask.</p></details>
+          <details><summary>What file formats do you accept?<span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p>FASTQ, count matrices, 10x Genomics outputs, instrument exports, Excel, CSV and SPSS files. If yours isn't listed, ask.</p></details>
           <details><summary>How long does a project take?<span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p>It depends on the data and the scope. The timeline is part of the analysis plan you approve, and you're told straight away if a data problem affects it.</p></details>
           <details><summary>Will I be able to reproduce the results?<span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p>Yes. Every project includes the documented code or notebook and a technical summary of each step and parameter, so you or a reviewer can rerun everything.</p></details>
         </div>
@@ -898,10 +890,9 @@ footer a { color: var(--ink-soft); }
               <option>Pathway and enrichment analysis</option>
               <option>Biomarker discovery report</option>
               <option>Liquid biopsy miRNA biomarkers</option>
-              <option>qPCR and miRNA panel analysis</option>
               <option>AI and machine learning models</option>
               <option>Study design and sample size</option>
-              <option>Clinical and survey statistics</option>
+              <option>Clinical statistics</option>
               <option>Meta-analysis</option>
               <option>Reviewer response support</option>
               <option>Publication-ready figures</option>
@@ -1101,8 +1092,8 @@ footer a { color: var(--ink-soft); }
     rnaseq: { q: "You have RNA-seq data", s: ["svc-rnaseq", "svc-path", "svc-figures"] },
     sc: { q: "You have single-cell data", s: ["svc-sc", "svc-multi", "svc-figures"] },
     idea: { q: "You have a target or cancer type to explore", s: ["svc-public", "svc-discovery", "svc-multi"] },
-    liquid: { q: "You have serum, plasma or qPCR results", s: ["svc-liquid", "svc-qpcr", "svc-ai"] },
-    clinical: { q: "You have clinical records or a survey", s: ["svc-clinical", "svc-ai", "svc-figures"] },
+    liquid: { q: "You have serum or plasma samples", s: ["svc-liquid", "svc-ai", "svc-discovery"] },
+    clinical: { q: "You have clinical or hospital data", s: ["svc-clinical", "svc-ai", "svc-figures"] },
     plan: { q: "You're planning a study", s: ["svc-design", "svc-clinical", "svc-apps"] },
     review: { q: "You have a manuscript under review", s: ["svc-reviewer", "svc-figures", "svc-meta"] },
     studies: { q: "You have results from published studies", s: ["svc-meta", "svc-reviewer", "svc-figures"] },
