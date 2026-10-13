@@ -21,7 +21,7 @@
 <meta name="twitter:image" content="https://novagen-bio.com/og-image.png">
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"ProfessionalService","name":"NovaGen Bioinformatics","url":"https://novagen-bio.com/","image":"https://novagen-bio.com/og-image.png","description":"Biomarker discovery, cancer genomics, qPCR and clinical research statistics.","areaServed":"Worldwide","address":{"@type":"PostalAddress","addressCountry":"SA"},"sameAs":["https://www.linkedin.com/company/novagenbioinformatics-company/"]}
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"NovaGen Bioinformatics","url":"https://novagen-bio.com/","image":"https://novagen-bio.com/og-image.png","description":"Biomarker discovery, cancer genomics, qPCR and clinical research statistics.","areaServed":"Worldwide","address":{"@type":"PostalAddress","addressCountry":"SA"},"email":"contact@novagen-bio.com","sameAs":["https://www.linkedin.com/company/novagenbioinformatics-company/"]}
 </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -266,6 +266,10 @@ p { margin: 0; }
 footer { padding-block: 40px 48px; }
 footer .wrap { display: flex; justify-content: space-between; gap: 16px 32px; flex-wrap: wrap; font-size: 0.9rem; color: var(--ink-soft); }
 footer a { color: var(--ink-soft); }
+.foot-links { display: flex; gap: 24px; flex-wrap: wrap; }
+.contact .brief .brief-mail { font-weight: 500; font-size: 0.95rem; text-align: center; margin: 10px 0 2px; color: color-mix(in srgb, var(--paper) 80%, var(--ink)); }
+.contact .btn.ghost-light { width: 100%; margin-top: 10px; color: var(--paper); border-color: color-mix(in srgb, var(--paper) 35%, var(--ink)); background: transparent; }
+.contact .btn.ghost-light:hover { background: color-mix(in srgb, var(--paper) 10%, var(--ink)); }
 
 /* Responsive */
 @media (max-width: 1040px) {
@@ -634,7 +638,9 @@ footer a { color: var(--ink-soft); }
             <li>The data type and number of samples</li>
             <li>Your deadline and target journal, if any</li>
           </ul>
-          <a class="btn solid" href="https://www.linkedin.com/company/novagenbioinformatics-company/" target="_blank" rel="noopener">Message us on LinkedIn</a>
+          <a class="btn solid" href="mailto:contact@novagen-bio.com?subject=Project%20enquiry">Email us</a>
+          <p class="brief-mail">contact@novagen-bio.com</p>
+          <a class="btn ghost-light" href="https://www.linkedin.com/company/novagenbioinformatics-company/" target="_blank" rel="noopener">Message us on LinkedIn</a>
         </div>
       </div>
     </section>
@@ -644,7 +650,7 @@ footer a { color: var(--ink-soft); }
 <footer>
   <div class="wrap">
     <span>© 2026 NovaGen Bioinformatics. Based in Saudi Arabia, working with research teams worldwide.</span>
-    <a href="https://www.linkedin.com/company/novagenbioinformatics-company/" target="_blank" rel="noopener">LinkedIn</a>
+    <span class="foot-links"><a href="mailto:contact@novagen-bio.com">contact@novagen-bio.com</a><a href="https://www.linkedin.com/company/novagenbioinformatics-company/" target="_blank" rel="noopener">LinkedIn</a></span>
   </div>
 </footer>
 
