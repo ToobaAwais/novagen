@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>NovaGen Bioinformatics | Biomarker discovery and research statistics</title>
-<meta name="description" content="Biomarker discovery, cancer genomics, qPCR and clinical statistics for hospitals, universities and diagnostics companies. Fixed quotes, reproducible results.">
+<title>NovaGen | Omics, biomarker and research statistics services</title>
+<meta name="description" content="Single-cell and RNA-seq analysis, multi-omics, liquid biopsy and AI biomarker models, study design, meta-analysis and clinical statistics. Fixed quotes, reproducible results.">
 <link rel="canonical" href="https://novagen-bio.com/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234A3DA8'/%3E%3Ccircle cx='9' cy='22' r='2.6' fill='%23fff' opacity='.55'/%3E%3Ccircle cx='16' cy='17' r='2.6' fill='%23fff' opacity='.75'/%3E%3Ccircle cx='23' cy='10' r='3.4' fill='%23F07AA3'/%3E%3C/svg%3E">
 <meta name="theme-color" content="#4A3DA8">
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://novagen-bio.com/">
-<meta property="og:site_name" content="NovaGen Bioinformatics">
-<meta property="og:title" content="NovaGen Bioinformatics">
-<meta property="og:description" content="Cancer data, turned into biomarker evidence you can publish. Biomarker discovery, qPCR and clinical statistics with fixed quotes.">
+<meta property="og:site_name" content="NovaGen">
+<meta property="og:title" content="NovaGen">
+<meta property="og:description" content="Omics and clinical data, turned into evidence you can publish. Single-cell, RNA-seq, multi-omics, AI models and research statistics.">
 <meta property="og:image" content="https://novagen-bio.com/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -21,7 +21,7 @@
 <meta name="twitter:image" content="https://novagen-bio.com/og-image.png">
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"ProfessionalService","name":"NovaGen Bioinformatics","url":"https://novagen-bio.com/","image":"https://novagen-bio.com/og-image.png","description":"Biomarker discovery, cancer genomics, qPCR and clinical research statistics.","areaServed":"Worldwide","address":{"@type":"PostalAddress","addressCountry":"SA"},"email":"contact@novagen-bio.com","sameAs":["https://www.linkedin.com/company/novagenbioinformatics-company/"]}
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"NovaGen","url":"https://novagen-bio.com/","image":"https://novagen-bio.com/og-image.png","email":"contact@novagen-bio.com","description":"Single-cell and RNA-seq analysis, multi-omics integration, biomarker discovery, AI models and research statistics.","areaServed":"Worldwide","address":{"@type":"PostalAddress","addressCountry":"SA"},"sameAs":["https://www.linkedin.com/company/novagenbioinformatics-company/"]}
 </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,9 +30,9 @@
 <style>
 /*
   Identity: the colours of an H&E-stained tissue section, the image every cancer study starts from.
-  Hematoxylin violet is the working colour (actions, down-regulation); eosin pink marks what is up and
-  what matters. Layout: left-aligned on a 74rem measure; the hero pairs the pitch with an interactive
-  volcano plot, the figure most biomarker papers lead with.
+  Hematoxylin violet is the working colour (actions, down-regulation); eosin pink marks what is up and what matters.
+  Layout: left-aligned on a 74rem measure. One orchestrated motion moment (the volcano plot rising on load);
+  everything else moves in answer to the visitor: filters, finder, tabs, accordions, the form.
 */
 :root {
   --paper: #f7f6fb;
@@ -46,28 +46,28 @@
   --eosin: #c93a6e;
   --eosin-wash: #fbe7ef;
   --null: #c4c0d6;
+  --ok: #1f8a5b;
   --sans: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
   --serif: "Newsreader", Georgia, "Times New Roman", serif;
   --measure: 74rem;
   --radius-lg: 20px;
-  --radius-sm: 10px;
+  --ease: cubic-bezier(.2, .7, .2, 1);
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --paper: #13112a; --surface: #1b1935; --ink: #eceaf6; --ink-soft: #aba7c6; --rule: #2e2b4e;
-    --haem: #a197f5; --haem-deep: #c3bcff; --haem-wash: #262252; --eosin: #f07aa3; --eosin-wash: #3a1e33; --null: #4a476a;
+    --haem: #a197f5; --haem-deep: #c3bcff; --haem-wash: #262252; --eosin: #f07aa3; --eosin-wash: #3a1e33; --null: #4a476a; --ok: #5fd3a0;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --paper: #13112a; --surface: #1b1935; --ink: #eceaf6; --ink-soft: #aba7c6; --rule: #2e2b4e;
-  --haem: #a197f5; --haem-deep: #c3bcff; --haem-wash: #262252; --eosin: #f07aa3; --eosin-wash: #3a1e33; --null: #4a476a;
+  --haem: #a197f5; --haem-deep: #c3bcff; --haem-wash: #262252; --eosin: #f07aa3; --eosin-wash: #3a1e33; --null: #4a476a; --ok: #5fd3a0;
   color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 84px; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body {
   margin: 0; background: var(--paper); color: var(--ink);
   font-family: var(--sans); font-size: 1.0625rem; line-height: 1.6;
@@ -77,8 +77,9 @@ img, svg, canvas { max-width: 100%; }
 [hidden] { display: none !important; }
 a { color: var(--haem); text-underline-offset: 3px; }
 :focus-visible { outline: 2.5px solid var(--eosin); outline-offset: 3px; border-radius: 6px; }
-h1, h2, h3 { margin: 0; line-height: 1.1; text-wrap: balance; letter-spacing: -0.02em; }
+h1, h2, h3, h4 { margin: 0; line-height: 1.1; text-wrap: balance; letter-spacing: -0.02em; }
 p { margin: 0; }
+button { font: inherit; color: inherit; }
 .wrap { max-width: var(--measure); margin-inline: auto; padding-inline: 24px; }
 .prose { font-family: var(--serif); font-size: 1.15rem; line-height: 1.65; color: var(--ink-soft); }
 
@@ -87,13 +88,13 @@ p { margin: 0; }
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
   min-height: 48px; padding: 12px 22px; border-radius: 12px;
   font: 600 1rem/1.2 var(--sans); text-decoration: none; cursor: pointer;
-  border: 1.5px solid transparent; transition: background-color .15s, color .15s, border-color .15s;
+  border: 1.5px solid transparent; transition: background-color .15s, color .15s, border-color .15s, transform .15s var(--ease);
 }
+.btn:active { transform: translateY(1px); }
 .btn.solid { background: var(--haem); color: var(--paper); }
 .btn.solid:hover { background: var(--haem-deep); }
 .btn.line { border-color: var(--rule); color: var(--ink); background: var(--surface); }
 .btn.line:hover { border-color: var(--haem); color: var(--haem); }
-.btn svg { width: 18px; height: 18px; flex: none; }
 
 /* Header */
 .top {
@@ -104,21 +105,26 @@ p { margin: 0; }
 }
 .top.scrolled { border-bottom-color: var(--rule); }
 .top .wrap { display: flex; align-items: center; gap: 28px; min-height: 72px; }
-.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); margin-right: auto; }
+.brand { display: flex; align-items: center; gap: 11px; text-decoration: none; color: var(--ink); margin-right: auto; }
 .brand svg { width: 34px; height: 34px; flex: none; }
-.brand-name { display: flex; flex-direction: column; line-height: 1.05; }
-.brand-name b { font-size: 1.2rem; font-weight: 800; letter-spacing: -0.03em; }
-.brand-name span { font-size: 0.8rem; font-weight: 500; color: var(--ink-soft); letter-spacing: 0.01em; }
-.nav { display: flex; gap: 26px; }
-.nav a { color: var(--ink); text-decoration: none; font-weight: 500; font-size: 0.98rem; }
-.nav a:hover { color: var(--haem); }
+.brand b { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.035em; }
+.nav { display: flex; gap: 24px; }
+.nav a { color: var(--ink); text-decoration: none; font-weight: 500; font-size: 0.97rem; position: relative; padding-block: 6px; }
+.nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--eosin); transform: scaleX(0); transform-origin: left; transition: transform .25s var(--ease); }
+.nav a:hover::after, .nav a.here::after { transform: scaleX(1); }
 .top .btn { min-height: 42px; padding: 9px 18px; font-size: 0.95rem; }
-.menu-btn { display: none; background: none; border: 1.5px solid var(--rule); border-radius: 10px; width: 44px; height: 44px; color: var(--ink); cursor: pointer; }
+.menu-btn { display: none; background: none; border: 1.5px solid var(--rule); border-radius: 10px; width: 44px; height: 44px; cursor: pointer; }
 .menu-btn svg { width: 20px; height: 20px; }
+.progress { position: absolute; left: 0; bottom: -1px; height: 2px; width: 100%; background: linear-gradient(90deg, var(--haem), var(--eosin)); transform-origin: left; transform: scaleX(0); }
 
 /* Hero */
 .hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr); gap: 56px; align-items: center; padding-block: 56px 64px; }
 .hero h1 { font-size: clamp(2.5rem, 4.9vw, 4.1rem); font-weight: 800; letter-spacing: -0.035em; line-height: 1.02; }
+.hero h1 .ln { display: block; }
+.js .hero h1 .ln { opacity: 0; transform: translateY(18px); animation: rise .8s var(--ease) forwards; }
+.js .hero h1 .ln:nth-child(2) { animation-delay: .08s; }
+.js .hero h1 .ln:nth-child(3) { animation-delay: .16s; }
+@keyframes rise { to { opacity: 1; transform: none; } }
 .hero .prose { margin-top: 24px; max-width: 33rem; font-size: 1.22rem; }
 .hero .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 .assure { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 28px; padding: 0; list-style: none; font-size: 0.93rem; color: var(--ink-soft); }
@@ -134,47 +140,95 @@ p { margin: 0; }
 .legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 0.85rem; color: var(--ink-soft); list-style: none; padding: 0; margin: 0; }
 .legend li { display: flex; align-items: center; gap: 6px; }
 .legend i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
-.legend .up { background: var(--eosin); }
-.legend .down { background: var(--haem); }
-.legend .ns { background: var(--null); }
+.legend .up { background: var(--eosin); } .legend .down { background: var(--haem); } .legend .ns { background: var(--null); }
 .volcano canvas { display: block; width: 100%; height: 360px; margin-top: 12px; touch-action: pan-y; cursor: crosshair; }
 .readout { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 10px; font-size: 0.86rem; color: var(--ink-soft); font-variant-numeric: tabular-nums; min-height: 1.4em; }
 .readout b { color: var(--ink); font-weight: 600; }
 
-/* Data sources */
-.sources { border-block: 1px solid var(--rule); }
-.sources .wrap { display: flex; align-items: center; gap: 16px 40px; flex-wrap: wrap; padding-block: 22px; }
-.sources p { font-size: 0.92rem; color: var(--ink-soft); }
-.sources ul { display: flex; flex-wrap: wrap; gap: 10px 32px; list-style: none; padding: 0; margin: 0; }
-.sources li { font-weight: 700; font-size: 1.02rem; letter-spacing: -0.01em; color: var(--ink); }
+/* Data types, slowly scrolling */
+.sources { border-block: 1px solid var(--rule); overflow: hidden; }
+.sources .wrap { display: flex; align-items: center; gap: 24px; padding-block: 20px; }
+.sources p { font-size: 0.92rem; color: var(--ink-soft); flex: none; }
+.ticker { overflow: hidden; flex: 1; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.ticker-track { display: flex; width: max-content; animation: ticker 48s linear infinite; }
+.ticker:hover .ticker-track { animation-play-state: paused; }
+.ticker ul { display: flex; gap: 40px; list-style: none; padding: 0 40px 0 0; margin: 0; }
+.ticker li { font-weight: 700; font-size: 1.02rem; letter-spacing: -0.01em; white-space: nowrap; display: flex; align-items: center; gap: 40px; }
+.ticker li::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--eosin); opacity: .6; }
+@keyframes ticker { to { transform: translateX(-50%); } }
 
 /* Sections */
 .section { padding-block: 104px 0; }
-.head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px 56px; align-items: end; margin-bottom: 48px; }
+.head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px 56px; align-items: end; margin-bottom: 44px; }
 .head h2 { font-size: clamp(2rem, 3.8vw, 3rem); font-weight: 800; letter-spacing: -0.03em; }
 .head .prose { max-width: 36rem; }
+.js .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+.js .reveal.in { opacity: 1; transform: none; }
 
-/* Services: three stages of a research project */
-.stages { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-.stage { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 30px 28px 10px; min-width: 0; }
-.stage-top { display: flex; align-items: center; gap: 14px; padding-bottom: 22px; border-bottom: 1px solid var(--rule); }
-.stage-top svg { width: 44px; height: 44px; flex: none; }
-.stage-top h3 { font-size: 1.4rem; font-weight: 700; }
-.stage-top p { font-size: 0.92rem; color: var(--ink-soft); margin-top: 2px; }
-.svc { padding-block: 22px; border-bottom: 1px solid var(--rule); }
-.svc:last-child { border-bottom: 0; }
-.svc h4 { margin: 0; font-size: 1.08rem; font-weight: 700; letter-spacing: -0.01em; }
-.svc p { margin-top: 8px; color: var(--ink-soft); font-size: 0.98rem; }
-.methods { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; }
+/* Finder */
+.finder { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 20px; }
+.choices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; align-content: start; }
+.choice {
+  display: flex; align-items: center; gap: 12px; text-align: left; cursor: pointer;
+  background: var(--surface); border: 1.5px solid var(--rule); border-radius: 14px; padding: 14px 16px;
+  transition: border-color .15s, background-color .15s, transform .2s var(--ease);
+}
+.choice svg { width: 30px; height: 30px; flex: none; }
+.choice b { font-weight: 600; font-size: 0.98rem; line-height: 1.25; }
+.choice:hover { border-color: var(--haem); transform: translateY(-2px); }
+.choice[aria-pressed="true"] { border-color: var(--haem); background: var(--haem-wash); }
+.answer { background: var(--ink); color: var(--paper); border-radius: var(--radius-lg); padding: 30px 30px 26px; min-width: 0; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+.answer .q { font-size: 0.92rem; color: color-mix(in srgb, var(--paper) 70%, var(--ink)); }
+.answer h3 { font-size: 1.55rem; font-weight: 800; margin-top: 6px; letter-spacing: -0.02em; color: var(--paper); }
+.recs { list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 10px; }
+.recs li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; align-items: start; padding: 14px; border-radius: 12px; background: color-mix(in srgb, var(--paper) 7%, var(--ink)); border: 1px solid color-mix(in srgb, var(--paper) 12%, var(--ink)); }
+.js .recs li { animation: recIn .45s var(--ease) both; }
+.recs li:nth-child(2) { animation-delay: .06s; } .recs li:nth-child(3) { animation-delay: .12s; }
+@keyframes recIn { from { opacity: 0; transform: translateX(12px); } }
+.recs .n { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: var(--eosin); color: var(--paper); font-weight: 800; }
+.recs b { display: block; font-weight: 700; color: var(--paper); }
+.recs span { display: block; font-size: 0.93rem; color: color-mix(in srgb, var(--paper) 72%, var(--ink)); margin-top: 2px; }
+.answer .btn { margin-top: 22px; align-self: flex-start; background: var(--paper); color: var(--ink); }
+.answer .btn:hover { background: var(--eosin-wash); }
+.answer .hint { margin-top: 12px; font-size: 0.88rem; color: color-mix(in srgb, var(--paper) 62%, var(--ink)); }
+
+/* Services explorer */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
+.filter { border: 1.5px solid var(--rule); background: var(--surface); border-radius: 999px; padding: 8px 16px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all .15s; }
+.filter:hover { border-color: var(--haem); }
+.filter[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.filter .c { font-weight: 500; opacity: .6; margin-left: 6px; }
+.svc-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; align-items: start; }
+.svc { background: var(--surface); border: 1px solid var(--rule); border-radius: 16px; transition: border-color .2s, box-shadow .2s; }
+.svc.out { display: none; }
+.svc.enter { animation: svcIn .4s var(--ease) both; }
+@keyframes svcIn { from { opacity: 0; transform: translateY(8px); } }
+.svc:hover { border-color: color-mix(in srgb, var(--haem) 50%, var(--rule)); }
+.svc.open { border-color: var(--haem); box-shadow: 0 18px 36px -28px color-mix(in srgb, var(--haem) 70%, transparent); }
+.svc-btn { width: 100%; display: grid; grid-template-columns: 44px minmax(0, 1fr) 28px; gap: 14px; align-items: center; padding: 18px; background: none; border: 0; text-align: left; cursor: pointer; border-radius: 16px; }
+.svc-ico { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; }
+.svc-ico svg { width: 24px; height: 24px; }
+.cat-omics .svc-ico, .cat-stats .svc-ico { background: var(--haem-wash); color: var(--haem); }
+.cat-bio .svc-ico, .cat-build .svc-ico { background: var(--eosin-wash); color: var(--eosin); }
+.svc-btn h3 { font-size: 1.08rem; font-weight: 700; letter-spacing: -0.01em; }
+.svc-btn p { font-size: 0.93rem; color: var(--ink-soft); margin-top: 3px; line-height: 1.45; }
+.svc-btn .new { display: inline-block; margin-left: 8px; font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: var(--eosin); color: var(--paper); vertical-align: 2px; letter-spacing: 0.01em; }
+.chev { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--paper); transition: transform .3s var(--ease), background-color .2s; }
+.chev svg { width: 14px; height: 14px; }
+.svc.open .chev { transform: rotate(45deg); background: var(--haem); color: var(--paper); }
+.svc-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s var(--ease); }
+.svc.open .svc-body { grid-template-rows: 1fr; }
+.svc-body > div { overflow: hidden; }
+.svc-body .inner { padding: 0 20px 20px 76px; display: grid; gap: 12px; }
+.svc-body .get b { font-weight: 700; }
+.methods { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 0; }
 .methods li { font-size: 0.8rem; font-weight: 500; padding: 3px 9px; border-radius: 6px; background: var(--haem-wash); color: var(--haem-deep); }
+.svc-body .ask { font-weight: 600; font-size: 0.95rem; background: none; border: 0; padding: 0; color: var(--eosin); cursor: pointer; justify-self: start; text-decoration: underline; text-underline-offset: 3px; }
 
 /* Sample outputs */
 .samples { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); gap: 20px; }
 .tabs { display: flex; flex-direction: column; gap: 8px; }
-.tab {
-  text-align: left; background: transparent; border: 1.5px solid var(--rule); border-radius: 14px;
-  padding: 16px 18px; color: var(--ink); cursor: pointer; font: inherit; transition: border-color .15s, background-color .15s;
-}
+.tab { text-align: left; background: transparent; border: 1.5px solid var(--rule); border-radius: 14px; padding: 16px 18px; cursor: pointer; transition: border-color .15s, background-color .15s; }
 .tab b { display: block; font-weight: 700; font-size: 1.02rem; }
 .tab span { display: block; font-size: 0.88rem; color: var(--ink-soft); margin-top: 2px; }
 .tab:hover { border-color: var(--haem); }
@@ -185,10 +239,9 @@ p { margin: 0; }
 .panel svg { display: block; width: 100%; height: auto; }
 .panel-copy { padding: 30px 28px; display: flex; flex-direction: column; gap: 22px; min-width: 0; }
 .panel-copy h3 { font-size: 1.35rem; font-weight: 700; }
+.panel-copy dl { margin: 0; display: grid; gap: 18px; }
 .panel-copy dt { font-weight: 700; font-size: 0.95rem; }
 .panel-copy dd { margin: 4px 0 0; color: var(--ink-soft); font-size: 0.98rem; }
-.panel-copy dl { margin: 0; display: grid; gap: 18px; }
-/* chart marks */
 .ax { stroke: var(--ink-soft); stroke-width: 1; }
 .grid { stroke: var(--rule); stroke-width: 1; }
 .tick { fill: var(--ink-soft); font-family: var(--sans); font-size: 13px; }
@@ -197,13 +250,17 @@ p { margin: 0; }
 .s-up { stroke: var(--eosin); fill: none; stroke-width: 2.5; }
 .s-down { stroke: var(--haem); fill: none; stroke-width: 2.5; }
 .s-ref { stroke: var(--null); fill: none; stroke-width: 1.5; stroke-dasharray: 5 5; }
-.f-up { fill: var(--eosin); }
-.f-down { fill: var(--haem); }
-.f-ns { fill: var(--null); }
+.f-up { fill: var(--eosin); } .f-down { fill: var(--haem); } .f-ns { fill: var(--null); }
 .f-up-wash { fill: var(--eosin); opacity: .12; }
 .err { stroke: var(--ink); stroke-width: 1.4; }
-.ctick-up { stroke: var(--eosin); stroke-width: 1.5; }
-.ctick-down { stroke: var(--haem); stroke-width: 1.5; }
+.ctick-up { stroke: var(--eosin); stroke-width: 1.5; } .ctick-down { stroke: var(--haem); stroke-width: 1.5; }
+.drawing .s-up, .drawing .s-down { stroke-dasharray: var(--len); stroke-dashoffset: var(--len); animation: draw 1.1s var(--ease) forwards; }
+.drawing .s-down { animation-delay: .15s; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+.drawing .bar { transform-box: fill-box; transform-origin: var(--origin); animation: grow .7s var(--ease) both; }
+@keyframes grow { from { transform: scaleY(0); } }
+.drawing .fade { animation: fade .5s .6s both; }
+@keyframes fade { from { opacity: 0; } }
 
 /* Who and how */
 .audience { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; }
@@ -215,9 +272,8 @@ p { margin: 0; }
 .plan.lead { background: var(--haem); border-color: var(--haem); color: #fff; }
 .plan h3 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.025em; }
 .plan .kind { font-size: 0.92rem; font-weight: 600; color: var(--haem); }
-.plan.lead .kind { color: #e6e1ff; }
+.plan.lead .kind, .plan.lead p { color: #e6e1ff; }
 .plan p { color: var(--ink-soft); }
-.plan.lead p { color: #e6e1ff; }
 .plan .fit { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--rule); font-weight: 600; color: var(--ink); }
 .plan.lead .fit { border-top-color: rgba(255,255,255,.25); color: #fff; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .plan.lead { background: var(--haem-wash); border-color: var(--haem); } }
@@ -225,7 +281,8 @@ p { margin: 0; }
 
 /* Tools */
 .tools { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
-.tool { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 32px; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.tool { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 32px; display: flex; flex-direction: column; gap: 16px; min-width: 0; transition: transform .25s var(--ease), box-shadow .25s; }
+.tool:hover { transform: translateY(-3px); box-shadow: 0 22px 40px -30px color-mix(in srgb, var(--haem) 60%, transparent); }
 .tool-top { display: flex; gap: 16px; align-items: center; }
 .tool-top svg { width: 52px; height: 52px; flex: none; }
 .tool h3 { font-size: 1.45rem; font-weight: 800; letter-spacing: -0.02em; }
@@ -235,15 +292,17 @@ p { margin: 0; }
 .checks svg { width: 20px; height: 20px; color: var(--eosin); margin-top: 3px; }
 .tool .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; padding-top: 8px; }
 
-/* Process: a real sequence, so it is numbered */
-.steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; position: relative; }
-.steps::before { content: ""; position: absolute; top: 21px; left: 22px; right: calc((100% - 72px) / 4 - 22px); height: 2px; background: linear-gradient(90deg, var(--haem), var(--eosin)); opacity: .5; }
-.steps li { position: relative; min-width: 0; }
-.steps .num { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--paper); border: 2px solid var(--haem); color: var(--haem); font-weight: 800; font-size: 1.05rem; position: relative; }
-.steps li:last-child .num { border-color: var(--eosin); color: var(--eosin); }
+/* Process */
+.steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; position: relative; --p: 0; }
+.steps::before, .steps::after { content: ""; position: absolute; top: 21px; left: 22px; right: calc((100% - 72px) / 4 - 22px); height: 2px; }
+.steps::before { background: var(--rule); }
+.steps::after { background: linear-gradient(90deg, var(--haem), var(--eosin)); transform-origin: left; transform: scaleX(var(--p)); }
+.steps li { position: relative; min-width: 0; z-index: 1; }
+.steps .num { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--paper); border: 2px solid var(--rule); color: var(--ink-soft); font-weight: 800; font-size: 1.05rem; transition: border-color .3s, color .3s; }
+.steps li.lit .num { border-color: var(--haem); color: var(--haem); }
+.steps li.lit:last-child .num { border-color: var(--eosin); color: var(--eosin); }
 .steps h3 { font-size: 1.15rem; font-weight: 700; margin-top: 20px; }
 .steps p { margin-top: 8px; color: var(--ink-soft); font-size: 0.98rem; }
-
 .receive { margin-top: 56px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 24px 48px; padding: 34px 32px; border-radius: var(--radius-lg); background: var(--haem-wash); }
 .receive h3 { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.02em; }
 .receive .prose { font-size: 1.02rem; margin-top: 10px; }
@@ -251,44 +310,90 @@ p { margin: 0; }
 .receive li { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 10px; }
 .receive svg { width: 20px; height: 20px; color: var(--haem); margin-top: 3px; }
 
+/* FAQ */
+.faq { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 40px; align-items: start; }
+.faq-col { border-bottom: 1px solid var(--rule); }
+.faq details { border-top: 1px solid var(--rule); }
+.faq summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: minmax(0, 1fr) 28px; gap: 16px; align-items: center; padding: 20px 0; font-weight: 700; font-size: 1.05rem; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary .chev { background: var(--haem-wash); color: var(--haem); }
+.faq details[open] summary .chev { transform: rotate(45deg); background: var(--haem); color: var(--paper); }
+.faq details p { padding: 0 44px 22px 0; color: var(--ink-soft); }
+
 /* Contact */
 .contact { margin-top: 104px; border-radius: 28px; background: var(--ink); color: var(--paper); overflow: hidden; position: relative; }
-.contact-inner { position: relative; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 40px; padding: 64px 56px; align-items: center; }
+.contact-dots { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: .6; }
+.contact-inner { position: relative; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.25fr); gap: 48px; padding: 60px 56px; }
 .contact h2 { font-size: clamp(2rem, 4vw, 3.1rem); font-weight: 800; letter-spacing: -0.03em; color: var(--paper); }
 .contact .prose { color: color-mix(in srgb, var(--paper) 78%, var(--ink)); margin-top: 18px; }
-.contact-dots { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: .6; }
-.brief { background: color-mix(in srgb, var(--paper) 7%, var(--ink)); border: 1px solid color-mix(in srgb, var(--paper) 16%, var(--ink)); border-radius: 18px; padding: 26px; }
-.brief p { font-weight: 700; color: var(--paper); }
-.brief ul { margin: 12px 0 22px; padding-left: 1.2rem; color: color-mix(in srgb, var(--paper) 80%, var(--ink)); display: grid; gap: 6px; }
-.contact .btn.solid { background: var(--eosin); color: var(--paper); width: 100%; }
-.contact .btn.solid:hover { background: color-mix(in srgb, var(--eosin) 85%, #000); }
+.c-list { list-style: none; padding: 0; margin: 32px 0 0; display: grid; gap: 14px; }
+.c-list li { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 14px; align-items: center; }
+.c-list .ic { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: color-mix(in srgb, var(--paper) 10%, var(--ink)); }
+.c-list .ic svg { width: 20px; height: 20px; color: var(--paper); }
+.c-list small { display: block; font-size: 0.85rem; color: color-mix(in srgb, var(--paper) 62%, var(--ink)); }
+.c-list a, .c-list .v { color: var(--paper); font-weight: 600; text-decoration: none; }
+.c-list a:hover { text-decoration: underline; }
+.form { background: var(--surface); color: var(--ink); border-radius: 20px; padding: 28px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; min-width: 0; align-content: start; }
+.field { display: grid; gap: 6px; min-width: 0; align-content: start; }
+.field.full { grid-column: 1 / -1; }
+.field label { font-weight: 600; font-size: 0.92rem; }
+.field label span { font-weight: 400; color: var(--ink-soft); }
+.field input, .field select, .field textarea {
+  width: 100%; font: inherit; font-size: 1rem; color: var(--ink); background: var(--paper);
+  border: 1.5px solid var(--rule); border-radius: 10px; padding: 11px 12px; transition: border-color .15s, box-shadow .15s;
+}
+.field textarea { min-height: 120px; resize: vertical; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--haem); box-shadow: 0 0 0 3px color-mix(in srgb, var(--haem) 22%, transparent); }
+.field .err-msg { font-size: 0.85rem; color: var(--eosin); }
+.field .err-msg:empty { display: none; }
+.field.bad input, .field.bad textarea { border-color: var(--eosin); }
+.form .btn { grid-column: 1 / -1; width: 100%; background: var(--eosin); color: var(--paper); }
+.form .btn:hover { background: color-mix(in srgb, var(--eosin) 85%, #000); }
+.form .btn[disabled] { opacity: .7; cursor: progress; }
+.form .fine { grid-column: 1 / -1; font-size: 0.85rem; color: var(--ink-soft); text-align: center; }
+.form-done { grid-column: 1 / -1; text-align: center; padding: 30px 10px; display: grid; gap: 10px; justify-items: center; }
+.form-done svg { width: 56px; height: 56px; color: var(--ok); }
+.form-done h3 { font-size: 1.5rem; font-weight: 800; }
+.form-done p { color: var(--ink-soft); max-width: 26rem; }
+.hp { position: absolute; left: -9999px; }
 
 footer { padding-block: 40px 48px; }
 footer .wrap { display: flex; justify-content: space-between; gap: 16px 32px; flex-wrap: wrap; font-size: 0.9rem; color: var(--ink-soft); }
 footer a { color: var(--ink-soft); }
 .foot-links { display: flex; gap: 24px; flex-wrap: wrap; }
-.contact .brief .brief-mail { font-weight: 500; font-size: 0.95rem; text-align: center; margin: 10px 0 2px; color: color-mix(in srgb, var(--paper) 80%, var(--ink)); }
-.contact .btn.ghost-light { width: 100%; margin-top: 10px; color: var(--paper); border-color: color-mix(in srgb, var(--paper) 35%, var(--ink)); background: transparent; }
-.contact .btn.ghost-light:hover { background: color-mix(in srgb, var(--paper) 10%, var(--ink)); }
+
+.to-top { position: fixed; right: 20px; bottom: 20px; width: 46px; height: 46px; border-radius: 50%; border: 0; background: var(--ink); color: var(--paper); display: grid; place-items: center; cursor: pointer; opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity .25s, transform .25s var(--ease); z-index: 15; }
+.to-top.show { opacity: 1; transform: none; pointer-events: auto; }
+.to-top svg { width: 18px; height: 18px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; transition-duration: .01ms !important; }
+  .ticker-track { animation: none; }
+  .js .reveal { opacity: 1; transform: none; }
+}
 
 /* Responsive */
 @media (max-width: 1040px) {
-  .stages { grid-template-columns: minmax(0, 1fr); }
-  .samples { grid-template-columns: minmax(0, 1fr); }
+  .samples, .finder { grid-template-columns: minmax(0, 1fr); }
   .tabs { flex-direction: row; overflow-x: auto; }
   .tab { flex: 1 0 12rem; }
   .tab[aria-selected="true"] { box-shadow: inset 0 -4px 0 var(--haem); }
+  .contact-inner { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 900px) {
   .nav, .top .btn.solid { display: none; }
   .menu-btn { display: grid; place-items: center; }
   .top.open .nav { display: flex; position: absolute; top: 72px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--paper); border-bottom: 1px solid var(--rule); padding: 8px 24px 16px; }
   .top.open .nav a { padding: 12px 0; border-bottom: 1px solid var(--rule); font-size: 1.05rem; }
-  .hero, .head, .panel, .audience, .plans, .tools, .contact-inner, .receive { grid-template-columns: minmax(0, 1fr); }
+  .top.open .nav a::after { display: none; }
+  .hero, .head, .panel, .audience, .plans, .tools, .receive, .svc-list, .faq { grid-template-columns: minmax(0, 1fr); }
+  .faq-col:first-child { border-bottom: 0; }
   .hero { gap: 40px; padding-block: 32px 48px; }
   .panel figure { border-right: 0; border-bottom: 1px solid var(--rule); }
   .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 40px; }
-  .steps::before { display: none; }
+  .steps::before, .steps::after { display: none; }
+  .steps .num { border-color: var(--haem); color: var(--haem); }
   .section { padding-block: 80px 0; }
   .contact-inner { padding: 44px 28px; }
   .audience { gap: 28px; }
@@ -297,13 +402,19 @@ footer a { color: var(--ink-soft); }
   .wrap { padding-inline: 16px; }
   .volcano { padding: 14px 12px 12px; }
   .volcano canvas { height: 300px; }
-  .panel figure, .panel-copy, .tool, .plan, .stage { padding-inline: 20px; }
+  .panel figure, .panel-copy, .tool, .plan { padding-inline: 20px; }
   .receive { padding: 26px 20px; }
   .receive ul { grid-template-columns: minmax(0, 1fr); }
   .steps { grid-template-columns: minmax(0, 1fr); }
   .contact { border-radius: 20px; margin-top: 80px; }
-  .contact-inner { padding: 36px 20px; }
+  .contact-inner { padding: 36px 16px; }
+  .form { grid-template-columns: minmax(0, 1fr); padding: 20px; }
   .hero .actions .btn { flex: 1 1 100%; }
+  .choices { grid-template-columns: minmax(0, 1fr); }
+  .answer { padding: 24px 20px; }
+  .svc-body .inner { padding: 0 18px 18px 18px; }
+  .sources .wrap { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .ticker { width: 100%; }
   .tab { flex: 1 1 0; padding: 12px 10px; text-align: center; }
   .tab span { display: none; }
   .tab b { font-size: 0.92rem; }
@@ -313,42 +424,64 @@ footer a { color: var(--ink-soft); }
 </style>
 </head>
 <body>
+<script>document.documentElement.classList.add("js");</script>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-check" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9" fill="currentColor" opacity=".14"/><path d="M6 10.4l2.6 2.6L14 7.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-lock" viewBox="0 0 20 20"><rect x="4" y="9" width="12" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M7 9V6.5a3 3 0 016 0V9" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
   <symbol id="i-tag" viewBox="0 0 20 20"><path d="M3 10.5V4a1 1 0 011-1h6.5L17 9.5 10.5 16 3 10.5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="7" cy="7" r="1.4" fill="currentColor"/></symbol>
   <symbol id="i-redo" viewBox="0 0 20 20"><path d="M15.5 8A6 6 0 104 11" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M16 3.5V8h-4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 14 14"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 20 20"><rect x="2.5" y="4.5" width="15" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 5.5l7 5.5 7-5.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+  <symbol id="i-in" viewBox="0 0 20 20"><rect x="2.5" y="2.5" width="15" height="15" rx="3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M6.5 9v5M6.5 6.2v.01M9.5 14v-3c0-1.2.8-2 1.8-2s1.7.8 1.7 2v3M9.5 9v5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M2.5 10h15M10 2.5c2.2 2.3 2.2 12.7 0 15M10 2.5c-2.2 2.3-2.2 12.7 0 15" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
+  <symbol id="s-cells" viewBox="0 0 24 24"><circle cx="7" cy="8" r="3.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="16.5" cy="7" r="2.4" fill="currentColor" opacity=".55"/><circle cx="15" cy="16" r="3.6" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="6.5" cy="17" r="2" fill="currentColor"/></symbol>
+  <symbol id="s-seq" viewBox="0 0 24 24"><path d="M4 7h16M4 12h11M4 17h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="19" cy="12" r="2" fill="currentColor"/></symbol>
+  <symbol id="s-layers" viewBox="0 0 24 24"><path d="M12 3l9 4.5-9 4.5-9-4.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M3 12l9 4.5 9-4.5M3 16.5L12 21l9-4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="s-db" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="2.8" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5 6v12c0 1.5 3.1 2.8 7 2.8s7-1.3 7-2.8V6M5 12c0 1.5 3.1 2.8 7 2.8s7-1.3 7-2.8" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+  <symbol id="s-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></symbol>
+  <symbol id="s-drop" viewBox="0 0 24 24"><path d="M12 3c3.5 4.5 6 7.8 6 11a6 6 0 01-12 0c0-3.2 2.5-6.5 6-11z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="10" cy="14" r="1.3" fill="currentColor"/><circle cx="13.5" cy="16.5" r="1" fill="currentColor"/></symbol>
+  <symbol id="s-curve" viewBox="0 0 24 24"><path d="M3 19c6 0 6-1 9-7s4-8 9-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3 15h18" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 2"/></symbol>
+  <symbol id="s-ai" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 2.5v2.5M15 2.5v2.5M9 19v2.5M15 19v2.5M2.5 9h2.5M2.5 15h2.5M19 9h2.5M19 15h2.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M9.5 14.5l1.3-5h2.4l1.3 5M10.2 12.6h3.6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></symbol>
+  <symbol id="s-plan" viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 3.5V6h6V3.5M8.5 11h7M8.5 15h4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="s-bars" viewBox="0 0 24 24"><path d="M5 20V12M10 20V6M15 20V10M20 20V4" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+  <symbol id="s-forest" viewBox="0 0 24 24"><path d="M12 3v18" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 2"/><path d="M6 7h8M9 12h9M4 17h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M15 15l2 2-2 2-2-2z" fill="currentColor"/></symbol>
+  <symbol id="s-review" viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 016.5 3h11A2.5 2.5 0 0120 5.5v8a2.5 2.5 0 01-2.5 2.5H11l-4.5 4v-4A2.5 2.5 0 014 13.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.5 9.5l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="s-paths" viewBox="0 0 24 24"><circle cx="5" cy="12" r="2.2" fill="currentColor"/><circle cx="19" cy="5" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="19" cy="19" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M7 12h4l6-6.2M11 12l6 6.2" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="s-figure" viewBox="0 0 24 24"><rect x="3.5" y="4" width="17" height="16" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M7 16l3.5-4 3 2.5L17 9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="s-code" viewBox="0 0 24 24"><path d="M8.5 7L4 12l4.5 5M15.5 7L20 12l-4.5 5M13.5 5l-3 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </svg>
 
 <header class="top" id="top">
   <div class="wrap">
-    <a class="brand" href="#home" aria-label="NovaGen Bioinformatics, home">
+    <a class="brand" href="#home" aria-label="NovaGen, home">
       <svg viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="9" fill="var(--haem)"/><circle cx="9.5" cy="23.5" r="2.8" fill="#fff" opacity=".5"/><circle cx="17" cy="18" r="2.8" fill="#fff" opacity=".75"/><circle cx="24.5" cy="10.5" r="3.6" fill="#f07aa3"/></svg>
-      <span class="brand-name"><b>NovaGen</b><span>Bioinformatics</span></span>
+      <b>NovaGen</b>
     </a>
     <nav class="nav" id="nav" aria-label="Main">
       <a href="#services">Services</a>
       <a href="#samples">Sample outputs</a>
-      <a href="#work">Work with us</a>
       <a href="#tools">Free tools</a>
       <a href="#process">How it works</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
     </nav>
     <a class="btn solid" href="#contact">Request a quote</a>
     <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
       <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
     </button>
   </div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
 </header>
 
 <main id="home">
   <div class="wrap hero">
     <div>
-      <h1>Cancer data, turned into biomarker evidence you can publish.</h1>
-      <p class="prose">NovaGen Bioinformatics analyses TCGA and GEO cohorts, miRNA panels, qPCR runs and clinical studies for hospitals, research groups and diagnostics companies. You get validated results, journal-ready figures and code you can rerun.</p>
+      <h1><span class="ln">Omics and clinical data,</span> <span class="ln">turned into evidence</span> <span class="ln">you can publish.</span></h1>
+      <p class="prose">NovaGen analyses single-cell and RNA-seq data, TCGA and GEO cohorts, miRNA panels and clinical studies for hospitals, research groups and diagnostics companies. You get validated results, journal-ready figures and code you can rerun.</p>
       <div class="actions">
         <a class="btn solid" href="#contact">Request a quote</a>
-        <a class="btn line" href="#samples">See sample outputs</a>
+        <a class="btn line" href="#finder">Find the right analysis</a>
       </div>
       <ul class="assure">
         <li><svg aria-hidden="true"><use href="#i-tag"/></svg>Fixed quote before work starts</li>
@@ -373,90 +506,187 @@ footer a { color: var(--ink-soft); }
 
   <div class="sources">
     <div class="wrap">
-      <p>We work with data from</p>
-      <ul>
-        <li>TCGA and GDC</li>
-        <li>GEO</li>
-        <li>QuantStudio and Bio-Rad CFX</li>
-        <li>Clinical records</li>
-        <li>Surveys and questionnaires</li>
-      </ul>
+      <p>We work with</p>
+      <div class="ticker">
+        <div class="ticker-track">
+          <ul>
+            <li>Single-cell RNA-seq</li><li>Bulk RNA-seq</li><li>TCGA and GDC</li><li>GEO</li><li>Serum and plasma miRNA</li><li>QuantStudio and Bio-Rad CFX</li><li>Clinical records</li><li>Surveys and questionnaires</li><li>Published studies</li>
+          </ul>
+          <ul aria-hidden="true">
+            <li>Single-cell RNA-seq</li><li>Bulk RNA-seq</li><li>TCGA and GDC</li><li>GEO</li><li>Serum and plasma miRNA</li><li>QuantStudio and Bio-Rad CFX</li><li>Clinical records</li><li>Surveys and questionnaires</li><li>Published studies</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
+
+  <!-- Finder -->
+  <section class="section" id="finder" aria-labelledby="finderTitle">
+    <div class="wrap">
+      <div class="head reveal">
+        <h2 id="finderTitle">Find the right analysis</h2>
+        <p class="prose">Choose what you have. We'll show the services that fit, and you can ask for a quote in one click.</p>
+      </div>
+      <div class="finder">
+        <div class="choices" role="group" aria-label="What do you have?">
+          <button class="choice" data-pick="rnaseq" aria-pressed="true"><svg aria-hidden="true" style="color:var(--haem)"><use href="#s-seq"/></svg><b>RNA-seq data</b></button>
+          <button class="choice" data-pick="sc" aria-pressed="false"><svg aria-hidden="true" style="color:var(--haem)"><use href="#s-cells"/></svg><b>Single-cell data</b></button>
+          <button class="choice" data-pick="idea" aria-pressed="false"><svg aria-hidden="true" style="color:var(--eosin)"><use href="#s-target"/></svg><b>A gene, miRNA or cancer type to explore</b></button>
+          <button class="choice" data-pick="liquid" aria-pressed="false"><svg aria-hidden="true" style="color:var(--eosin)"><use href="#s-drop"/></svg><b>Serum, plasma or qPCR results</b></button>
+          <button class="choice" data-pick="clinical" aria-pressed="false"><svg aria-hidden="true" style="color:var(--haem)"><use href="#s-bars"/></svg><b>Clinical records or a survey</b></button>
+          <button class="choice" data-pick="plan" aria-pressed="false"><svg aria-hidden="true" style="color:var(--haem)"><use href="#s-plan"/></svg><b>A study I'm still planning</b></button>
+          <button class="choice" data-pick="review" aria-pressed="false"><svg aria-hidden="true" style="color:var(--eosin)"><use href="#s-review"/></svg><b>A manuscript under review</b></button>
+          <button class="choice" data-pick="studies" aria-pressed="false"><svg aria-hidden="true" style="color:var(--eosin)"><use href="#s-forest"/></svg><b>Results from published studies</b></button>
+        </div>
+        <div class="answer" aria-live="polite">
+          <p class="q" id="ansQ">You have RNA-seq data</p>
+          <h3>Recommended for you</h3>
+          <ul class="recs" id="recs"></ul>
+          <button class="btn" id="ansBtn">Request a quote for this</button>
+          <p class="hint">Not sure? Describe your data in the form and we'll suggest the best approach.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Services -->
   <section class="section" id="services" aria-labelledby="servicesTitle">
     <div class="wrap">
-      <div class="head">
-        <h2 id="servicesTitle">Analysis for every stage of a biomarker study</h2>
-        <p class="prose">In biomarker and clinical research, small analysis choices change the conclusion. Every project starts with quality control, so problems in the data are found before they reach your results.</p>
+      <div class="head reveal">
+        <h2 id="servicesTitle">Services</h2>
+        <p class="prose">From raw reads to a submitted manuscript. Every project starts with quality control, so problems in the data are found before they reach your results. Open any service to see what you receive.</p>
+      </div>
+      <div class="filters" role="group" aria-label="Filter services">
+        <button class="filter" data-f="all" aria-pressed="true">All<span class="c"></span></button>
+        <button class="filter" data-f="omics" aria-pressed="false">Omics<span class="c"></span></button>
+        <button class="filter" data-f="bio" aria-pressed="false">Biomarkers and AI<span class="c"></span></button>
+        <button class="filter" data-f="stats" aria-pressed="false">Research statistics<span class="c"></span></button>
+        <button class="filter" data-f="build" aria-pressed="false">Figures and software<span class="c"></span></button>
       </div>
 
-      <div class="stages">
-        <article class="stage">
-          <div class="stage-top">
-            <svg viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="var(--eosin-wash)"/><circle cx="19" cy="19" r="7.5" fill="none" stroke="var(--eosin)" stroke-width="2.2"/><path d="M24.5 24.5L31 31" stroke="var(--eosin)" stroke-width="2.4" stroke-linecap="round"/><circle cx="19" cy="19" r="2.4" fill="var(--eosin)"/></svg>
-            <div><h3>Discover</h3><p>Find and rank candidate biomarkers</p></div>
-          </div>
-          <div class="svc">
-            <h4>Biomarker discovery report</h4>
-            <p>Candidate biomarkers for your cancer type from TCGA and GEO: differential expression, survival and diagnostic performance, validated across independent cohorts and delivered as a ranked panel.</p>
-            <ul class="methods"><li>TCGA / GDC API</li><li>GEO</li><li>limma</li><li>DESeq2</li><li>Cox models</li><li>ROC / AUC</li></ul>
-          </div>
-          <div class="svc">
-            <h4>Gene or miRNA evidence report</h4>
-            <p>Everything public data says about one target: tumour vs normal expression, stage and survival associations, and pan-cancer patterns. Useful before a grant, an assay or a partnership decision.</p>
-            <ul class="methods"><li>Pan-cancer</li><li>Clinical stage</li><li>Survival</li><li>Co-expression</li></ul>
-          </div>
-          <div class="svc">
-            <h4>Machine learning biomarker models</h4>
-            <p>Diagnostic and prognostic classifiers from expression or clinical data, with feature selection, cross-validation and honest performance reporting.</p>
-            <ul class="methods"><li>LASSO</li><li>Random forest</li><li>Logistic regression</li><li>Cross-validation</li></ul>
-          </div>
+      <div class="svc-list" id="svcList">
+        <article class="svc cat-omics" data-cat="omics" id="svc-sc" data-name="Single-cell RNA-seq analysis">
+          <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-cells"/></svg></span><span><h3>Single-cell RNA-seq analysis<span class="new">In demand</span></h3><p>Cell types, states and the genes that define them.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
+          <div class="svc-body"><div><div class="inner">
+            <p class="get"><b>You receive:</b> quality control and doublet removal, batch integration, clustering, cell-type annotation, marker genes, differential expression between conditions and cell-proportion comparisons, with UMAPs, dot plots and heatmaps.</p>
+            <ul class="methods"><li>Scanpy</li><li>Seurat</li><li>Harmony</li><li>10x Genomics</li><li>Pseudobulk DE</li></ul>
+            <button class="ask">Ask about this service</button>
+          </div></div></div>
         </article>
-
-        <article class="stage">
-          <div class="stage-top">
-            <svg viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="var(--haem-wash)"/><path d="M12 31V22M19 31V15M26 31V19M33 31V12" stroke="var(--haem)" stroke-width="3.2" stroke-linecap="round"/></svg>
-            <div><h3>Analyse</h3><p>Turn your study data into results</p></div>
-          </div>
-          <div class="svc">
-            <h4>qPCR and miRNA panel analysis</h4>
-            <p>ΔΔCt and efficiency-corrected quantification, reference gene selection, hemolysis and spike-in checks, statistics and publication figures.</p>
-            <ul class="methods"><li>2<sup>−ΔΔCt</sup></li><li>geNorm</li><li>Global mean</li><li>Hemolysis QC</li></ul>
-          </div>
-          <div class="svc">
-            <h4>Clinical and survey statistics</h4>
-            <p>Statistical analysis for clinical studies and knowledge, attitude and practice surveys, delivered as journal-format tables with a full record of every test.</p>
-            <ul class="methods"><li>Regression</li><li>Survival analysis</li><li>Reliability</li><li>Sample size</li></ul>
-          </div>
-          <div class="svc">
-            <h4>Pathway and enrichment analysis</h4>
-            <p>What your gene or miRNA list means biologically: target prediction, gene ontology and pathway enrichment, presented as clear tables and figures.</p>
+        <article class="svc cat-omics" data-cat="omics" id="svc-rnaseq" data-name="Bulk RNA-seq analysis">
+          <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-seq"/></svg></span><span><h3>Bulk RNA-seq, from raw reads to results</h3><p>FASTQ files or count tables, analysed end to end.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
+          <div class="svc-body"><div><div class="inner">
+            <p class="get"><b>You receive:</b> read quality reports, quantification, normalisation, differential expression with proper multiple-testing correction, pathway analysis, and volcano plots, heatmaps and PCA figures.</p>
+            <ul class="methods"><li>FastQC</li><li>Salmon</li><li>DESeq2</li><li>edgeR</li><li>limma-voom</li><li>GSEA</li></ul>
+            <button class="ask">Ask about this service</button>
+          </div></div></div>
+        </article>
+        <article class="svc cat-omics" data-cat="omics" id="svc-multi" data-name="Multi-omics integration">
+          <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-layers"/></svg></span><span><h3>Multi-omics integration<span class="new">In demand</span></h3><p>mRNA, miRNA, methylation and clinical data, analysed together.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
+          <div class="svc-body"><div><div class="inner">
+            <p class="get"><b>You receive:</b> integrated factors or networks that link data layers, miRNA–target regulatory pairs supported by expression, and patient subgroups with their clinical differences.</p>
+            <ul class="methods"><li>MOFA+</li><li>miRNA–mRNA networks</li><li>Correlation analysis</li><li>Clustering</li><li>TCGA multi-omics</li></ul>
+            <button class="ask">Ask about this service</button>
+          </div></div></div>
+        </article>
+        <article class="svc cat-omics" data-cat="omics" id="svc-public" data-name="Gene or miRNA evidence report">
+          <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-db"/></svg></span><span><h3>Gene or miRNA evidence report</h3><p>Everything public data says about one target.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
+          <div class="svc-body"><div><div class="inner">
+            <p class="get"><b>You receive:</b> tumour vs normal expression, stage and survival associations, and pan-cancer patterns from TCGA and GEO. Useful before a grant, an assay or a partnership decision.</p>
+            <ul class="methods"><li>TCGA / GDC API</li><li>GEO</li><li>Pan-cancer</li><li>Clinical stage</li><li>Survival</li></ul>
+            <button class="ask">Ask about this service</button>
+          </div></div></div>
+        </article>
+        <article class="svc cat-omics" data-cat="omics" id="svc-path" data-name="Pathway and enrichment analysis">
+          <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-paths"/></svg></span><span><h3>Pathway and enrichment analysis</h3><p>What your gene or miRNA list means biologically.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
+          <div class="svc-body"><div><div class="inner">
+            <p class="get"><b>You receive:</b> miRNA target prediction, gene ontology and pathway enrichment, presented as clear tables and dot, bar and network figures.</p>
             <ul class="methods"><li>GO</li><li>KEGG</li><li>Reactome</li><li>GSEA</li><li>Target prediction</li></ul>
-          </div>
+            <button class="ask">Ask about this service</button>
+          </div></div></div>
         </article>
 
-        <article class="stage">
-          <div class="stage-top">
-            <svg viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="var(--haem-wash)"/><rect x="11" y="12" width="22" height="20" rx="3" fill="none" stroke="var(--haem)" stroke-width="2.2"/><path d="M11 18h22" stroke="var(--haem)" stroke-width="2.2"/><path d="M17 23.5l-2.5 2.5 2.5 2.5M27 23.5l2.5 2.5-2.5 2.5" fill="none" stroke="var(--eosin)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <div><h3>Publish and build</h3><p>Figures, apps and pipelines that last</p></div>
-          </div>
-          <div class="svc">
-            <h4>Publication-ready figures</h4>
-            <p>Your results turned into clean, journal-format figures: volcano plots, heatmaps, survival curves, ROC curves and forest plots.</p>
-            <ul class="methods"><li>300 dpi PNG</li><li>SVG</li><li>PDF</li><li>Journal sizing</li></ul>
-          </div>
-          <div class="svc">
-            <h4>Custom analysis apps</h4>
-            <p>A private web app built around your lab's workflow, so everyone runs the same validated analysis on every new dataset.</p>
-            <ul class="methods"><li>Python</li><li>Streamlit</li><li>Automated tests</li></ul>
-          </div>
-          <div class="svc">
-            <h4>Reproducible pipelines</h4>
-            <p>Scattered scripts and spreadsheets turned into documented, version-controlled pipelines that give the same answer every time.</p>
-            <ul class="methods"><li>Python</li><li>Google Colab</li><li>GitHub</li></ul>
-          </div>
+        <article class="svc cat-bio" data-cat="bio" id="svc-discovery" data-name="Biomarker discovery report">
+          <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-target"/></svg></span><span><h3>Biomarker discovery report</h3><p>Candidate biomarkers for your cancer type, ranked.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
+          <div class="svc-body"><div><div class="inner">
+            <p class="get"><b>You receive:</b> differential expression, survival and diagnostic performance from TCGA and GEO, validated across independent cohorts and delivered as a ranked panel with every supporting figure.</p>
+            <ul class="methods"><li>limma</li><li>DESeq2</li><li>Cox models</li><li>ROC / AUC</li><li>Cross-cohort validation</li></ul>
+            <button class="ask">Ask about this service</button>
+          </div></div></div>
+        </article>
+        <article class="svc cat-bio" data-cat="bio" id="svc-liquid" data-name="Liquid biopsy miRNA biomarkers">
+          <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-drop"/></svg></span><span><h3>Liquid biopsy miRNA biomarkers<span class="new">In demand</span></h3><p>Circulating and exosomal miRNA from serum or plasma.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
+          <div class="svc-body"><div><div class="inner">
+            <p class="get"><b>You receive:</b> hemolysis and spike-in quality checks, normalisation suited to circulating RNA, differential analysis, and diagnostic panels with sensitivity, specificity and AUC.</p>
+            <ul class="methods"><li>Hemolysis QC</li><li>Spike-in normalisation</li><li>Small RNA-seq</li><li>qPCR panels</li><li>ROC / AUC</li></ul>
+            <button class="ask">Ask about this service</button>
+          </div></div></div>
+        </article>
+        <article class="svc cat-bio" data-cat="bio" id="svc-qpcr" data-name="qPCR and miRNA panel analysis">
+          <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-curve"/></svg></span><span><h3>qPCR and miRNA panel analysis</h3><p>Fold changes you can defend in peer review.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
+          <div class="svc-body"><div><div class="inner">
+            <p class="get"><b>You receive:</b> ΔΔCt and efficiency-corrected quantification, reference gene stability, sample quality flags, statistics and publication figures.</p>
+            <ul class="methods"><li>2<sup>−ΔΔCt</sup></li><li>geNorm</li><li>Global mean</li><li>Efficiency correction</li></ul>
+            <button class="ask">Ask about this service</button>
+          </div></div></div>
+        </article>
+        <article class="svc cat-bio" data-cat="bio" id="svc-ai" data-name="AI and machine learning models">
+          <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-ai"/></svg></span><span><h3>AI and machine learning models<span class="new">In demand</span></h3><p>Diagnostic and prognostic models you can explain.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
+          <div class="svc-body"><div><div class="inner">
+            <p class="get"><b>You receive:</b> feature selection, nested cross-validation, honest performance on held-out data, and explanations of which features drive each prediction, reported to TRIPOD standards.</p>
+            <ul class="methods"><li>LASSO</li><li>Random forest</li><li>XGBoost</li><li>SHAP</li><li>Nested CV</li></ul>
+            <button class="ask">Ask about this service</button>
+          </div></div></div>
+        </article>
+
+        <article class="svc cat-stats" data-cat="stats" id="svc-design" data-name="Study design and sample size">
+          <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-plan"/></svg></span><span><h3>Study design and sample size</h3><p>Get the numbers right before you collect data.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
+          <div class="svc-body"><div><div class="inner">
+            <p class="get"><b>You receive:</b> power and sample size calculations, a statistical analysis plan for your protocol or ethics application, and an independent review of an existing design.</p>
+            <ul class="methods"><li>Power analysis</li><li>Analysis plans</li><li>Protocol review</li><li>Randomisation</li></ul>
+            <button class="ask">Ask about this service</button>
+          </div></div></div>
+        </article>
+        <article class="svc cat-stats" data-cat="stats" id="svc-clinical" data-name="Clinical and survey statistics">
+          <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-bars"/></svg></span><span><h3>Clinical and survey statistics</h3><p>Clinical studies and KAP surveys, analysed to journal standard.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
+          <div class="svc-body"><div><div class="inner">
+            <p class="get"><b>You receive:</b> descriptive tables, the right test for each question, regression and survival models, scale reliability, and journal-format tables with a full record of every test.</p>
+            <ul class="methods"><li>Regression</li><li>Survival analysis</li><li>Cronbach's α</li><li>Chi-square</li><li>Mixed models</li></ul>
+            <button class="ask">Ask about this service</button>
+          </div></div></div>
+        </article>
+        <article class="svc cat-stats" data-cat="stats" id="svc-meta" data-name="Meta-analysis">
+          <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-forest"/></svg></span><span><h3>Meta-analysis</h3><p>Pooled evidence from published studies.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
+          <div class="svc-body"><div><div class="inner">
+            <p class="get"><b>You receive:</b> pooled effect sizes, heterogeneity and subgroup analysis, sensitivity and publication-bias checks, with forest and funnel plots ready for a PRISMA-style report.</p>
+            <ul class="methods"><li>Random effects</li><li>I² heterogeneity</li><li>Egger's test</li><li>Forest plots</li><li>Diagnostic accuracy</li></ul>
+            <button class="ask">Ask about this service</button>
+          </div></div></div>
+        </article>
+        <article class="svc cat-stats" data-cat="stats" id="svc-reviewer" data-name="Reviewer response support">
+          <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-review"/></svg></span><span><h3>Reviewer response support</h3><p>Statistical answers to journal reviewer comments.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
+          <div class="svc-body"><div><div class="inner">
+            <p class="get"><b>You receive:</b> the re-analyses reviewers ask for, corrected tables and figures, and a point-by-point technical summary of each statistical change for your response letter.</p>
+            <ul class="methods"><li>Re-analysis</li><li>Sensitivity analysis</li><li>Revised figures</li><li>Methods check</li></ul>
+            <button class="ask">Ask about this service</button>
+          </div></div></div>
+        </article>
+
+        <article class="svc cat-build" data-cat="build" id="svc-figures" data-name="Publication-ready figures">
+          <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-figure"/></svg></span><span><h3>Publication-ready figures</h3><p>Clean figures that meet journal requirements.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
+          <div class="svc-body"><div><div class="inner">
+            <p class="get"><b>You receive:</b> volcano plots, heatmaps, survival and ROC curves, forest plots and multi-panel figures at the size, resolution and colour rules of your target journal.</p>
+            <ul class="methods"><li>300+ dpi PNG / TIFF</li><li>SVG</li><li>PDF</li><li>Colour-blind safe</li></ul>
+            <button class="ask">Ask about this service</button>
+          </div></div></div>
+        </article>
+        <article class="svc cat-build" data-cat="build" id="svc-apps" data-name="Custom apps and pipelines">
+          <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-code"/></svg></span><span><h3>Custom apps and reproducible pipelines</h3><p>Your lab's analysis, built once and run every time.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
+          <div class="svc-body"><div><div class="inner">
+            <p class="get"><b>You receive:</b> a private web app or a documented, version-controlled pipeline built around your workflow, with automated tests so every new dataset gets the same validated analysis.</p>
+            <ul class="methods"><li>Python</li><li>Streamlit</li><li>Google Colab</li><li>GitHub</li><li>Automated tests</li></ul>
+            <button class="ask">Ask about this service</button>
+          </div></div></div>
         </article>
       </div>
     </div>
@@ -465,18 +695,16 @@ footer a { color: var(--ink-soft); }
   <!-- Sample outputs -->
   <section class="section" id="samples" aria-labelledby="samplesTitle">
     <div class="wrap">
-      <div class="head">
+      <div class="head reveal">
         <h2 id="samplesTitle">See what a report contains</h2>
         <p class="prose">Three of the figures a typical biomarker report includes, drawn here from illustrative data. Your report carries the statistics behind each one and the code that made it.</p>
       </div>
-
       <div class="samples">
         <div class="tabs" role="tablist" aria-label="Sample figures">
           <button class="tab" role="tab" id="tab-km" aria-controls="panel-km" aria-selected="true"><b>Survival</b><span>Kaplan–Meier and Cox</span></button>
           <button class="tab" role="tab" id="tab-roc" aria-controls="panel-roc" aria-selected="false" tabindex="-1"><b>Diagnostic accuracy</b><span>ROC curves and AUC</span></button>
           <button class="tab" role="tab" id="tab-qpcr" aria-controls="panel-qpcr" aria-selected="false" tabindex="-1"><b>qPCR fold change</b><span>ΔΔCt with statistics</span></button>
         </div>
-
         <div class="panel" role="tabpanel" id="panel-km" aria-labelledby="tab-km">
           <figure><svg id="fig-km" viewBox="0 0 560 380" role="img" aria-label="Kaplan–Meier curves: patients with high miRNA expression have lower overall survival than patients with low expression."></svg>
             <figcaption>Illustrative data, 240 patients.</figcaption></figure>
@@ -488,7 +716,6 @@ footer a { color: var(--ink-soft); }
             </dl>
           </div>
         </div>
-
         <div class="panel" role="tabpanel" id="panel-roc" aria-labelledby="tab-roc" hidden>
           <figure><svg id="fig-roc" viewBox="0 0 560 380" role="img" aria-label="ROC curves: a three-miRNA panel reaches an AUC of 0.87, compared with 0.76 for the best single miRNA."></svg>
             <figcaption>Illustrative data, tumour vs normal.</figcaption></figure>
@@ -500,7 +727,6 @@ footer a { color: var(--ink-soft); }
             </dl>
           </div>
         </div>
-
         <div class="panel" role="tabpanel" id="panel-qpcr" aria-labelledby="tab-qpcr" hidden>
           <figure><svg id="fig-qpcr" viewBox="0 0 560 380" role="img" aria-label="Bar chart of log2 fold change for five miRNAs measured by qPCR: miR-21-5p and miR-224-5p are up, miR-122-5p and miR-375-3p are down, and miR-16-5p is unchanged."></svg>
             <figcaption>Illustrative data, mean ± SD, n = 12 per group.</figcaption></figure>
@@ -516,17 +742,17 @@ footer a { color: var(--ink-soft); }
     </div>
   </section>
 
-  <!-- Work with us -->
+  <!-- Who -->
   <section class="section" id="work" aria-labelledby="workTitle">
     <div class="wrap">
-      <div class="head">
+      <div class="head reveal">
         <h2 id="workTitle">Built for research teams</h2>
         <p class="prose">We work remotely with teams in Saudi Arabia, the Gulf and worldwide, with a clear scope and a fixed price agreed in writing.</p>
       </div>
       <div class="audience">
         <div><h3>Hospitals and research centres</h3><p>Clinical and genomic data analysed by a dedicated analyst, without hiring an in-house statistician.</p></div>
         <div><h3>University research groups</h3><p>Faculty, residents and graduate students with data waiting to become a paper, thesis or grant.</p></div>
-        <div><h3>Diagnostics and biotech companies</h3><p>Biomarker candidates and proof-of-concept evidence from public cancer data, ready for partners and investors.</p></div>
+        <div><h3>Diagnostics and biotech companies</h3><p>Biomarker candidates and proof-of-concept evidence, ready for partners and investors.</p></div>
       </div>
       <div class="plans">
         <article class="plan">
@@ -548,7 +774,7 @@ footer a { color: var(--ink-soft); }
   <!-- Free tools -->
   <section class="section" id="tools" aria-labelledby="toolsTitle">
     <div class="wrap">
-      <div class="head">
+      <div class="head reveal">
         <h2 id="toolsTitle">Free tools for researchers</h2>
         <p class="prose">Open-source apps for analysis problems we see again and again. Free to use, validated against independent calculations, with the code on GitHub.</p>
       </div>
@@ -594,17 +820,16 @@ footer a { color: var(--ink-soft); }
   <!-- Process -->
   <section class="section" id="process" aria-labelledby="processTitle">
     <div class="wrap">
-      <div class="head">
+      <div class="head reveal">
         <h2 id="processTitle">How a project runs</h2>
         <p class="prose">You know the scope, the timeline and the price in writing before any work starts.</p>
       </div>
-      <ol class="steps">
+      <ol class="steps" id="steps">
         <li><span class="num">1</span><h3>Share your question</h3><p>Send a short description of the study and a sample of the data or its format.</p></li>
         <li><span class="num">2</span><h3>Agree the scope</h3><p>You receive an analysis plan, a timeline and a fixed price to approve.</p></li>
         <li><span class="num">3</span><h3>Analysis with checks</h3><p>Quality control first, then the analysis, with any data problems reported as they are found.</p></li>
         <li><span class="num">4</span><h3>Delivery</h3><p>Figures, tables, code and a technical summary, organised so you can find and rerun everything.</p></li>
       </ol>
-
       <div class="receive">
         <div>
           <h3>Every project includes</h3>
@@ -622,26 +847,73 @@ footer a { color: var(--ink-soft); }
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section class="section" id="faq" aria-labelledby="faqTitle">
+    <div class="wrap">
+      <div class="head reveal">
+        <h2 id="faqTitle">Questions clients ask</h2>
+        <p class="prose">If your question isn't here, send it with the form below.</p>
+      </div>
+      <div class="faq">
+        <div class="faq-col">
+          <details><summary>How is the price set?<span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p>Each project has a fixed price based on the agreed scope. You approve the analysis plan and the price in writing before any work starts, so there are no surprises.</p></details>
+          <details><summary>How is my data kept confidential?<span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p>We work with anonymised data only, never with patient identifiers. A confidentiality agreement can be signed before you share anything.</p></details>
+          <details><summary>What if our data cannot leave the hospital?<span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p>We can develop and test the analysis on a sample or a simulated dataset, then give you documented code to run on your own system.</p></details>
+        </div>
+        <div class="faq-col">
+          <details><summary>What file formats do you accept?<span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p>FASTQ, count matrices, 10x Genomics outputs, instrument exports from QuantStudio and Bio-Rad CFX, Excel, CSV and SPSS files. If yours isn't listed, ask.</p></details>
+          <details><summary>How long does a project take?<span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p>It depends on the data and the scope. The timeline is part of the analysis plan you approve, and you're told straight away if a data problem affects it.</p></details>
+          <details><summary>Will I be able to reproduce the results?<span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p>Yes. Every project includes the documented code or notebook and a technical summary of each step and parameter, so you or a reviewer can rerun everything.</p></details>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Contact -->
   <div class="wrap">
     <section class="contact" id="contact" aria-labelledby="contactTitle">
       <canvas class="contact-dots" id="dots" aria-hidden="true"></canvas>
       <div class="contact-inner">
         <div>
-          <h2 id="contactTitle">Have data waiting to become results?</h2>
-          <p class="prose">Tell us about your study and the data you have. You will receive an analysis plan and a fixed quote before any work starts.</p>
-        </div>
-        <div class="brief">
-          <p>A useful first message covers</p>
-          <ul>
-            <li>The study question or aim</li>
-            <li>The data type and number of samples</li>
-            <li>Your deadline and target journal, if any</li>
+          <h2 id="contactTitle">Tell us about your project</h2>
+          <p class="prose">Share your study and the data you have. You'll receive an analysis plan and a fixed quote before any work starts.</p>
+          <ul class="c-list">
+            <li><span class="ic"><svg aria-hidden="true"><use href="#i-mail"/></svg></span><span><small>Email</small><a href="mailto:contact@novagen-bio.com">contact@novagen-bio.com</a></span></li>
+            <li><span class="ic"><svg aria-hidden="true"><use href="#i-in"/></svg></span><span><small>LinkedIn</small><a href="https://www.linkedin.com/company/novagenbioinformatics-company/" target="_blank" rel="noopener">NovaGen on LinkedIn</a></span></li>
+            <li><span class="ic"><svg aria-hidden="true"><use href="#i-globe"/></svg></span><span><small>Location</small><span class="v">Saudi Arabia, working worldwide</span></span></li>
           </ul>
-          <a class="btn solid" href="mailto:contact@novagen-bio.com?subject=Project%20enquiry">Email us</a>
-          <p class="brief-mail">contact@novagen-bio.com</p>
-          <a class="btn ghost-light" href="https://www.linkedin.com/company/novagenbioinformatics-company/" target="_blank" rel="noopener">Message us on LinkedIn</a>
         </div>
+
+        <form class="form" id="form" novalidate>
+          <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required><span class="err-msg" aria-live="polite"></span></div>
+          <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required><span class="err-msg" aria-live="polite"></span></div>
+          <div class="field"><label for="f-org">Organisation <span>(optional)</span></label><input id="f-org" name="organisation" autocomplete="organization"></div>
+          <div class="field"><label for="f-svc">Service</label>
+            <select id="f-svc" name="service">
+              <option>Not sure yet</option>
+              <option>Single-cell RNA-seq analysis</option>
+              <option>Bulk RNA-seq analysis</option>
+              <option>Multi-omics integration</option>
+              <option>Gene or miRNA evidence report</option>
+              <option>Pathway and enrichment analysis</option>
+              <option>Biomarker discovery report</option>
+              <option>Liquid biopsy miRNA biomarkers</option>
+              <option>qPCR and miRNA panel analysis</option>
+              <option>AI and machine learning models</option>
+              <option>Study design and sample size</option>
+              <option>Clinical and survey statistics</option>
+              <option>Meta-analysis</option>
+              <option>Reviewer response support</option>
+              <option>Publication-ready figures</option>
+              <option>Custom apps and pipelines</option>
+              <option>Monthly research analytics support</option>
+            </select>
+          </div>
+          <div class="field full"><label for="f-msg">Your project</label><textarea id="f-msg" name="message" required placeholder="The study question, the data type and number of samples, and your deadline or target journal."></textarea><span class="err-msg" aria-live="polite"></span></div>
+          <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="btn" type="submit" id="sendBtn">Send enquiry</button>
+          <p class="fine">Please don't include patient-identifiable data. Your details are used only to reply to you.</p>
+        </form>
       </div>
     </section>
   </div>
@@ -649,37 +921,53 @@ footer a { color: var(--ink-soft); }
 
 <footer>
   <div class="wrap">
-    <span>© 2026 NovaGen Bioinformatics. Based in Saudi Arabia, working with research teams worldwide.</span>
+    <span>© 2026 NovaGen. Based in Saudi Arabia, working with research teams worldwide.</span>
     <span class="foot-links"><a href="mailto:contact@novagen-bio.com">contact@novagen-bio.com</a><a href="https://www.linkedin.com/company/novagenbioinformatics-company/" target="_blank" rel="noopener">LinkedIn</a></span>
   </div>
 </footer>
+
+<button class="to-top" id="toTop" aria-label="Back to top"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 16V4M4.5 9.5L10 4l5.5 5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 
 <script>
 (function () {
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const css = () => { const s = getComputedStyle(document.documentElement); return n => s.getPropertyValue(n).trim(); };
+  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 
-  /* Header: border on scroll, mobile menu */
-  const top = document.getElementById("top");
-  const onScroll = () => top.classList.toggle("scrolled", scrollY > 8);
+  /* Header: scrolled state, progress bar, active link, mobile menu, back to top, process line */
+  const top = $("#top"), prog = $("#progress"), toTop = $("#toTop"), steps = $("#steps");
+  const links = $$("#nav a"), targets = links.map(a => document.querySelector(a.getAttribute("href")));
+  function onScroll() {
+    const y = scrollY, max = document.documentElement.scrollHeight - innerHeight;
+    top.classList.toggle("scrolled", y > 8);
+    prog.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
+    toTop.classList.toggle("show", y > 900);
+    let cur = -1; targets.forEach((t, i) => { if (t && t.getBoundingClientRect().top < 140) cur = i; });
+    links.forEach((a, i) => a.classList.toggle("here", i === cur));
+    const r = steps.getBoundingClientRect();
+    const p = Math.max(0, Math.min(1, (innerHeight * 0.8 - r.top) / (innerHeight * 0.45)));
+    steps.style.setProperty("--p", p.toFixed(3));
+    steps.querySelectorAll("li").forEach((li, i) => li.classList.toggle("lit", p >= i / 3 - 0.02));
+  }
   addEventListener("scroll", onScroll, { passive: true }); onScroll();
-  const menuBtn = document.getElementById("menuBtn");
-  menuBtn.addEventListener("click", () => {
-    const open = top.classList.toggle("open");
-    menuBtn.setAttribute("aria-expanded", String(open));
-    menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-  });
-  document.querySelectorAll("#nav a").forEach(a => a.addEventListener("click", () => {
-    top.classList.remove("open"); menuBtn.setAttribute("aria-expanded", "false"); menuBtn.setAttribute("aria-label", "Open menu");
-  }));
+  toTop.addEventListener("click", () => scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" }));
+  const menuBtn = $("#menuBtn");
+  const setMenu = open => { top.classList.toggle("open", open); menuBtn.setAttribute("aria-expanded", String(open)); menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu"); };
+  menuBtn.addEventListener("click", () => setMenu(!top.classList.contains("open")));
+  links.forEach(a => a.addEventListener("click", () => setMenu(false)));
 
-  /* Seeded random numbers so every visitor sees the same plot */
+  /* Reveal section headings once */
+  if ("IntersectionObserver" in window && !reduce) {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px" });
+    $$(".reveal").forEach(el => io.observe(el));
+  } else $$(".reveal").forEach(el => el.classList.add("in"));
+
+  /* Seeded random numbers so every visitor sees the same plots */
   function rng(seed) { return function () { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
   function gauss(r) { let u = 0, v = 0; while (!u) u = r(); while (!v) v = r(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
 
-  /* ---------- Hero volcano plot ---------- */
-  const cv = document.getElementById("volcano");
-  const readout = document.getElementById("readout");
+  /* Hero volcano plot */
+  const cv = $("#volcano"), readout = $("#readout");
   const named = [
     { n: "miR-21-5p", x: 3.1, y: 18.2, label: true }, { n: "miR-224-5p", x: 3.8, y: 14.6, label: true },
     { n: "miR-182-5p", x: 2.6, y: 12.1 }, { n: "miR-221-3p", x: 2.1, y: 10.4 }, { n: "miR-96-5p", x: 2.9, y: 9.0 }, { n: "miR-183-5p", x: 2.3, y: 7.7 },
@@ -695,14 +983,12 @@ footer a { color: var(--ink-soft); }
   named.forEach(p => { p.d = 0.6 + r() * 0.4; p.named = true; });
   const all = pts.concat(named);
   const cls = p => (p.y > 1.3 && p.x >= 1) ? "up" : (p.y > 1.3 && p.x <= -1) ? "down" : "ns";
-  let hover = null, prog = reduce ? 1 : 0, vg = null;
-
-  function sup(n) { const m = { "-": "⁻", 0: "⁰", 1: "¹", 2: "²", 3: "³", 4: "⁴", 5: "⁵", 6: "⁶", 7: "⁷", 8: "⁸", 9: "⁹" }; return String(n).split("").map(c => m[c]).join(""); }
-  function pText(y) { const e = Math.floor(y); const m = Math.pow(10, -(y - e)) * 10; return `${m.toFixed(1)} × 10${sup(-(e + 1))}`; }
+  let hover = null, vprog = reduce ? 1 : 0, vg = null;
+  const sup = n => String(n).split("").map(c => ({ "-": "⁻", 0: "⁰", 1: "¹", 2: "²", 3: "³", 4: "⁴", 5: "⁵", 6: "⁶", 7: "⁷", 8: "⁸", 9: "⁹" })[c]).join("");
+  const pText = y => { const e = Math.floor(y); const m = Math.pow(10, -(y - e)) * 10; return `${m.toFixed(1)} × 10${sup(-(e + 1))}`; };
 
   function drawVolcano() {
-    const v = css();
-    const dpr = devicePixelRatio || 1, w = cv.clientWidth, h = cv.clientHeight;
+    const v = css(), dpr = devicePixelRatio || 1, w = cv.clientWidth, h = cv.clientHeight;
     if (!w || !h) return;
     cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
     const c = cv.getContext("2d"); c.setTransform(dpr, 0, 0, dpr, 0, 0); c.clearRect(0, 0, w, h);
@@ -718,7 +1004,6 @@ footer a { color: var(--ink-soft); }
     c.font = `600 12px ${font}`; c.fillStyle = v("--ink");
     c.fillText("log₂ fold change", L + pw / 2, T + ph + 24);
     c.save(); c.translate(11, T + ph / 2); c.rotate(-Math.PI / 2); c.textBaseline = "middle"; c.fillText("−log₁₀ adjusted p", 0, 0); c.restore();
-    // significance thresholds
     c.setLineDash([4, 4]); c.strokeStyle = v("--null"); c.lineWidth = 1.2;
     [[X(-1), T, X(-1), T + ph], [X(1), T, X(1), T + ph], [L, Y(1.3), L + pw, Y(1.3)]].forEach(([a, b, d, e]) => { c.beginPath(); c.moveTo(a, b); c.lineTo(d, e); c.stroke(); });
     c.setLineDash([]);
@@ -726,14 +1011,13 @@ footer a { color: var(--ink-soft); }
     const ease = t => 1 - Math.pow(1 - t, 3);
     all.forEach(p => {
       const k = cls(p);
-      const t = ease(Math.max(0, Math.min(1, (prog - p.d * 0.35) / 0.65)));
-      const y = p.y * t;
+      const t = ease(Math.max(0, Math.min(1, (vprog - p.d * 0.35) / 0.65)));
       c.globalAlpha = k === "ns" ? 0.55 : (hover && hover !== p ? 0.55 : 0.9);
       c.fillStyle = col[k];
-      c.beginPath(); c.arc(X(p.x), Y(y), p.named ? 4.6 : (k === "ns" ? 2.1 : 2.8), 0, 7); c.fill();
+      c.beginPath(); c.arc(X(p.x), Y(p.y * t), p.named ? 4.6 : (k === "ns" ? 2.1 : 2.8), 0, 7); c.fill();
     });
     c.globalAlpha = 1;
-    if (prog >= 1) {
+    if (vprog >= 1) {
       c.font = `600 12.5px ${font}`; c.textBaseline = "middle";
       named.forEach(p => {
         if (!(p.label || p === hover)) return;
@@ -750,13 +1034,11 @@ footer a { color: var(--ink-soft); }
   function setReadout(p) {
     if (!p) { readout.innerHTML = "<span>Point at a highlighted miRNA to read its result.</span><span>Illustrative data</span>"; return; }
     const dir = p.x > 0 ? "higher" : "lower";
-    readout.innerHTML = `<span><b>${p.n}</b> ${Math.abs(Math.pow(2, Math.abs(p.x))).toFixed(1)}× ${dir} in tumour, adjusted p ${pText(p.y)}</span><span>Illustrative data</span>`;
+    readout.innerHTML = `<span><b>${p.n}</b> ${Math.pow(2, Math.abs(p.x)).toFixed(1)}× ${dir} in tumour, adjusted p ${pText(p.y)}</span><span>Illustrative data</span>`;
   }
   function pick(e) {
-    if (!vg || prog < 1) return;
-    const b = cv.getBoundingClientRect();
-    const t = e.touches ? e.touches[0] : e;
-    const mx = t.clientX - b.left, my = t.clientY - b.top;
+    if (!vg || vprog < 1) return;
+    const b = cv.getBoundingClientRect(), mx = e.clientX - b.left, my = e.clientY - b.top;
     let best = null, bd = 34;
     named.forEach(p => { const d = Math.hypot(vg.X(p.x) - mx, vg.Y(p.y) - my); if (d < bd) { bd = d; best = p; } });
     if (best !== hover) { hover = best; setReadout(hover); drawVolcano(); }
@@ -764,32 +1046,117 @@ footer a { color: var(--ink-soft); }
   cv.addEventListener("pointermove", pick);
   cv.addEventListener("pointerdown", pick);
   cv.addEventListener("pointerleave", () => { hover = null; setReadout(null); drawVolcano(); });
-
   if (!reduce) {
     let start = null;
+    const step = ts => { if (!start) start = ts; vprog = Math.min(1, (ts - start) / 1400); drawVolcano(); if (vprog < 1) requestAnimationFrame(step); };
     const io = new IntersectionObserver(es => { if (es[0].isIntersecting) { io.disconnect(); requestAnimationFrame(step); } });
-    function step(ts) { if (!start) start = ts; prog = Math.min(1, (ts - start) / 1400); drawVolcano(); if (prog < 1) requestAnimationFrame(step); }
     io.observe(cv);
   }
 
-  /* ---------- Contact background: faint scatter ---------- */
-  const dots = document.getElementById("dots");
+  /* Contact background */
+  const dots = $("#dots");
   function drawDots() {
     const v = css(), dpr = devicePixelRatio || 1, w = dots.clientWidth, h = dots.clientHeight;
     if (!w || !h) return;
     dots.width = w * dpr; dots.height = h * dpr;
     const c = dots.getContext("2d"); c.setTransform(dpr, 0, 0, dpr, 0, 0);
     const rr = rng(7);
-    for (let i = 0; i < 260; i++) {
-      const x = w * (0.45 + rr() * 0.6), y = h * rr();
-      const lift = (x / w - 0.45) * 1.6;
-      c.globalAlpha = 0.08 + rr() * 0.25 * lift;
-      c.fillStyle = rr() < 0.18 * lift ? v("--eosin") : "#ffffff";
+    for (let i = 0; i < 220; i++) {
+      const x = w * (rr() * 0.5), y = h * rr(), lift = 1 - x / (w * 0.5);
+      c.globalAlpha = 0.06 + rr() * 0.22 * lift;
+      c.fillStyle = rr() < 0.2 * lift ? v("--eosin") : v("--paper");
       c.beginPath(); c.arc(x, y, 1.2 + rr() * 2.4, 0, 7); c.fill();
     }
   }
 
-  /* ---------- Sample figures (SVG) ---------- */
+  /* Services: filters and accordions */
+  const svcs = $$(".svc"), filters = $$(".filter");
+  filters.forEach(f => { const k = f.dataset.f; f.querySelector(".c").textContent = k === "all" ? svcs.length : svcs.filter(s => s.dataset.cat === k).length; });
+  function applyFilter(k) {
+    filters.forEach(f => f.setAttribute("aria-pressed", String(f.dataset.f === k)));
+    svcs.forEach(s => {
+      const show = k === "all" || s.dataset.cat === k;
+      s.classList.toggle("out", !show);
+      s.classList.remove("enter"); if (show && !reduce) { void s.offsetWidth; s.classList.add("enter"); }
+    });
+  }
+  filters.forEach(f => f.addEventListener("click", () => applyFilter(f.dataset.f)));
+  svcs.forEach(s => {
+    const b = s.querySelector(".svc-btn");
+    b.addEventListener("click", () => { const open = !s.classList.contains("open"); s.classList.toggle("open", open); b.setAttribute("aria-expanded", String(open)); });
+  });
+
+  /* Jump to the form with a service pre-selected */
+  const form = $("#form"), svcSel = $("#f-svc");
+  function goContact(service) {
+    if (service) [...svcSel.options].forEach(o => { if (o.text === service) svcSel.value = o.value; });
+    $("#contact").scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
+    setTimeout(() => { const n = $("#f-name"); if (n) n.focus({ preventScroll: true }); }, reduce ? 0 : 700);
+  }
+  $$(".ask").forEach(b => b.addEventListener("click", () => goContact(b.closest(".svc").dataset.name)));
+
+  /* Finder */
+  const info = id => { const el = document.getElementById(id); return { name: el.dataset.name, t: el.querySelector("h3").firstChild.textContent.trim(), d: el.querySelector(".svc-btn p").textContent }; };
+  const picks = {
+    rnaseq: { q: "You have RNA-seq data", s: ["svc-rnaseq", "svc-path", "svc-figures"] },
+    sc: { q: "You have single-cell data", s: ["svc-sc", "svc-multi", "svc-figures"] },
+    idea: { q: "You have a target or cancer type to explore", s: ["svc-public", "svc-discovery", "svc-multi"] },
+    liquid: { q: "You have serum, plasma or qPCR results", s: ["svc-liquid", "svc-qpcr", "svc-ai"] },
+    clinical: { q: "You have clinical records or a survey", s: ["svc-clinical", "svc-ai", "svc-figures"] },
+    plan: { q: "You're planning a study", s: ["svc-design", "svc-clinical", "svc-apps"] },
+    review: { q: "You have a manuscript under review", s: ["svc-reviewer", "svc-figures", "svc-meta"] },
+    studies: { q: "You have results from published studies", s: ["svc-meta", "svc-reviewer", "svc-figures"] },
+  };
+  let current = "rnaseq";
+  function showPick(k) {
+    current = k;
+    $$(".choice").forEach(c => c.setAttribute("aria-pressed", String(c.dataset.pick === k)));
+    $("#ansQ").textContent = picks[k].q;
+    $("#recs").innerHTML = picks[k].s.map((id, i) => { const x = info(id); return `<li><span class="n">${i + 1}</span><span><b>${x.t}</b><span>${x.d}</span></span></li>`; }).join("");
+  }
+  $$(".choice").forEach(c => c.addEventListener("click", () => showPick(c.dataset.pick)));
+  $("#ansBtn").addEventListener("click", () => goContact(info(picks[current].s[0]).name));
+  showPick("rnaseq");
+
+  /* Form: validation, sending through FormSubmit, email fallback */
+  const fields = { name: $("#f-name"), email: $("#f-email"), message: $("#f-msg") };
+  const rules = { name: v => v.trim().length > 1 || "Enter your name.", email: v => /^\S+@\S+\.\S+$/.test(v) || "Enter a valid email address.", message: v => v.trim().length > 9 || "Tell us a little about the project." };
+  function check() {
+    let ok = true;
+    for (const k in fields) {
+      const res = rules[k](fields[k].value), wrap = fields[k].closest(".field");
+      wrap.classList.toggle("bad", res !== true); wrap.querySelector(".err-msg").textContent = res === true ? "" : res;
+      if (res !== true && ok) { fields[k].focus(); ok = false; }
+    }
+    return ok;
+  }
+  Object.values(fields).forEach(f => f.addEventListener("input", () => { const w = f.closest(".field"); if (w.classList.contains("bad")) { const k = Object.keys(fields).find(x => fields[x] === f); if (rules[k](f.value) === true) { w.classList.remove("bad"); w.querySelector(".err-msg").textContent = ""; } } }));
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    if (!check()) return;
+    const data = Object.fromEntries(new FormData(form));
+    if (data._honey) return;
+    const btn = $("#sendBtn"); btn.disabled = true; btn.textContent = "Sending…";
+    const body = { name: data.name, email: data.email, organisation: data.organisation || "", service: data.service, message: data.message, _subject: `New enquiry: ${data.service}`, _replyto: data.email, _template: "table", _captcha: "false" };
+    let sent = false;
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/contact@novagen-bio.com", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(body) });
+      const j = await res.json().catch(() => ({}));
+      sent = res.ok && String(j.success) === "true";
+    } catch (err) { sent = false; }
+    if (sent) {
+      const first = data.name.trim().split(" ")[0].replace(/[<>&"]/g, "");
+      form.innerHTML = `<div class="form-done"><svg viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="26" fill="currentColor" opacity=".12"/><path d="M17 29l7.5 7.5L40 21" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>Enquiry sent</h3><p>Thank you, ${first}. You'll receive a reply at the email you gave, with next steps for your project.</p></div>`;
+    } else {
+      const mail = `mailto:contact@novagen-bio.com?subject=${encodeURIComponent("Project enquiry: " + data.service)}&body=${encodeURIComponent(`Name: ${data.name}\nOrganisation: ${data.organisation || "-"}\nService: ${data.service}\n\n${data.message}`)}`;
+      btn.disabled = false; btn.textContent = "Send enquiry";
+      let note = form.querySelector(".fallback");
+      if (!note) { note = document.createElement("p"); note.className = "fine fallback"; form.appendChild(note); }
+      note.innerHTML = `The form couldn't send just now. <a href="${mail}">Send it by email instead</a>; your message is already filled in.`;
+    }
+  });
+
+  /* Sample figures (SVG) */
   const NS = "http://www.w3.org/2000/svg";
   function el(svg, tag, attrs, text) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; svg.appendChild(e); return e; }
   function frame(svg, o) {
@@ -800,15 +1167,12 @@ footer a { color: var(--ink-soft); }
     el(svg, "text", { x: L + W / 2, y: T + H + (big ? 62 : 48), "text-anchor": "middle", class: "axlab" }, xl);
     el(svg, "text", { x: 0, y: 0, transform: `translate(${big ? 22 : 16} ${T + H / 2}) rotate(-90)`, "text-anchor": "middle", class: "axlab" }, yl);
   }
-
-  /* Charts use a 560-unit-wide canvas; on phones the text is set larger (CSS) and legends move below the plot. */
   const small = matchMedia("(max-width: 560px)");
   function legendRow(svg, x, y, cls, label, sub, big) {
     el(svg, "rect", { x, y: y - (big ? 15 : 11), width: big ? 16 : 12, height: big ? 16 : 12, rx: 3, class: cls });
     el(svg, "text", { x: x + (big ? 26 : 20), y, class: "note", "font-weight": "600" }, label);
     if (sub) el(svg, "text", { x: x + (big ? 26 : 20), y: y + (big ? 26 : 20), class: "tick" }, sub);
   }
-
   function km(svg, big) {
     const L = big ? 88 : 64, T = 20, W = 560 - L - 26, H = 270, tMax = 60;
     const xf = t => L + t / tMax * W, yf = s => T + H - s * H;
@@ -819,30 +1183,29 @@ footer a { color: var(--ink-soft); }
       const d = [];
       for (let i = 0; i < n; i++) { const ev = -Math.log(rr()) / rate, cen = 8 + rr() * 70; d.push(ev <= cen ? { t: Math.min(ev, 61), e: ev <= 60 } : { t: Math.min(cen, 60), e: false }); }
       d.sort((a, b) => a.t - b.t);
-      let s = 1, risk = n; const steps = [[0, 1]], cens = [];
-      d.forEach(p => { if (p.t > 60) return; if (p.e) { s *= (risk - 1) / risk; steps.push([p.t, s]); } else cens.push([p.t, s]); risk--; });
-      return { steps, cens };
+      let s = 1, risk = n; const st = [[0, 1]], cens = [];
+      d.forEach(p => { if (p.t > 60) return; if (p.e) { s *= (risk - 1) / risk; st.push([p.t, s]); } else cens.push([p.t, s]); risk--; });
+      return { st, cens };
     }
     [[group(0.034, 120), "s-up", "ctick-up"], [group(0.013, 120), "s-down", "ctick-down"]].forEach(([g, sc, cc]) => {
-      let dpath = `M${xf(0)},${yf(1)}`;
-      g.steps.slice(1).forEach(([t, s]) => { dpath += ` H${xf(t).toFixed(1)} V${yf(s).toFixed(1)}`; });
-      dpath += ` H${xf(60)}`;
-      el(svg, "path", { d: dpath, class: sc });
-      g.cens.forEach(([t, s]) => el(svg, "line", { x1: xf(t), x2: xf(t), y1: yf(s) - 5, y2: yf(s) + 5, class: cc }));
+      let d = `M${xf(0)},${yf(1)}`;
+      g.st.slice(1).forEach(([t, s]) => { d += ` H${xf(t).toFixed(1)} V${yf(s).toFixed(1)}`; });
+      d += ` H${xf(60)}`;
+      el(svg, "path", { d, class: sc });
+      g.cens.forEach(([t, s]) => el(svg, "line", { x1: xf(t), x2: xf(t), y1: yf(s) - 5, y2: yf(s) + 5, class: cc + " fade" }));
     });
     if (big) {
       legendRow(svg, L, T + H + 104, "f-down", "Low expression, n = 120", null, true);
       legendRow(svg, L, T + H + 138, "f-up", "High expression, n = 120", null, true);
-      el(svg, "text", { x: L + 12, y: T + H - 44, class: "note", "font-weight": "600" }, "HR 2.4 (1.7–3.4)");
-      el(svg, "text", { x: L + 12, y: T + H - 16, class: "note" }, "Log-rank p < 0.001");
+      el(svg, "text", { x: L + 12, y: T + H - 44, class: "note fade", "font-weight": "600" }, "HR 2.4 (1.7–3.4)");
+      el(svg, "text", { x: L + 12, y: T + H - 16, class: "note fade" }, "Log-rank p < 0.001");
     } else {
       legendRow(svg, L + W - 210, T + 17, "f-down", "Low expression, n = 120");
       legendRow(svg, L + W - 210, T + 39, "f-up", "High expression, n = 120");
-      el(svg, "text", { x: L + 14, y: T + H - 40, class: "note", "font-weight": "600" }, "HR 2.4 (95% CI 1.7–3.4)");
-      el(svg, "text", { x: L + 14, y: T + H - 20, class: "note" }, "Log-rank p < 0.001");
+      el(svg, "text", { x: L + 14, y: T + H - 40, class: "note fade", "font-weight": "600" }, "HR 2.4 (95% CI 1.7–3.4)");
+      el(svg, "text", { x: L + 14, y: T + H - 20, class: "note fade" }, "Log-rank p < 0.001");
     }
   }
-
   function roc(svg, big) {
     const L = big ? 88 : 64, T = 20, W = big ? 440 : 290, H = big ? 300 : 290;
     const xf = x => L + x * W, yf = y => T + H - y * H;
@@ -851,7 +1214,7 @@ footer a { color: var(--ink-soft); }
     el(svg, "line", { x1: L, x2: L, y1: T, y2: T + H, class: "ax" });
     el(svg, "line", { x1: xf(0), y1: yf(0), x2: xf(1), y2: yf(1), class: "s-ref" });
     const pathOf = k => { let d = ""; for (let i = 0; i <= 100; i++) { const x = i / 100; d += (i ? " L" : "M") + xf(x).toFixed(1) + "," + yf(1 - Math.pow(1 - x, k)).toFixed(1); } return d; };
-    el(svg, "path", { d: pathOf(6.69) + ` L${xf(1)},${yf(0)} L${xf(0)},${yf(0)} Z`, class: "f-up-wash" });
+    el(svg, "path", { d: pathOf(6.69) + ` L${xf(1)},${yf(0)} L${xf(0)},${yf(0)} Z`, class: "f-up-wash fade" });
     el(svg, "path", { d: pathOf(3.17), class: "s-down" });
     el(svg, "path", { d: pathOf(6.69), class: "s-up" });
     if (big) {
@@ -866,7 +1229,6 @@ footer a { color: var(--ink-soft); }
       el(svg, "text", { x: lx + 20, y: T + 164, class: "tick" }, "Chance");
     }
   }
-
   function qpcr(svg, big) {
     const L = big ? 88 : 64, T = 24, W = 560 - L - 26, H = 270, lo = -2.5, hi = 2.5;
     const yf = v => T + (hi - v) / (hi - lo) * H;
@@ -877,28 +1239,36 @@ footer a { color: var(--ink-soft); }
     const bw = W / data.length;
     data.forEach(([n, v, sd, sig], i) => {
       const cx = L + bw * i + bw / 2, cl = sig === "ns" ? "f-ns" : (v > 0 ? "f-up" : "f-down");
-      el(svg, "rect", { x: cx - bw * 0.28, y: Math.min(yf(v), yf(0)), width: bw * 0.56, height: Math.abs(yf(v) - yf(0)) || 1, rx: 4, class: cl });
-      el(svg, "line", { x1: cx, x2: cx, y1: yf(v - sd), y2: yf(v + sd), class: "err" });
-      [v - sd, v + sd].forEach(e => el(svg, "line", { x1: cx - 7, x2: cx + 7, y1: yf(e), y2: yf(e), class: "err" }));
+      const bar = el(svg, "rect", { x: cx - bw * 0.28, y: Math.min(yf(v), yf(0)), width: bw * 0.56, height: Math.abs(yf(v) - yf(0)) || 1, rx: 4, class: cl + " bar" });
+      bar.style.setProperty("--origin", v >= 0 ? "50% 100%" : "50% 0%"); bar.style.animationDelay = (i * 0.07) + "s";
+      el(svg, "line", { x1: cx, x2: cx, y1: yf(v - sd), y2: yf(v + sd), class: "err fade" });
+      [v - sd, v + sd].forEach(e => el(svg, "line", { x1: cx - 7, x2: cx + 7, y1: yf(e), y2: yf(e), class: "err fade" }));
       const sy = v >= 0 ? yf(v + sd) - 10 : yf(v - sd) + (big ? 26 : 22);
-      el(svg, "text", { x: cx, y: sy, "text-anchor": "middle", class: "note", "font-weight": "700" }, sig);
+      el(svg, "text", { x: cx, y: sy, "text-anchor": "middle", class: "note fade", "font-weight": "700" }, sig);
       if (big) el(svg, "text", { x: 0, y: 0, transform: `translate(${cx + 6} ${T + H + 14}) rotate(-40)`, "text-anchor": "end", class: "tick" }, n);
       else el(svg, "text", { x: cx, y: T + H + 28, "text-anchor": "middle", class: "tick" }, n);
     });
     el(svg, "text", { x: big ? L : L + W, y: big ? T + H + 150 : T + H + 56, "text-anchor": big ? "start" : "end", class: "tick" }, big ? "** p < 0.01, *** p < 0.001" : "** p < 0.01, *** p < 0.001, ns not significant");
   }
-
-  function drawCharts() {
-    const big = small.matches;
-    [["fig-km", km], ["fig-roc", roc], ["fig-qpcr", qpcr]].forEach(([id, fn]) => { const s = document.getElementById(id); s.textContent = ""; fn(s, big); });
+  const charts = { "fig-km": km, "fig-roc": roc, "fig-qpcr": qpcr };
+  function drawChart(id, animate) {
+    const s = document.getElementById(id); s.textContent = ""; charts[id](s, small.matches);
+    s.classList.remove("drawing");
+    if (animate && !reduce) {
+      s.querySelectorAll(".s-up, .s-down").forEach(p => p.style.setProperty("--len", Math.ceil(p.getTotalLength())));
+      void s.getBoundingClientRect(); s.classList.add("drawing");
+    }
   }
-  drawCharts();
-  try { small.addEventListener("change", drawCharts); } catch (e) {}
-
-  /* Tabs with arrow-key support */
-  const tabs = [...document.querySelectorAll('[role="tab"]')];
+  Object.keys(charts).forEach(id => drawChart(id, false));
+  try { small.addEventListener("change", () => Object.keys(charts).forEach(id => drawChart(id, false))); } catch (e) {}
+  if ("IntersectionObserver" in window && !reduce) {
+    const io2 = new IntersectionObserver(es => { if (es[0].isIntersecting) { io2.disconnect(); drawChart("fig-km", true); } }, { threshold: 0.35 });
+    io2.observe($("#fig-km"));
+  }
+  const tabs = $$('[role="tab"]');
   function select(t, focus) {
     tabs.forEach(x => { const on = x === t; x.setAttribute("aria-selected", on); x.tabIndex = on ? 0 : -1; document.getElementById(x.getAttribute("aria-controls")).hidden = !on; });
+    drawChart(document.getElementById(t.getAttribute("aria-controls")).querySelector("svg").id, true);
     if (focus) t.focus();
   }
   tabs.forEach((t, i) => {

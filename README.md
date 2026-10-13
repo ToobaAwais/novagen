@@ -1,5 +1,5 @@
-# NovaGen Bioinformatics
+# NovaGen
 
-Website for NovaGen Bioinformatics: biomarker discovery, cancer genomics and research statistics.
+Website for NovaGen: omics analysis, biomarker discovery and research statistics.
 
 Live site: https://novagen-bio.com
