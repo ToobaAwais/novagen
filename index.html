@@ -6,6 +6,8 @@
 <title>NovaGen | Omics, biomarker and research statistics services</title>
 <meta name="description" content="Single-cell and RNA-seq analysis, multi-omics, liquid biopsy and AI biomarker models, study design, meta-analysis and clinical statistics. Fixed quotes, reproducible results.">
 <link rel="canonical" href="https://novagen-bio.com/">
+<link rel="alternate" hreflang="en" href="https://novagen-bio.com/">
+<link rel="alternate" hreflang="ar" href="https://novagen-bio.com/ar.html">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234A3DA8'/%3E%3Ccircle cx='9' cy='22' r='2.6' fill='%23fff' opacity='.55'/%3E%3Ccircle cx='16' cy='17' r='2.6' fill='%23fff' opacity='.75'/%3E%3Ccircle cx='23' cy='10' r='3.4' fill='%23F07AA3'/%3E%3C/svg%3E">
 <meta name="theme-color" content="#4A3DA8">
 
@@ -21,7 +23,7 @@
 <meta name="twitter:image" content="https://novagen-bio.com/og-image.png">
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"ProfessionalService","name":"NovaGen","url":"https://novagen-bio.com/","image":"https://novagen-bio.com/og-image.png","email":"contact@novagen-bio.com","description":"Single-cell and RNA-seq analysis, multi-omics integration, biomarker discovery, AI models and research statistics.","areaServed":"Worldwide","address":{"@type":"PostalAddress","addressCountry":"SA"},"sameAs":["https://www.linkedin.com/company/novagenbioinformatics-company/"]}
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"NovaGen","url":"https://novagen-bio.com/","image":"https://novagen-bio.com/og-image.png","email":"contact@novagen-bio.com","description":"Single-cell and RNA-seq analysis, multi-omics integration, biomarker discovery, AI models and research statistics.","areaServed":"Worldwide","sameAs":["https://www.linkedin.com/company/novagenbioinformatics-company/"]}
 </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -74,6 +76,7 @@ body {
   -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
 }
 img, svg, canvas { max-width: 100%; }
+canvas, .panel svg { direction: ltr; }
 [hidden] { display: none !important; }
 a { color: var(--haem); text-underline-offset: 3px; }
 :focus-visible { outline: 2.5px solid var(--eosin); outline-offset: 3px; border-radius: 6px; }
@@ -105,13 +108,15 @@ button { font: inherit; color: inherit; }
 }
 .top.scrolled { border-bottom-color: var(--rule); }
 .top .wrap { display: flex; align-items: center; gap: 28px; min-height: 72px; }
-.brand { display: flex; align-items: center; gap: 11px; text-decoration: none; color: var(--ink); margin-right: auto; }
+.brand { display: flex; align-items: center; gap: 11px; text-decoration: none; color: var(--ink); margin-inline-end: auto; }
 .brand svg { width: 34px; height: 34px; flex: none; }
 .brand b { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.035em; }
 .nav { display: flex; gap: 24px; }
 .nav a { color: var(--ink); text-decoration: none; font-weight: 500; font-size: 0.97rem; position: relative; padding-block: 6px; }
 .nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--eosin); transform: scaleX(0); transform-origin: left; transition: transform .25s var(--ease); }
 .nav a:hover::after, .nav a.here::after { transform: scaleX(1); }
+.lang { font-weight: 600; font-size: 0.95rem; color: var(--ink); text-decoration: none; padding: 8px 12px; border: 1.5px solid var(--rule); border-radius: 10px; }
+.lang:hover { border-color: var(--haem); color: var(--haem); }
 .top .btn { min-height: 42px; padding: 9px 18px; font-size: 0.95rem; }
 .menu-btn { display: none; background: none; border: 1.5px solid var(--rule); border-radius: 10px; width: 44px; height: 44px; cursor: pointer; }
 .menu-btn svg { width: 20px; height: 20px; }
@@ -156,6 +161,8 @@ button { font: inherit; color: inherit; }
 .ticker li { font-weight: 700; font-size: 1.02rem; letter-spacing: -0.01em; white-space: nowrap; display: flex; align-items: center; gap: 40px; }
 .ticker li::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--eosin); opacity: .6; }
 @keyframes ticker { to { transform: translateX(-50%); } }
+@keyframes tickerR { to { transform: translateX(50%); } }
+[dir="rtl"] .ticker-track { animation-name: tickerR; }
 
 /* Sections */
 .section { padding-block: 104px 0; }
@@ -197,7 +204,7 @@ button { font: inherit; color: inherit; }
 .filter { border: 1.5px solid var(--rule); background: var(--surface); border-radius: 999px; padding: 8px 16px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all .15s; }
 .filter:hover { border-color: var(--haem); }
 .filter[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-.filter .c { font-weight: 500; opacity: .6; margin-left: 6px; }
+.filter .c { font-weight: 500; opacity: .6; margin-inline-start: 6px; }
 .svc-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; align-items: start; }
 .svc { background: var(--surface); border: 1px solid var(--rule); border-radius: 16px; transition: border-color .2s, box-shadow .2s; }
 .svc.out { display: none; }
@@ -219,7 +226,7 @@ button { font: inherit; color: inherit; }
 .svc-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s var(--ease); }
 .svc.open .svc-body { grid-template-rows: 1fr; }
 .svc-body > div { overflow: hidden; }
-.svc-body .inner { padding: 0 20px 20px 76px; display: grid; gap: 12px; }
+.svc-body .inner { padding-block: 0 20px; padding-inline: 76px 20px; display: grid; gap: 12px; }
 .svc-body .get b { font-weight: 700; }
 .methods { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 0; }
 .methods li { font-size: 0.8rem; font-weight: 500; padding: 3px 9px; border-radius: 6px; background: var(--haem-wash); color: var(--haem-deep); }
@@ -233,6 +240,7 @@ button { font: inherit; color: inherit; }
 .tab span { display: block; font-size: 0.88rem; color: var(--ink-soft); margin-top: 2px; }
 .tab:hover { border-color: var(--haem); }
 .tab[aria-selected="true"] { background: var(--surface); border-color: var(--haem); box-shadow: inset 4px 0 0 var(--haem); }
+[dir="rtl"] .tab[aria-selected="true"] { box-shadow: inset -4px 0 0 var(--haem); }
 .panel { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); display: grid; grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr); min-width: 0; overflow: hidden; }
 .panel figure { margin: 0; padding: 24px 20px 20px; border-right: 1px solid var(--rule); min-width: 0; }
 .panel figcaption { font-size: 0.85rem; color: var(--ink-soft); margin-top: 10px; }
@@ -261,6 +269,20 @@ button { font: inherit; color: inherit; }
 @keyframes grow { from { transform: scaleY(0); } }
 .drawing .fade { animation: fade .5s .6s both; }
 @keyframes fade { from { opacity: 0; } }
+
+/* Case studies */
+.cases { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.case { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 32px; display: grid; gap: 18px; align-content: start; position: relative; overflow: hidden; }
+.case::before { content: ""; position: absolute; inset-inline-start: 0; top: 0; bottom: 0; width: 5px; background: var(--eosin); }
+.case:nth-child(2)::before { background: var(--haem); }
+.case .kind { font-size: 0.92rem; font-weight: 600; color: var(--eosin); }
+.case:nth-child(2) .kind { color: var(--haem); }
+.case h3 { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.02em; }
+.case dl { margin: 0; display: grid; gap: 14px; }
+.case dt { font-weight: 700; font-size: 0.95rem; }
+.case dd { margin: 4px 0 0; color: var(--ink-soft); }
+.case .tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 0; }
+.case .tags li { font-size: 0.8rem; font-weight: 500; padding: 3px 9px; border-radius: 6px; background: var(--haem-wash); color: var(--haem-deep); }
 
 /* Who and how */
 .audience { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; }
@@ -294,7 +316,8 @@ button { font: inherit; color: inherit; }
 
 /* Process */
 .steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; position: relative; --p: 0; }
-.steps::before, .steps::after { content: ""; position: absolute; top: 21px; left: 22px; right: calc((100% - 72px) / 4 - 22px); height: 2px; }
+.steps::before, .steps::after { content: ""; position: absolute; top: 21px; inset-inline-start: 22px; inset-inline-end: calc((100% - 72px) / 4 - 22px); height: 2px; }
+[dir="rtl"] .steps::after { transform-origin: right; }
 .steps::before { background: var(--rule); }
 .steps::after { background: linear-gradient(90deg, var(--haem), var(--eosin)); transform-origin: left; transform: scaleX(var(--p)); }
 .steps li { position: relative; min-width: 0; z-index: 1; }
@@ -318,7 +341,7 @@ button { font: inherit; color: inherit; }
 .faq summary::-webkit-details-marker { display: none; }
 .faq summary .chev { background: var(--haem-wash); color: var(--haem); }
 .faq details[open] summary .chev { transform: rotate(45deg); background: var(--haem); color: var(--paper); }
-.faq details p { padding: 0 44px 22px 0; color: var(--ink-soft); }
+.faq details p { padding-block: 0 22px; padding-inline: 0 44px; color: var(--ink-soft); }
 
 /* Contact */
 .contact { margin-top: 104px; border-radius: 28px; background: var(--ink); color: var(--paper); overflow: hidden; position: relative; }
@@ -355,7 +378,7 @@ button { font: inherit; color: inherit; }
 .form-done svg { width: 56px; height: 56px; color: var(--ok); }
 .form-done h3 { font-size: 1.5rem; font-weight: 800; }
 .form-done p { color: var(--ink-soft); max-width: 26rem; }
-.hp { position: absolute; left: -9999px; }
+.hp { position: absolute; left: -9999px; width: 1px; }
 
 footer { padding-block: 40px 48px; }
 footer .wrap { display: flex; justify-content: space-between; gap: 16px 32px; flex-wrap: wrap; font-size: 0.9rem; color: var(--ink-soft); }
@@ -387,7 +410,7 @@ footer a { color: var(--ink-soft); }
   .top.open .nav { display: flex; position: absolute; top: 72px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--paper); border-bottom: 1px solid var(--rule); padding: 8px 24px 16px; }
   .top.open .nav a { padding: 12px 0; border-bottom: 1px solid var(--rule); font-size: 1.05rem; }
   .top.open .nav a::after { display: none; }
-  .hero, .head, .panel, .audience, .plans, .tools, .receive, .svc-list, .faq { grid-template-columns: minmax(0, 1fr); }
+  .hero, .head, .panel, .audience, .plans, .tools, .receive, .svc-list, .faq, .cases { grid-template-columns: minmax(0, 1fr); }
   .faq-col:first-child { border-bottom: 0; }
   .hero { gap: 40px; padding-block: 32px 48px; }
   .panel figure { border-right: 0; border-bottom: 1px solid var(--rule); }
@@ -402,7 +425,7 @@ footer a { color: var(--ink-soft); }
   .wrap { padding-inline: 16px; }
   .volcano { padding: 14px 12px 12px; }
   .volcano canvas { height: 300px; }
-  .panel figure, .panel-copy, .tool, .plan { padding-inline: 20px; }
+  .panel figure, .panel-copy, .tool, .plan, .case { padding-inline: 20px; }
   .receive { padding: 26px 20px; }
   .receive ul { grid-template-columns: minmax(0, 1fr); }
   .steps { grid-template-columns: minmax(0, 1fr); }
@@ -412,7 +435,7 @@ footer a { color: var(--ink-soft); }
   .hero .actions .btn { flex: 1 1 100%; }
   .choices { grid-template-columns: minmax(0, 1fr); }
   .answer { padding: 24px 20px; }
-  .svc-body .inner { padding: 0 18px 18px 18px; }
+  .svc-body .inner { padding: 0 18px 18px; }
   .sources .wrap { flex-direction: column; align-items: flex-start; gap: 10px; }
   .ticker { width: 100%; }
   .tab { flex: 1 1 0; padding: 12px 10px; text-align: center; }
@@ -466,6 +489,7 @@ footer a { color: var(--ink-soft); }
       <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
     </nav>
+    <a class="lang" href="ar.html" lang="ar" hreflang="ar">العربية</a>
     <a class="btn solid" href="#contact">Request a quote</a>
     <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
       <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
@@ -734,12 +758,44 @@ footer a { color: var(--ink-soft); }
     </div>
   </section>
 
+  <!-- Case studies -->
+  <section class="section" id="work-examples" aria-labelledby="casesTitle">
+    <div class="wrap">
+      <div class="head reveal">
+        <h2 id="casesTitle">Recent work</h2>
+        <p class="prose">Two examples of the projects we deliver. Client details are kept confidential.</p>
+      </div>
+      <div class="cases">
+        <article class="case">
+          <span class="kind">Liquid biopsy, diagnostics company</span>
+          <h3>Tissue-of-origin signals in urine miRNA</h3>
+          <dl>
+            <div><dt>The question</dt><dd>Can a tissue-specific miRNA score detect pancreatic signals in urine, and how much of the signal comes from the lab kit rather than the biology?</dd></div>
+            <div><dt>What we did</dt><dd>Ran a tissue-scoring pipeline on a 417-sample urine cohort, developed an approach to separate kit and library-prep effects from true biology, and compared paired urine and plasma samples across tissues and tumour-microenvironment cell types.</dd></div>
+            <div><dt>Outcome</dt><dd>Delivered over three fixed-price milestones, each reviewed and approved by the client's scientific team.</dd></div>
+          </dl>
+          <ul class="tags"><li>Urine and plasma miRNA</li><li>Batch effects</li><li>Tissue atlases</li><li>Python</li></ul>
+        </article>
+        <article class="case">
+          <span class="kind">Cancer biomarkers, published study</span>
+          <h3>miRNA biomarkers for liver cancer progression and survival</h3>
+          <dl>
+            <div><dt>The question</dt><dd>Which tissue and circulating miRNAs track progression and survival in hepatocellular carcinoma?</dd></div>
+            <div><dt>What we did</dt><dd>Analysed TCGA-LIHC tissue data alongside independent GEO cohorts, testing differential expression, stage associations and survival for each candidate.</dd></div>
+            <div><dt>Outcome</dt><dd>Published in the peer-reviewed journal Non-coding RNA Research in 2026.</dd></div>
+          </dl>
+          <ul class="tags"><li>TCGA-LIHC</li><li>GEO</li><li>Survival analysis</li><li>Circulating miRNA</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- Who -->
   <section class="section" id="work" aria-labelledby="workTitle">
     <div class="wrap">
       <div class="head reveal">
         <h2 id="workTitle">Built for research teams</h2>
-        <p class="prose">We work remotely with teams in Saudi Arabia, the Gulf and worldwide, with a clear scope and a fixed price agreed in writing.</p>
+        <p class="prose">We work remotely with research teams worldwide, with a clear scope and a fixed price agreed in writing.</p>
       </div>
       <div class="audience">
         <div><h3>Hospitals and research centres</h3><p>Clinical and genomic data analysed by a dedicated analyst, without hiring an in-house statistician.</p></div>
@@ -872,7 +928,7 @@ footer a { color: var(--ink-soft); }
           <ul class="c-list">
             <li><span class="ic"><svg aria-hidden="true"><use href="#i-mail"/></svg></span><span><small>Email</small><a href="mailto:contact@novagen-bio.com">contact@novagen-bio.com</a></span></li>
             <li><span class="ic"><svg aria-hidden="true"><use href="#i-in"/></svg></span><span><small>LinkedIn</small><a href="https://www.linkedin.com/company/novagenbioinformatics-company/" target="_blank" rel="noopener">NovaGen on LinkedIn</a></span></li>
-            <li><span class="ic"><svg aria-hidden="true"><use href="#i-globe"/></svg></span><span><small>Location</small><span class="v">Saudi Arabia, working worldwide</span></span></li>
+            <li><span class="ic"><svg aria-hidden="true"><use href="#i-globe"/></svg></span><span><small>Where we work</small><span class="v">Remotely, with teams worldwide</span></span></li>
           </ul>
         </div>
 
@@ -882,28 +938,28 @@ footer a { color: var(--ink-soft); }
           <div class="field"><label for="f-org">Organisation <span>(optional)</span></label><input id="f-org" name="organisation" autocomplete="organization"></div>
           <div class="field"><label for="f-svc">Service</label>
             <select id="f-svc" name="service">
-              <option>Not sure yet</option>
-              <option>Single-cell RNA-seq analysis</option>
-              <option>Bulk RNA-seq analysis</option>
-              <option>Multi-omics integration</option>
-              <option>Gene or miRNA evidence report</option>
-              <option>Pathway and enrichment analysis</option>
-              <option>Biomarker discovery report</option>
-              <option>Liquid biopsy miRNA biomarkers</option>
-              <option>AI and machine learning models</option>
-              <option>Study design and sample size</option>
-              <option>Clinical statistics</option>
-              <option>Meta-analysis</option>
-              <option>Reviewer response support</option>
-              <option>Publication-ready figures</option>
-              <option>Custom apps and pipelines</option>
-              <option>Monthly research analytics support</option>
+              <option value="Not sure yet">Not sure yet</option>
+              <option value="Single-cell RNA-seq analysis">Single-cell RNA-seq analysis</option>
+              <option value="Bulk RNA-seq analysis">Bulk RNA-seq analysis</option>
+              <option value="Multi-omics integration">Multi-omics integration</option>
+              <option value="Gene or miRNA evidence report">Gene or miRNA evidence report</option>
+              <option value="Pathway and enrichment analysis">Pathway and enrichment analysis</option>
+              <option value="Biomarker discovery report">Biomarker discovery report</option>
+              <option value="Liquid biopsy miRNA biomarkers">Liquid biopsy miRNA biomarkers</option>
+              <option value="AI and machine learning models">AI and machine learning models</option>
+              <option value="Study design and sample size">Study design and sample size</option>
+              <option value="Clinical statistics">Clinical statistics</option>
+              <option value="Meta-analysis">Meta-analysis</option>
+              <option value="Reviewer response support">Reviewer response support</option>
+              <option value="Publication-ready figures">Publication-ready figures</option>
+              <option value="Custom apps and pipelines">Custom apps and pipelines</option>
+              <option value="Monthly research analytics support">Monthly research analytics support</option>
             </select>
           </div>
           <div class="field full"><label for="f-msg">Your project</label><textarea id="f-msg" name="message" required placeholder="The study question, the data type and number of samples, and your deadline or target journal."></textarea><span class="err-msg" aria-live="polite"></span></div>
           <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
           <button class="btn" type="submit" id="sendBtn">Send enquiry</button>
-          <p class="fine">Please don't include patient-identifiable data. Your details are used only to reply to you.</p>
+          <p class="fine">Please don't include patient-identifiable data. Your details are used only to reply to you. <a href="privacy.html">Privacy policy</a></p>
         </form>
       </div>
     </section>
@@ -912,8 +968,8 @@ footer a { color: var(--ink-soft); }
 
 <footer>
   <div class="wrap">
-    <span>© 2026 NovaGen. Based in Saudi Arabia, working with research teams worldwide.</span>
-    <span class="foot-links"><a href="mailto:contact@novagen-bio.com">contact@novagen-bio.com</a><a href="https://www.linkedin.com/company/novagenbioinformatics-company/" target="_blank" rel="noopener">LinkedIn</a></span>
+    <span>© 2026 NovaGen. Working remotely with research teams worldwide.</span>
+    <span class="foot-links"><a href="mailto:contact@novagen-bio.com">contact@novagen-bio.com</a><a href="privacy.html">Privacy</a><a href="https://www.linkedin.com/company/novagenbioinformatics-company/" target="_blank" rel="noopener">LinkedIn</a></span>
   </div>
 </footer>
 
@@ -1080,7 +1136,7 @@ footer a { color: var(--ink-soft); }
   /* Jump to the form with a service pre-selected */
   const form = $("#form"), svcSel = $("#f-svc");
   function goContact(service) {
-    if (service) [...svcSel.options].forEach(o => { if (o.text === service) svcSel.value = o.value; });
+    if (service) [...svcSel.options].forEach(o => { if (o.value === service) svcSel.value = o.value; });
     $("#contact").scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
     setTimeout(() => { const n = $("#f-name"); if (n) n.focus({ preventScroll: true }); }, reduce ? 0 : 700);
   }

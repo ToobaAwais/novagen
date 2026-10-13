@@ -1,0 +1,1349 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>نوفاجين | تحليل الأوميكس والمؤشرات الحيوية والإحصاء البحثي</title>
+<meta name="description" content="تحليل الخلية المفردة وتسلسل RNA، ودمج الأوميكس المتعددة، ومؤشرات الخزعة السائلة، ونماذج الذكاء الاصطناعي، وتصميم الدراسات والتحليل التجميعي والإحصاء السريري. أسعار ثابتة ونتائج قابلة لإعادة الإنتاج.">
+<link rel="canonical" href="https://novagen-bio.com/ar.html">
+<link rel="alternate" hreflang="en" href="https://novagen-bio.com/">
+<link rel="alternate" hreflang="ar" href="https://novagen-bio.com/ar.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234A3DA8'/%3E%3Ccircle cx='9' cy='22' r='2.6' fill='%23fff' opacity='.55'/%3E%3Ccircle cx='16' cy='17' r='2.6' fill='%23fff' opacity='.75'/%3E%3Ccircle cx='23' cy='10' r='3.4' fill='%23F07AA3'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#4A3DA8">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://novagen-bio.com/ar.html">
+<meta property="og:locale" content="ar_AR">
+<meta property="og:site_name" content="NovaGen">
+<meta property="og:title" content="NovaGen">
+<meta property="og:description" content="Omics and clinical data, turned into evidence you can publish. Single-cell, RNA-seq, multi-omics, AI models and research statistics.">
+<meta property="og:image" content="https://novagen-bio.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://novagen-bio.com/og-image.png">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"NovaGen","url":"https://novagen-bio.com/","image":"https://novagen-bio.com/og-image.png","email":"contact@novagen-bio.com","description":"Single-cell and RNA-seq analysis, multi-omics integration, biomarker discovery, AI models and research statistics.","areaServed":"Worldwide","sameAs":["https://www.linkedin.com/company/novagenbioinformatics-company/"]}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap">
+<style>
+/*
+  Identity: the colours of an H&E-stained tissue section, the image every cancer study starts from.
+  Hematoxylin violet is the working colour (actions, down-regulation); eosin pink marks what is up and what matters.
+  Layout: left-aligned on a 74rem measure. One orchestrated motion moment (the volcano plot rising on load);
+  everything else moves in answer to the visitor: filters, finder, tabs, accordions, the form.
+*/
+:root {
+  --paper: #f7f6fb;
+  --surface: #ffffff;
+  --ink: #1c1838;
+  --ink-soft: #57536f;
+  --rule: #e3e0ee;
+  --haem: #4a3da8;
+  --haem-deep: #362b86;
+  --haem-wash: #ece9f8;
+  --eosin: #c93a6e;
+  --eosin-wash: #fbe7ef;
+  --null: #c4c0d6;
+  --ok: #1f8a5b;
+  --sans: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --measure: 74rem;
+  --radius-lg: 20px;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #13112a; --surface: #1b1935; --ink: #eceaf6; --ink-soft: #aba7c6; --rule: #2e2b4e;
+    --haem: #a197f5; --haem-deep: #c3bcff; --haem-wash: #262252; --eosin: #f07aa3; --eosin-wash: #3a1e33; --null: #4a476a; --ok: #5fd3a0;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #13112a; --surface: #1b1935; --ink: #eceaf6; --ink-soft: #aba7c6; --rule: #2e2b4e;
+  --haem: #a197f5; --haem-deep: #c3bcff; --haem-wash: #262252; --eosin: #f07aa3; --eosin-wash: #3a1e33; --null: #4a476a; --ok: #5fd3a0;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--sans); font-size: 1.0625rem; line-height: 1.6;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+img, svg, canvas { max-width: 100%; }
+canvas, .panel svg { direction: ltr; }
+[hidden] { display: none !important; }
+a { color: var(--haem); text-underline-offset: 3px; }
+:focus-visible { outline: 2.5px solid var(--eosin); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3, h4 { margin: 0; line-height: 1.1; text-wrap: balance; letter-spacing: -0.02em; }
+p { margin: 0; }
+button { font: inherit; color: inherit; }
+.wrap { max-width: var(--measure); margin-inline: auto; padding-inline: 24px; }
+.prose { font-family: var(--serif); font-size: 1.15rem; line-height: 1.65; color: var(--ink-soft); }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 48px; padding: 12px 22px; border-radius: 12px;
+  font: 600 1rem/1.2 var(--sans); text-decoration: none; cursor: pointer;
+  border: 1.5px solid transparent; transition: background-color .15s, color .15s, border-color .15s, transform .15s var(--ease);
+}
+.btn:active { transform: translateY(1px); }
+.btn.solid { background: var(--haem); color: var(--paper); }
+.btn.solid:hover { background: var(--haem-deep); }
+.btn.line { border-color: var(--rule); color: var(--ink); background: var(--surface); }
+.btn.line:hover { border-color: var(--haem); color: var(--haem); }
+
+/* Header */
+.top {
+  position: sticky; top: 0; z-index: 20;
+  background: color-mix(in srgb, var(--paper) 86%, transparent);
+  -webkit-backdrop-filter: saturate(1.4) blur(12px); backdrop-filter: saturate(1.4) blur(12px);
+  border-bottom: 1px solid transparent; transition: border-color .2s;
+}
+.top.scrolled { border-bottom-color: var(--rule); }
+.top .wrap { display: flex; align-items: center; gap: 28px; min-height: 72px; }
+.brand { display: flex; align-items: center; gap: 11px; text-decoration: none; color: var(--ink); margin-inline-end: auto; }
+.brand svg { width: 34px; height: 34px; flex: none; }
+.brand b { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.035em; }
+.nav { display: flex; gap: 24px; }
+.nav a { color: var(--ink); text-decoration: none; font-weight: 500; font-size: 0.97rem; position: relative; padding-block: 6px; }
+.nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--eosin); transform: scaleX(0); transform-origin: left; transition: transform .25s var(--ease); }
+.nav a:hover::after, .nav a.here::after { transform: scaleX(1); }
+.lang { font-weight: 600; font-size: 0.95rem; color: var(--ink); text-decoration: none; padding: 8px 12px; border: 1.5px solid var(--rule); border-radius: 10px; }
+.lang:hover { border-color: var(--haem); color: var(--haem); }
+.top .btn { min-height: 42px; padding: 9px 18px; font-size: 0.95rem; }
+.menu-btn { display: none; background: none; border: 1.5px solid var(--rule); border-radius: 10px; width: 44px; height: 44px; cursor: pointer; }
+.menu-btn svg { width: 20px; height: 20px; }
+.progress { position: absolute; left: 0; bottom: -1px; height: 2px; width: 100%; background: linear-gradient(90deg, var(--haem), var(--eosin)); transform-origin: left; transform: scaleX(0); }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr); gap: 56px; align-items: center; padding-block: 56px 64px; }
+.hero h1 { font-size: clamp(2.5rem, 4.9vw, 4.1rem); font-weight: 800; letter-spacing: -0.035em; line-height: 1.02; }
+.hero h1 .ln { display: block; }
+.js .hero h1 .ln { opacity: 0; transform: translateY(18px); animation: rise .8s var(--ease) forwards; }
+.js .hero h1 .ln:nth-child(2) { animation-delay: .08s; }
+.js .hero h1 .ln:nth-child(3) { animation-delay: .16s; }
+@keyframes rise { to { opacity: 1; transform: none; } }
+.hero .prose { margin-top: 24px; max-width: 33rem; font-size: 1.22rem; }
+.hero .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.assure { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 28px; padding: 0; list-style: none; font-size: 0.93rem; color: var(--ink-soft); }
+.assure li { display: flex; align-items: center; gap: 8px; }
+.assure svg { width: 17px; height: 17px; color: var(--haem); flex: none; }
+
+.volcano {
+  margin: 0; background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg);
+  padding: 20px 20px 16px; box-shadow: 0 1px 0 var(--rule), 0 24px 48px -32px color-mix(in srgb, var(--haem) 45%, transparent);
+}
+.fig-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.fig-head b { font-weight: 600; font-size: 0.98rem; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 0.85rem; color: var(--ink-soft); list-style: none; padding: 0; margin: 0; }
+.legend li { display: flex; align-items: center; gap: 6px; }
+.legend i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.legend .up { background: var(--eosin); } .legend .down { background: var(--haem); } .legend .ns { background: var(--null); }
+.volcano canvas { display: block; width: 100%; height: 360px; margin-top: 12px; touch-action: pan-y; cursor: crosshair; }
+.readout { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 10px; font-size: 0.86rem; color: var(--ink-soft); font-variant-numeric: tabular-nums; min-height: 1.4em; }
+.readout b { color: var(--ink); font-weight: 600; }
+
+/* Data types, slowly scrolling */
+.sources { border-block: 1px solid var(--rule); overflow: hidden; }
+.sources .wrap { display: flex; align-items: center; gap: 24px; padding-block: 20px; }
+.sources p { font-size: 0.92rem; color: var(--ink-soft); flex: none; }
+.ticker { overflow: hidden; flex: 1; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.ticker-track { display: flex; width: max-content; animation: ticker 48s linear infinite; }
+.ticker:hover .ticker-track { animation-play-state: paused; }
+.ticker ul { display: flex; gap: 40px; list-style: none; padding: 0 40px 0 0; margin: 0; }
+.ticker li { font-weight: 700; font-size: 1.02rem; letter-spacing: -0.01em; white-space: nowrap; display: flex; align-items: center; gap: 40px; }
+.ticker li::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--eosin); opacity: .6; }
+@keyframes ticker { to { transform: translateX(-50%); } }
+@keyframes tickerR { to { transform: translateX(50%); } }
+[dir="rtl"] .ticker-track { animation-name: tickerR; }
+
+/* Sections */
+.section { padding-block: 104px 0; }
+.head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px 56px; align-items: end; margin-bottom: 44px; }
+.head h2 { font-size: clamp(2rem, 3.8vw, 3rem); font-weight: 800; letter-spacing: -0.03em; }
+.head .prose { max-width: 36rem; }
+.js .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+.js .reveal.in { opacity: 1; transform: none; }
+
+/* Finder */
+.finder { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 20px; }
+.choices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; align-content: start; }
+.choice {
+  display: flex; align-items: center; gap: 12px; text-align: left; cursor: pointer;
+  background: var(--surface); border: 1.5px solid var(--rule); border-radius: 14px; padding: 14px 16px;
+  transition: border-color .15s, background-color .15s, transform .2s var(--ease);
+}
+.choice svg { width: 30px; height: 30px; flex: none; }
+.choice b { font-weight: 600; font-size: 0.98rem; line-height: 1.25; }
+.choice:hover { border-color: var(--haem); transform: translateY(-2px); }
+.choice[aria-pressed="true"] { border-color: var(--haem); background: var(--haem-wash); }
+.answer { background: var(--ink); color: var(--paper); border-radius: var(--radius-lg); padding: 30px 30px 26px; min-width: 0; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+.answer .q { font-size: 0.92rem; color: color-mix(in srgb, var(--paper) 70%, var(--ink)); }
+.answer h3 { font-size: 1.55rem; font-weight: 800; margin-top: 6px; letter-spacing: -0.02em; color: var(--paper); }
+.recs { list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 10px; }
+.recs li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; align-items: start; padding: 14px; border-radius: 12px; background: color-mix(in srgb, var(--paper) 7%, var(--ink)); border: 1px solid color-mix(in srgb, var(--paper) 12%, var(--ink)); }
+.js .recs li { animation: recIn .45s var(--ease) both; }
+.recs li:nth-child(2) { animation-delay: .06s; } .recs li:nth-child(3) { animation-delay: .12s; }
+@keyframes recIn { from { opacity: 0; transform: translateX(12px); } }
+.recs .n { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: var(--eosin); color: var(--paper); font-weight: 800; }
+.recs b { display: block; font-weight: 700; color: var(--paper); }
+.recs span { display: block; font-size: 0.93rem; color: color-mix(in srgb, var(--paper) 72%, var(--ink)); margin-top: 2px; }
+.answer .btn { margin-top: 22px; align-self: flex-start; background: var(--paper); color: var(--ink); }
+.answer .btn:hover { background: var(--eosin-wash); }
+.answer .hint { margin-top: 12px; font-size: 0.88rem; color: color-mix(in srgb, var(--paper) 62%, var(--ink)); }
+
+/* Services explorer */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
+.filter { border: 1.5px solid var(--rule); background: var(--surface); border-radius: 999px; padding: 8px 16px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all .15s; }
+.filter:hover { border-color: var(--haem); }
+.filter[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.filter .c { font-weight: 500; opacity: .6; margin-inline-start: 6px; }
+.svc-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; align-items: start; }
+.svc { background: var(--surface); border: 1px solid var(--rule); border-radius: 16px; transition: border-color .2s, box-shadow .2s; }
+.svc.out { display: none; }
+.svc.enter { animation: svcIn .4s var(--ease) both; }
+@keyframes svcIn { from { opacity: 0; transform: translateY(8px); } }
+.svc:hover { border-color: color-mix(in srgb, var(--haem) 50%, var(--rule)); }
+.svc.open { border-color: var(--haem); box-shadow: 0 18px 36px -28px color-mix(in srgb, var(--haem) 70%, transparent); }
+.svc-btn { width: 100%; display: grid; grid-template-columns: 44px minmax(0, 1fr) 28px; gap: 14px; align-items: center; padding: 18px; background: none; border: 0; text-align: left; cursor: pointer; border-radius: 16px; }
+.svc-ico { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; }
+.svc-ico svg { width: 24px; height: 24px; }
+.cat-omics .svc-ico, .cat-stats .svc-ico { background: var(--haem-wash); color: var(--haem); }
+.cat-bio .svc-ico, .cat-build .svc-ico { background: var(--eosin-wash); color: var(--eosin); }
+.svc-btn h3 { font-size: 1.08rem; font-weight: 700; letter-spacing: -0.01em; }
+.svc-btn p { font-size: 0.93rem; color: var(--ink-soft); margin-top: 3px; line-height: 1.45; }
+.svc-btn .new { display: inline-block; margin-left: 8px; font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: var(--eosin); color: var(--paper); vertical-align: 2px; letter-spacing: 0.01em; }
+.chev { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--paper); transition: transform .3s var(--ease), background-color .2s; }
+.chev svg { width: 14px; height: 14px; }
+.svc.open .chev { transform: rotate(45deg); background: var(--haem); color: var(--paper); }
+.svc-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s var(--ease); }
+.svc.open .svc-body { grid-template-rows: 1fr; }
+.svc-body > div { overflow: hidden; }
+.svc-body .inner { padding-block: 0 20px; padding-inline: 76px 20px; display: grid; gap: 12px; }
+.svc-body .get b { font-weight: 700; }
+.methods { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 0; }
+.methods li { font-size: 0.8rem; font-weight: 500; padding: 3px 9px; border-radius: 6px; background: var(--haem-wash); color: var(--haem-deep); }
+.svc-body .ask { font-weight: 600; font-size: 0.95rem; background: none; border: 0; padding: 0; color: var(--eosin); cursor: pointer; justify-self: start; text-decoration: underline; text-underline-offset: 3px; }
+
+/* Sample outputs */
+.samples { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); gap: 20px; }
+.tabs { display: flex; flex-direction: column; gap: 8px; }
+.tab { text-align: left; background: transparent; border: 1.5px solid var(--rule); border-radius: 14px; padding: 16px 18px; cursor: pointer; transition: border-color .15s, background-color .15s; }
+.tab b { display: block; font-weight: 700; font-size: 1.02rem; }
+.tab span { display: block; font-size: 0.88rem; color: var(--ink-soft); margin-top: 2px; }
+.tab:hover { border-color: var(--haem); }
+.tab[aria-selected="true"] { background: var(--surface); border-color: var(--haem); box-shadow: inset 4px 0 0 var(--haem); }
+[dir="rtl"] .tab[aria-selected="true"] { box-shadow: inset -4px 0 0 var(--haem); }
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); display: grid; grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr); min-width: 0; overflow: hidden; }
+.panel figure { margin: 0; padding: 24px 20px 20px; border-right: 1px solid var(--rule); min-width: 0; }
+.panel figcaption { font-size: 0.85rem; color: var(--ink-soft); margin-top: 10px; }
+.panel svg { display: block; width: 100%; height: auto; }
+.panel-copy { padding: 30px 28px; display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+.panel-copy h3 { font-size: 1.35rem; font-weight: 700; }
+.panel-copy dl { margin: 0; display: grid; gap: 18px; }
+.panel-copy dt { font-weight: 700; font-size: 0.95rem; }
+.panel-copy dd { margin: 4px 0 0; color: var(--ink-soft); font-size: 0.98rem; }
+.ax { stroke: var(--ink-soft); stroke-width: 1; }
+.grid { stroke: var(--rule); stroke-width: 1; }
+.tick { fill: var(--ink-soft); font-family: var(--sans); font-size: 13px; }
+.axlab { fill: var(--ink); font-family: var(--sans); font-size: 13.5px; font-weight: 600; }
+.note { fill: var(--ink); font-family: var(--sans); font-size: 13.5px; }
+.s-up { stroke: var(--eosin); fill: none; stroke-width: 2.5; }
+.s-down { stroke: var(--haem); fill: none; stroke-width: 2.5; }
+.s-ref { stroke: var(--null); fill: none; stroke-width: 1.5; stroke-dasharray: 5 5; }
+.f-up { fill: var(--eosin); } .f-down { fill: var(--haem); } .f-ns { fill: var(--null); }
+.f-up-wash { fill: var(--eosin); opacity: .12; }
+.err { stroke: var(--ink); stroke-width: 1.4; }
+.ctick-up { stroke: var(--eosin); stroke-width: 1.5; } .ctick-down { stroke: var(--haem); stroke-width: 1.5; }
+.drawing .s-up, .drawing .s-down { stroke-dasharray: var(--len); stroke-dashoffset: var(--len); animation: draw 1.1s var(--ease) forwards; }
+.drawing .s-down { animation-delay: .15s; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+.drawing .bar { transform-box: fill-box; transform-origin: var(--origin); animation: grow .7s var(--ease) both; }
+@keyframes grow { from { transform: scaleY(0); } }
+.drawing .fade { animation: fade .5s .6s both; }
+@keyframes fade { from { opacity: 0; } }
+
+/* Case studies */
+.cases { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.case { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 32px; display: grid; gap: 18px; align-content: start; position: relative; overflow: hidden; }
+.case::before { content: ""; position: absolute; inset-inline-start: 0; top: 0; bottom: 0; width: 5px; background: var(--eosin); }
+.case:nth-child(2)::before { background: var(--haem); }
+.case .kind { font-size: 0.92rem; font-weight: 600; color: var(--eosin); }
+.case:nth-child(2) .kind { color: var(--haem); }
+.case h3 { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.02em; }
+.case dl { margin: 0; display: grid; gap: 14px; }
+.case dt { font-weight: 700; font-size: 0.95rem; }
+.case dd { margin: 4px 0 0; color: var(--ink-soft); }
+.case .tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 0; }
+.case .tags li { font-size: 0.8rem; font-weight: 500; padding: 3px 9px; border-radius: 6px; background: var(--haem-wash); color: var(--haem-deep); }
+
+/* Who and how */
+.audience { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; }
+.audience div { border-top: 2px solid var(--ink); padding-top: 20px; }
+.audience h3 { font-size: 1.2rem; font-weight: 700; }
+.audience p { margin-top: 10px; color: var(--ink-soft); }
+.plans { margin-top: 48px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.plan { border-radius: var(--radius-lg); padding: 34px 32px; border: 1px solid var(--rule); background: var(--surface); display: flex; flex-direction: column; gap: 14px; }
+.plan.lead { background: var(--haem); border-color: var(--haem); color: #fff; }
+.plan h3 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.025em; }
+.plan .kind { font-size: 0.92rem; font-weight: 600; color: var(--haem); }
+.plan.lead .kind, .plan.lead p { color: #e6e1ff; }
+.plan p { color: var(--ink-soft); }
+.plan .fit { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--rule); font-weight: 600; color: var(--ink); }
+.plan.lead .fit { border-top-color: rgba(255,255,255,.25); color: #fff; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .plan.lead { background: var(--haem-wash); border-color: var(--haem); } }
+:root[data-theme="dark"] .plan.lead { background: var(--haem-wash); border-color: var(--haem); }
+
+/* Tools */
+.tools { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.tool { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 32px; display: flex; flex-direction: column; gap: 16px; min-width: 0; transition: transform .25s var(--ease), box-shadow .25s; }
+.tool:hover { transform: translateY(-3px); box-shadow: 0 22px 40px -30px color-mix(in srgb, var(--haem) 60%, transparent); }
+.tool-top { display: flex; gap: 16px; align-items: center; }
+.tool-top svg { width: 52px; height: 52px; flex: none; }
+.tool h3 { font-size: 1.45rem; font-weight: 800; letter-spacing: -0.02em; }
+.tool .sub { font-size: 0.92rem; color: var(--ink-soft); }
+.checks { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.checks li { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 10px; font-size: 0.98rem; }
+.checks svg { width: 20px; height: 20px; color: var(--eosin); margin-top: 3px; }
+.tool .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; padding-top: 8px; }
+
+/* Process */
+.steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; position: relative; --p: 0; }
+.steps::before, .steps::after { content: ""; position: absolute; top: 21px; inset-inline-start: 22px; inset-inline-end: calc((100% - 72px) / 4 - 22px); height: 2px; }
+[dir="rtl"] .steps::after { transform-origin: right; }
+.steps::before { background: var(--rule); }
+.steps::after { background: linear-gradient(90deg, var(--haem), var(--eosin)); transform-origin: left; transform: scaleX(var(--p)); }
+.steps li { position: relative; min-width: 0; z-index: 1; }
+.steps .num { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--paper); border: 2px solid var(--rule); color: var(--ink-soft); font-weight: 800; font-size: 1.05rem; transition: border-color .3s, color .3s; }
+.steps li.lit .num { border-color: var(--haem); color: var(--haem); }
+.steps li.lit:last-child .num { border-color: var(--eosin); color: var(--eosin); }
+.steps h3 { font-size: 1.15rem; font-weight: 700; margin-top: 20px; }
+.steps p { margin-top: 8px; color: var(--ink-soft); font-size: 0.98rem; }
+.receive { margin-top: 56px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 24px 48px; padding: 34px 32px; border-radius: var(--radius-lg); background: var(--haem-wash); }
+.receive h3 { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.02em; }
+.receive .prose { font-size: 1.02rem; margin-top: 10px; }
+.receive ul { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 32px; }
+.receive li { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 10px; }
+.receive svg { width: 20px; height: 20px; color: var(--haem); margin-top: 3px; }
+
+/* FAQ */
+.faq { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 40px; align-items: start; }
+.faq-col { border-bottom: 1px solid var(--rule); }
+.faq details { border-top: 1px solid var(--rule); }
+.faq summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: minmax(0, 1fr) 28px; gap: 16px; align-items: center; padding: 20px 0; font-weight: 700; font-size: 1.05rem; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary .chev { background: var(--haem-wash); color: var(--haem); }
+.faq details[open] summary .chev { transform: rotate(45deg); background: var(--haem); color: var(--paper); }
+.faq details p { padding-block: 0 22px; padding-inline: 0 44px; color: var(--ink-soft); }
+
+/* Contact */
+.contact { margin-top: 104px; border-radius: 28px; background: var(--ink); color: var(--paper); overflow: hidden; position: relative; }
+.contact-dots { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: .6; }
+.contact-inner { position: relative; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.25fr); gap: 48px; padding: 60px 56px; }
+.contact h2 { font-size: clamp(2rem, 4vw, 3.1rem); font-weight: 800; letter-spacing: -0.03em; color: var(--paper); }
+.contact .prose { color: color-mix(in srgb, var(--paper) 78%, var(--ink)); margin-top: 18px; }
+.c-list { list-style: none; padding: 0; margin: 32px 0 0; display: grid; gap: 14px; }
+.c-list li { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 14px; align-items: center; }
+.c-list .ic { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: color-mix(in srgb, var(--paper) 10%, var(--ink)); }
+.c-list .ic svg { width: 20px; height: 20px; color: var(--paper); }
+.c-list small { display: block; font-size: 0.85rem; color: color-mix(in srgb, var(--paper) 62%, var(--ink)); }
+.c-list a, .c-list .v { color: var(--paper); font-weight: 600; text-decoration: none; }
+.c-list a:hover { text-decoration: underline; }
+.form { background: var(--surface); color: var(--ink); border-radius: 20px; padding: 28px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; min-width: 0; align-content: start; }
+.field { display: grid; gap: 6px; min-width: 0; align-content: start; }
+.field.full { grid-column: 1 / -1; }
+.field label { font-weight: 600; font-size: 0.92rem; }
+.field label span { font-weight: 400; color: var(--ink-soft); }
+.field input, .field select, .field textarea {
+  width: 100%; font: inherit; font-size: 1rem; color: var(--ink); background: var(--paper);
+  border: 1.5px solid var(--rule); border-radius: 10px; padding: 11px 12px; transition: border-color .15s, box-shadow .15s;
+}
+.field textarea { min-height: 120px; resize: vertical; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--haem); box-shadow: 0 0 0 3px color-mix(in srgb, var(--haem) 22%, transparent); }
+.field .err-msg { font-size: 0.85rem; color: var(--eosin); }
+.field .err-msg:empty { display: none; }
+.field.bad input, .field.bad textarea { border-color: var(--eosin); }
+.form .btn { grid-column: 1 / -1; width: 100%; background: var(--eosin); color: var(--paper); }
+.form .btn:hover { background: color-mix(in srgb, var(--eosin) 85%, #000); }
+.form .btn[disabled] { opacity: .7; cursor: progress; }
+.form .fine { grid-column: 1 / -1; font-size: 0.85rem; color: var(--ink-soft); text-align: center; }
+.form-done { grid-column: 1 / -1; text-align: center; padding: 30px 10px; display: grid; gap: 10px; justify-items: center; }
+.form-done svg { width: 56px; height: 56px; color: var(--ok); }
+.form-done h3 { font-size: 1.5rem; font-weight: 800; }
+.form-done p { color: var(--ink-soft); max-width: 26rem; }
+.hp { position: absolute; left: -9999px; width: 1px; }
+
+footer { padding-block: 40px 48px; }
+footer .wrap { display: flex; justify-content: space-between; gap: 16px 32px; flex-wrap: wrap; font-size: 0.9rem; color: var(--ink-soft); }
+footer a { color: var(--ink-soft); }
+.foot-links { display: flex; gap: 24px; flex-wrap: wrap; }
+
+.to-top { position: fixed; right: 20px; bottom: 20px; width: 46px; height: 46px; border-radius: 50%; border: 0; background: var(--ink); color: var(--paper); display: grid; place-items: center; cursor: pointer; opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity .25s, transform .25s var(--ease); z-index: 15; }
+.to-top.show { opacity: 1; transform: none; pointer-events: auto; }
+.to-top svg { width: 18px; height: 18px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; transition-duration: .01ms !important; }
+  .ticker-track { animation: none; }
+  .js .reveal { opacity: 1; transform: none; }
+}
+
+/* Responsive */
+@media (max-width: 1040px) {
+  .samples, .finder { grid-template-columns: minmax(0, 1fr); }
+  .tabs { flex-direction: row; overflow-x: auto; }
+  .tab { flex: 1 0 12rem; }
+  .tab[aria-selected="true"] { box-shadow: inset 0 -4px 0 var(--haem); }
+  .contact-inner { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 900px) {
+  .nav, .top .btn.solid { display: none; }
+  .menu-btn { display: grid; place-items: center; }
+  .top.open .nav { display: flex; position: absolute; top: 72px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--paper); border-bottom: 1px solid var(--rule); padding: 8px 24px 16px; }
+  .top.open .nav a { padding: 12px 0; border-bottom: 1px solid var(--rule); font-size: 1.05rem; }
+  .top.open .nav a::after { display: none; }
+  .hero, .head, .panel, .audience, .plans, .tools, .receive, .svc-list, .faq, .cases { grid-template-columns: minmax(0, 1fr); }
+  .faq-col:first-child { border-bottom: 0; }
+  .hero { gap: 40px; padding-block: 32px 48px; }
+  .panel figure { border-right: 0; border-bottom: 1px solid var(--rule); }
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 40px; }
+  .steps::before, .steps::after { display: none; }
+  .steps .num { border-color: var(--haem); color: var(--haem); }
+  .section { padding-block: 80px 0; }
+  .contact-inner { padding: 44px 28px; }
+  .audience { gap: 28px; }
+}
+@media (max-width: 560px) {
+  .wrap { padding-inline: 16px; }
+  .volcano { padding: 14px 12px 12px; }
+  .volcano canvas { height: 300px; }
+  .panel figure, .panel-copy, .tool, .plan, .case { padding-inline: 20px; }
+  .receive { padding: 26px 20px; }
+  .receive ul { grid-template-columns: minmax(0, 1fr); }
+  .steps { grid-template-columns: minmax(0, 1fr); }
+  .contact { border-radius: 20px; margin-top: 80px; }
+  .contact-inner { padding: 36px 16px; }
+  .form { grid-template-columns: minmax(0, 1fr); padding: 20px; }
+  .hero .actions .btn { flex: 1 1 100%; }
+  .choices { grid-template-columns: minmax(0, 1fr); }
+  .answer { padding: 24px 20px; }
+  .svc-body .inner { padding: 0 18px 18px; }
+  .sources .wrap { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .ticker { width: 100%; }
+  .tab { flex: 1 1 0; padding: 12px 10px; text-align: center; }
+  .tab span { display: none; }
+  .tab b { font-size: 0.92rem; }
+  .tick { font-size: 20px; }
+  .axlab, .note { font-size: 21px; }
+}
+
+/* Arabic typography */
+:root { --sans: "IBM Plex Sans Arabic", "Schibsted Grotesk", Tahoma, Arial, sans-serif; --serif: "IBM Plex Sans Arabic", Tahoma, Arial, sans-serif; }
+body { line-height: 1.75; }
+h1, h2, h3, h4, .brand b, .head h2, .hero h1, .plan h3, .tool h3, .case h3, .contact h2 { letter-spacing: 0 !important; }
+.hero h1 { line-height: 1.25; font-weight: 700; }
+.head h2, .contact h2 { line-height: 1.25; font-weight: 700; }
+.prose { font-size: 1.1rem; line-height: 1.85; }
+.brand b { font-family: "Schibsted Grotesk", Arial, sans-serif; }
+.svc-btn .new { vertical-align: 1px; }
+.ticker li, .methods li, .tags li { unicode-bidi: plaintext; }
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add("js");</script>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9" fill="currentColor" opacity=".14"/><path d="M6 10.4l2.6 2.6L14 7.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 20 20"><rect x="4" y="9" width="12" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M7 9V6.5a3 3 0 016 0V9" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 20 20"><path d="M3 10.5V4a1 1 0 011-1h6.5L17 9.5 10.5 16 3 10.5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="7" cy="7" r="1.4" fill="currentColor"/></symbol>
+  <symbol id="i-redo" viewBox="0 0 20 20"><path d="M15.5 8A6 6 0 104 11" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M16 3.5V8h-4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 14 14"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 20 20"><rect x="2.5" y="4.5" width="15" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 5.5l7 5.5 7-5.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+  <symbol id="i-in" viewBox="0 0 20 20"><rect x="2.5" y="2.5" width="15" height="15" rx="3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M6.5 9v5M6.5 6.2v.01M9.5 14v-3c0-1.2.8-2 1.8-2s1.7.8 1.7 2v3M9.5 9v5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M2.5 10h15M10 2.5c2.2 2.3 2.2 12.7 0 15M10 2.5c-2.2 2.3-2.2 12.7 0 15" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
+  <symbol id="s-cells" viewBox="0 0 24 24"><circle cx="7" cy="8" r="3.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="16.5" cy="7" r="2.4" fill="currentColor" opacity=".55"/><circle cx="15" cy="16" r="3.6" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="6.5" cy="17" r="2" fill="currentColor"/></symbol>
+  <symbol id="s-seq" viewBox="0 0 24 24"><path d="M4 7h16M4 12h11M4 17h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="19" cy="12" r="2" fill="currentColor"/></symbol>
+  <symbol id="s-layers" viewBox="0 0 24 24"><path d="M12 3l9 4.5-9 4.5-9-4.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M3 12l9 4.5 9-4.5M3 16.5L12 21l9-4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="s-db" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="2.8" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5 6v12c0 1.5 3.1 2.8 7 2.8s7-1.3 7-2.8V6M5 12c0 1.5 3.1 2.8 7 2.8s7-1.3 7-2.8" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+  <symbol id="s-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></symbol>
+  <symbol id="s-drop" viewBox="0 0 24 24"><path d="M12 3c3.5 4.5 6 7.8 6 11a6 6 0 01-12 0c0-3.2 2.5-6.5 6-11z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="10" cy="14" r="1.3" fill="currentColor"/><circle cx="13.5" cy="16.5" r="1" fill="currentColor"/></symbol>
+  <symbol id="s-curve" viewBox="0 0 24 24"><path d="M3 19c6 0 6-1 9-7s4-8 9-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3 15h18" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 2"/></symbol>
+  <symbol id="s-ai" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 2.5v2.5M15 2.5v2.5M9 19v2.5M15 19v2.5M2.5 9h2.5M2.5 15h2.5M19 9h2.5M19 15h2.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M9.5 14.5l1.3-5h2.4l1.3 5M10.2 12.6h3.6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></symbol>
+  <symbol id="s-plan" viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 3.5V6h6V3.5M8.5 11h7M8.5 15h4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="s-bars" viewBox="0 0 24 24"><path d="M5 20V12M10 20V6M15 20V10M20 20V4" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+  <symbol id="s-forest" viewBox="0 0 24 24"><path d="M12 3v18" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 2"/><path d="M6 7h8M9 12h9M4 17h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M15 15l2 2-2 2-2-2z" fill="currentColor"/></symbol>
+  <symbol id="s-review" viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 016.5 3h11A2.5 2.5 0 0120 5.5v8a2.5 2.5 0 01-2.5 2.5H11l-4.5 4v-4A2.5 2.5 0 014 13.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.5 9.5l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="s-paths" viewBox="0 0 24 24"><circle cx="5" cy="12" r="2.2" fill="currentColor"/><circle cx="19" cy="5" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="19" cy="19" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M7 12h4l6-6.2M11 12l6 6.2" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="s-figure" viewBox="0 0 24 24"><rect x="3.5" y="4" width="17" height="16" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M7 16l3.5-4 3 2.5L17 9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="s-code" viewBox="0 0 24 24"><path d="M8.5 7L4 12l4.5 5M15.5 7L20 12l-4.5 5M13.5 5l-3 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="brand" href="#home" aria-label="نوفاجين، الصفحة الرئيسية">
+      <svg viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="9" fill="var(--haem)"/><circle cx="9.5" cy="23.5" r="2.8" fill="#fff" opacity=".5"/><circle cx="17" cy="18" r="2.8" fill="#fff" opacity=".75"/><circle cx="24.5" cy="10.5" r="3.6" fill="#f07aa3"/></svg>
+      <b>NovaGen</b>
+    </a>
+    <nav class="nav" id="nav" aria-label="القائمة الرئيسية">
+      <a href="#services">الخدمات</a>
+      <a href="#samples">نماذج من النتائج</a>
+      <a href="#tools">أدوات مجانية</a>
+      <a href="#process">طريقة العمل</a>
+      <a href="#faq">الأسئلة الشائعة</a>
+      <a href="#contact">تواصل معنا</a>
+    </nav>
+    <a class="lang" href="./" lang="en" hreflang="en">English</a>
+    <a class="btn solid" href="#contact">اطلب عرض سعر</a>
+    <button class="menu-btn" id="menuBtn" aria-label="فتح القائمة" aria-expanded="false" aria-controls="nav">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+</header>
+
+<main id="home">
+  <div class="wrap hero">
+    <div>
+      <h1><span class="ln">بيانات الأوميكس والبيانات السريرية،</span> <span class="ln">تتحول إلى أدلة</span> <span class="ln">جاهزة للنشر.</span></h1>
+      <p class="prose">تحلل نوفاجين بيانات الخلية المفردة وتسلسل الحمض النووي الريبي، ومجموعات TCGA وGEO، ولوحات miRNA، والدراسات السريرية للمستشفيات والمجموعات البحثية وشركات التشخيص. تحصل على نتائج موثقة وأشكال جاهزة للمجلات العلمية وكود يمكنك إعادة تشغيله.</p>
+      <div class="actions">
+        <a class="btn solid" href="#contact">اطلب عرض سعر</a>
+        <a class="btn line" href="#finder">اعثر على التحليل المناسب</a>
+      </div>
+      <ul class="assure">
+        <li><svg aria-hidden="true"><use href="#i-tag"/></svg>سعر ثابت قبل بدء العمل</li>
+        <li><svg aria-hidden="true"><use href="#i-lock"/></svg>سرية تامة وبيانات مجهولة الهوية فقط</li>
+        <li><svg aria-hidden="true"><use href="#i-redo"/></svg>كود قابل لإعادة الإنتاج</li>
+      </ul>
+    </div>
+
+    <figure class="volcano" aria-labelledby="volcanoTitle">
+      <div class="fig-head">
+        <b id="volcanoTitle">التعبير الجيني لـ miRNA في الورم مقابل النسيج الطبيعي</b>
+        <ul class="legend">
+          <li><i class="up"></i>مرتفع في الورم</li>
+          <li><i class="down"></i>منخفض في الورم</li>
+          <li><i class="ns"></i>غير دال إحصائيًا</li>
+        </ul>
+      </div>
+      <canvas id="volcano" role="img" aria-label="مخطط بركاني تفاعلي. كل نقطة تمثل جزيء miRNA، موضوعة حسب نسبة التغير بين الورم والنسيج الطبيعي وحسب الدلالة الإحصائية."></canvas>
+      <figcaption class="readout" id="readout"><span>مرّر المؤشر على جزيء miRNA مميز لقراءة نتيجته.</span><span>بيانات توضيحية</span></figcaption>
+    </figure>
+  </div>
+
+  <div class="sources">
+    <div class="wrap">
+      <p>نعمل مع</p>
+      <div class="ticker">
+        <div class="ticker-track">
+          <ul>
+            <li>تسلسل RNA للخلية المفردة</li><li>تسلسل RNA الكلي</li><li>TCGA وGDC</li><li>GEO</li><li>miRNA في المصل والبلازما</li><li>السجلات السريرية</li><li>الدراسات المنشورة</li>
+          </ul>
+          <ul aria-hidden="true">
+            <li>تسلسل RNA للخلية المفردة</li><li>تسلسل RNA الكلي</li><li>TCGA وGDC</li><li>GEO</li><li>miRNA في المصل والبلازما</li><li>السجلات السريرية</li><li>الدراسات المنشورة</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Finder -->
+  <section class="section" id="finder" aria-labelledby="finderTitle">
+    <div class="wrap">
+      <div class="head reveal">
+        <h2 id="finderTitle">اعثر على التحليل المناسب</h2>
+        <p class="prose">اختر ما لديك، وسنعرض لك الخدمات المناسبة، ويمكنك طلب عرض سعر بنقرة واحدة.</p>
+      </div>
+      <div class="finder">
+        <div class="choices" role="group" aria-label="ماذا لديك؟">
+          <button class="choice" data-pick="rnaseq" aria-pressed="true"><svg aria-hidden="true" style="color:var(--haem)"><use href="#s-seq"/></svg><b>بيانات تسلسل RNA</b></button>
+          <button class="choice" data-pick="sc" aria-pressed="false"><svg aria-hidden="true" style="color:var(--haem)"><use href="#s-cells"/></svg><b>بيانات الخلية المفردة</b></button>
+          <button class="choice" data-pick="idea" aria-pressed="false"><svg aria-hidden="true" style="color:var(--eosin)"><use href="#s-target"/></svg><b>جين أو miRNA أو نوع سرطان تريد دراسته</b></button>
+          <button class="choice" data-pick="liquid" aria-pressed="false"><svg aria-hidden="true" style="color:var(--eosin)"><use href="#s-drop"/></svg><b>عينات مصل أو بلازما</b></button>
+          <button class="choice" data-pick="clinical" aria-pressed="false"><svg aria-hidden="true" style="color:var(--haem)"><use href="#s-bars"/></svg><b>بيانات سريرية أو بيانات مستشفى</b></button>
+          <button class="choice" data-pick="plan" aria-pressed="false"><svg aria-hidden="true" style="color:var(--haem)"><use href="#s-plan"/></svg><b>دراسة ما زلت أخطط لها</b></button>
+          <button class="choice" data-pick="review" aria-pressed="false"><svg aria-hidden="true" style="color:var(--eosin)"><use href="#s-review"/></svg><b>مخطوطة قيد المراجعة</b></button>
+          <button class="choice" data-pick="studies" aria-pressed="false"><svg aria-hidden="true" style="color:var(--eosin)"><use href="#s-forest"/></svg><b>نتائج من دراسات منشورة</b></button>
+        </div>
+        <div class="answer" aria-live="polite">
+          <p class="q" id="ansQ">لديك بيانات تسلسل RNA</p>
+          <h3>الخدمات المقترحة لك</h3>
+          <ul class="recs" id="recs"></ul>
+          <button class="btn" id="ansBtn">اطلب عرض سعر لهذا</button>
+          <p class="hint">لست متأكدًا؟ صف بياناتك في النموذج وسنقترح عليك أفضل نهج.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section" id="services" aria-labelledby="servicesTitle">
+    <div class="wrap">
+      <div class="head reveal">
+        <h2 id="servicesTitle">الخدمات</h2>
+        <p class="prose">من القراءات الخام إلى مخطوطة جاهزة للتقديم. يبدأ كل مشروع بمراقبة الجودة، لاكتشاف مشكلات البيانات قبل أن تصل إلى نتائجك. افتح أي خدمة لترى ما ستحصل عليه.</p>
+      </div>
+      <div class="filters" role="group" aria-label="تصفية الخدمات">
+        <button class="filter" data-f="all" aria-pressed="true">الكل<span class="c"></span></button>
+        <button class="filter" data-f="omics" aria-pressed="false">الأوميكس<span class="c"></span></button>
+        <button class="filter" data-f="bio" aria-pressed="false">المؤشرات الحيوية والذكاء الاصطناعي<span class="c"></span></button>
+        <button class="filter" data-f="stats" aria-pressed="false">الإحصاء البحثي<span class="c"></span></button>
+        <button class="filter" data-f="build" aria-pressed="false">الأشكال والبرمجيات<span class="c"></span></button>
+      </div>
+
+      <div class="svc-list" id="svcList">
+        <article class="svc cat-omics" data-cat="omics" id="svc-sc" data-name="Single-cell RNA-seq analysis">
+          <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-cells"/></svg></span><span><h3>تحليل تسلسل RNA للخلية المفردة<span class="new">مطلوب بكثرة</span></h3><p>أنواع الخلايا وحالاتها والجينات التي تميزها.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
+          <div class="svc-body"><div><div class="inner">
+            <p class="get"><b>ستحصل على:</b> مراقبة الجودة وإزالة الخلايا المزدوجة، ودمج الدفعات، والتجميع، وتحديد أنواع الخلايا، والجينات المميزة، والتعبير التفاضلي بين الحالات، ومقارنة نسب الخلايا، مع مخططات UMAP والمخططات النقطية والخرائط الحرارية.</p>
+            <ul class="methods"><li>Scanpy</li><li>Seurat</li><li>Harmony</li><li>10x Genomics</li><li>Pseudobulk DE</li></ul>
+            <button class="ask">استفسر عن هذه الخدمة</button>
+          </div></div></div>
+        </article>
+        <article class="svc cat-omics" data-cat="omics" id="svc-rnaseq" data-name="Bulk RNA-seq analysis">
+          <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-seq"/></svg></span><span><h3>تسلسل RNA الكلي، من القراءات الخام إلى النتائج</h3><p>ملفات FASTQ أو جداول العدّ، مع تحليل متكامل من البداية إلى النهاية.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
+          <div class="svc-body"><div><div class="inner">
+            <p class="get"><b>ستحصل على:</b> تقارير جودة القراءات، والتكميم، والتطبيع، والتعبير التفاضلي مع تصحيح الاختبارات المتعددة، وتحليل المسارات، ومخططات بركانية وخرائط حرارية وأشكال PCA.</p>
+            <ul class="methods"><li>FastQC</li><li>Salmon</li><li>DESeq2</li><li>edgeR</li><li>limma-voom</li><li>GSEA</li></ul>
+            <button class="ask">استفسر عن هذه الخدمة</button>
+          </div></div></div>
+        </article>
+        <article class="svc cat-omics" data-cat="omics" id="svc-multi" data-name="Multi-omics integration">
+          <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-layers"/></svg></span><span><h3>دمج بيانات الأوميكس المتعددة<span class="new">مطلوب بكثرة</span></h3><p>بيانات mRNA وmiRNA والمثيلة والبيانات السريرية، محللة معًا.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
+          <div class="svc-body"><div><div class="inner">
+            <p class="get"><b>ستحصل على:</b> عوامل أو شبكات متكاملة تربط طبقات البيانات، وأزواج تنظيمية بين miRNA وأهدافها مدعومة ببيانات التعبير، ومجموعات فرعية من المرضى مع فروقها السريرية.</p>
+            <ul class="methods"><li>MOFA+</li><li>شبكات miRNA–mRNA</li><li>تحليل الارتباط</li><li>التجميع</li><li>أوميكس متعددة من TCGA</li></ul>
+            <button class="ask">استفسر عن هذه الخدمة</button>
+          </div></div></div>
+        </article>
+        <article class="svc cat-omics" data-cat="omics" id="svc-public" data-name="Gene or miRNA evidence report">
+          <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-db"/></svg></span><span><h3>تقرير الأدلة لجين أو miRNA</h3><p>كل ما تقوله البيانات العامة عن هدف واحد.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
+          <div class="svc-body"><div><div class="inner">
+            <p class="get"><b>ستحصل على:</b> التعبير في الورم مقابل النسيج الطبيعي، والارتباط بالمرحلة والبقاء، وأنماط عبر أنواع السرطان من TCGA وGEO. مفيد قبل طلب منحة أو تطوير اختبار أو اتخاذ قرار شراكة.</p>
+            <ul class="methods"><li>TCGA / GDC API</li><li>GEO</li><li>عبر أنواع السرطان</li><li>المرحلة السريرية</li><li>البقاء</li></ul>
+            <button class="ask">استفسر عن هذه الخدمة</button>
+          </div></div></div>
+        </article>
+        <article class="svc cat-omics" data-cat="omics" id="svc-path" data-name="Pathway and enrichment analysis">
+          <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-paths"/></svg></span><span><h3>تحليل المسارات والإثراء</h3><p>ماذا تعني قائمة الجينات أو miRNA لديك من الناحية البيولوجية.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
+          <div class="svc-body"><div><div class="inner">
+            <p class="get"><b>ستحصل على:</b> التنبؤ بأهداف miRNA، وإثراء علم الجينات والمسارات، معروضة في جداول واضحة وأشكال نقطية وشريطية وشبكية.</p>
+            <ul class="methods"><li>GO</li><li>KEGG</li><li>Reactome</li><li>GSEA</li><li>التنبؤ بالأهداف</li></ul>
+            <button class="ask">استفسر عن هذه الخدمة</button>
+          </div></div></div>
+        </article>
+
+        <article class="svc cat-bio" data-cat="bio" id="svc-discovery" data-name="Biomarker discovery report">
+          <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-target"/></svg></span><span><h3>تقرير اكتشاف المؤشرات الحيوية</h3><p>مؤشرات حيوية مرشحة لنوع السرطان لديك، مرتبة حسب الأهمية.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
+          <div class="svc-body"><div><div class="inner">
+            <p class="get"><b>ستحصل على:</b> التعبير التفاضلي والبقاء والأداء التشخيصي من TCGA وGEO، مع التحقق عبر مجموعات مستقلة، وتسليمها كلوحة مرتبة مع كل الأشكال الداعمة.</p>
+            <ul class="methods"><li>limma</li><li>DESeq2</li><li>نماذج كوكس</li><li>ROC / AUC</li><li>التحقق عبر مجموعات مستقلة</li></ul>
+            <button class="ask">استفسر عن هذه الخدمة</button>
+          </div></div></div>
+        </article>
+        <article class="svc cat-bio" data-cat="bio" id="svc-liquid" data-name="Liquid biopsy miRNA biomarkers">
+          <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-drop"/></svg></span><span><h3>مؤشرات miRNA الحيوية في الخزعة السائلة<span class="new">مطلوب بكثرة</span></h3><p>miRNA الدائر والخارج خلوي من المصل أو البلازما.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
+          <div class="svc-body"><div><div class="inner">
+            <p class="get"><b>ستحصل على:</b> فحوصات جودة لانحلال الدم والمعايير المضافة، وتطبيع مناسب لـ RNA الدائر، وتحليل تفاضلي، ولوحات تشخيصية مع الحساسية والنوعية وAUC.</p>
+            <ul class="methods"><li>فحص انحلال الدم</li><li>التطبيع بالمعايير المضافة</li><li>تسلسل RNA الصغير</li><li>لوحات qPCR</li><li>ROC / AUC</li></ul>
+            <button class="ask">استفسر عن هذه الخدمة</button>
+          </div></div></div>
+        </article>
+        <article class="svc cat-bio" data-cat="bio" id="svc-ai" data-name="AI and machine learning models">
+          <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-ai"/></svg></span><span><h3>نماذج الذكاء الاصطناعي وتعلم الآلة<span class="new">مطلوب بكثرة</span></h3><p>نماذج تشخيصية وتنبؤية قابلة للتفسير.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
+          <div class="svc-body"><div><div class="inner">
+            <p class="get"><b>ستحصل على:</b> اختيار المتغيرات، والتحقق المتقاطع المتداخل، وأداء صادق على بيانات مستقلة، وتفسير المتغيرات التي تقود كل تنبؤ، وفق معايير TRIPOD.</p>
+            <ul class="methods"><li>LASSO</li><li>الغابة العشوائية</li><li>XGBoost</li><li>SHAP</li><li>تحقق متقاطع متداخل</li></ul>
+            <button class="ask">استفسر عن هذه الخدمة</button>
+          </div></div></div>
+        </article>
+
+        <article class="svc cat-stats" data-cat="stats" id="svc-design" data-name="Study design and sample size">
+          <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-plan"/></svg></span><span><h3>تصميم الدراسة وحجم العينة</h3><p>احسب الأرقام بدقة قبل جمع البيانات.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
+          <div class="svc-body"><div><div class="inner">
+            <p class="get"><b>ستحصل على:</b> حسابات القوة الإحصائية وحجم العينة، وخطة تحليل إحصائي لبروتوكولك أو طلب لجنة الأخلاقيات، ومراجعة مستقلة لتصميم قائم.</p>
+            <ul class="methods"><li>تحليل القوة الإحصائية</li><li>خطط التحليل</li><li>مراجعة البروتوكول</li><li>التوزيع العشوائي</li></ul>
+            <button class="ask">استفسر عن هذه الخدمة</button>
+          </div></div></div>
+        </article>
+        <article class="svc cat-stats" data-cat="stats" id="svc-clinical" data-name="Clinical statistics">
+          <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-bars"/></svg></span><span><h3>الإحصاء السريري</h3><p>دراسات سريرية ودراسات مستشفيات، محللة وفق معايير المجلات العلمية.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
+          <div class="svc-body"><div><div class="inner">
+            <p class="get"><b>ستحصل على:</b> جداول وصفية، والاختبار المناسب لكل سؤال، ونماذج الانحدار والبقاء، وجداول بتنسيق المجلات مع سجل كامل لكل اختبار.</p>
+            <ul class="methods"><li>الانحدار</li><li>تحليل البقاء</li><li>النماذج المختلطة</li><li>درجات الميل</li></ul>
+            <button class="ask">استفسر عن هذه الخدمة</button>
+          </div></div></div>
+        </article>
+        <article class="svc cat-stats" data-cat="stats" id="svc-meta" data-name="Meta-analysis">
+          <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-forest"/></svg></span><span><h3>التحليل التجميعي</h3><p>أدلة مجمعة من دراسات منشورة.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
+          <div class="svc-body"><div><div class="inner">
+            <p class="get"><b>ستحصل على:</b> أحجام تأثير مجمعة، وتحليل عدم التجانس والمجموعات الفرعية، وفحوصات الحساسية وتحيز النشر، مع مخططات الغابة والقمع الجاهزة لتقرير وفق PRISMA.</p>
+            <ul class="methods"><li>التأثيرات العشوائية</li><li>عدم التجانس I²</li><li>اختبار إيغر</li><li>مخططات الغابة</li><li>الدقة التشخيصية</li></ul>
+            <button class="ask">استفسر عن هذه الخدمة</button>
+          </div></div></div>
+        </article>
+        <article class="svc cat-stats" data-cat="stats" id="svc-reviewer" data-name="Reviewer response support">
+          <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-review"/></svg></span><span><h3>دعم الرد على المراجعين</h3><p>إجابات إحصائية على ملاحظات مراجعي المجلات.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
+          <div class="svc-body"><div><div class="inner">
+            <p class="get"><b>ستحصل على:</b> إعادة التحليلات التي يطلبها المراجعون، وجداول وأشكال مصححة، وملخص تقني نقطة بنقطة لكل تغيير إحصائي لرسالة الرد.</p>
+            <ul class="methods"><li>إعادة التحليل</li><li>تحليل الحساسية</li><li>أشكال معدلة</li><li>مراجعة قسم الطرق</li></ul>
+            <button class="ask">استفسر عن هذه الخدمة</button>
+          </div></div></div>
+        </article>
+
+        <article class="svc cat-build" data-cat="build" id="svc-figures" data-name="Publication-ready figures">
+          <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-figure"/></svg></span><span><h3>أشكال جاهزة للنشر</h3><p>أشكال واضحة تلبي متطلبات المجلات.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
+          <div class="svc-body"><div><div class="inner">
+            <p class="get"><b>ستحصل على:</b> مخططات بركانية، وخرائط حرارية، ومنحنيات البقاء وROC، ومخططات الغابة، وأشكال متعددة اللوحات بالحجم والدقة والألوان التي تطلبها مجلتك.</p>
+            <ul class="methods"><li>300+ dpi PNG / TIFF</li><li>SVG</li><li>PDF</li><li>مناسبة لعمى الألوان</li></ul>
+            <button class="ask">استفسر عن هذه الخدمة</button>
+          </div></div></div>
+        </article>
+        <article class="svc cat-build" data-cat="build" id="svc-apps" data-name="Custom apps and pipelines">
+          <button class="svc-btn" aria-expanded="false"><span class="svc-ico"><svg aria-hidden="true"><use href="#s-code"/></svg></span><span><h3>تطبيقات مخصصة وخطوط تحليل قابلة لإعادة الإنتاج</h3><p>تحليل مختبرك، يُبنى مرة واحدة ويعمل في كل مرة.</p></span><span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></button>
+          <div class="svc-body"><div><div class="inner">
+            <p class="get"><b>ستحصل على:</b> تطبيق ويب خاص أو خط تحليل موثق ومُدار بالإصدارات، مبني حول سير عملك، مع اختبارات آلية لتحصل كل مجموعة بيانات جديدة على التحليل الموثق نفسه.</p>
+            <ul class="methods"><li>Python</li><li>Streamlit</li><li>Google Colab</li><li>GitHub</li><li>اختبارات آلية</li></ul>
+            <button class="ask">استفسر عن هذه الخدمة</button>
+          </div></div></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sample outputs -->
+  <section class="section" id="samples" aria-labelledby="samplesTitle">
+    <div class="wrap">
+      <div class="head reveal">
+        <h2 id="samplesTitle">اطّلع على محتوى التقرير</h2>
+        <p class="prose">ثلاثة من الأشكال التي يتضمنها تقرير المؤشرات الحيوية عادة، مرسومة هنا من بيانات توضيحية. يتضمن تقريرك الإحصاءات وراء كل شكل والكود الذي أنتجه.</p>
+      </div>
+      <div class="samples">
+        <div class="tabs" role="tablist" aria-label="أشكال نموذجية">
+          <button class="tab" role="tab" id="tab-km" aria-controls="panel-km" aria-selected="true"><b>البقاء</b><span>كابلان-ماير وكوكس</span></button>
+          <button class="tab" role="tab" id="tab-roc" aria-controls="panel-roc" aria-selected="false" tabindex="-1"><b>الدقة التشخيصية</b><span>منحنيات ROC وAUC</span></button>
+          <button class="tab" role="tab" id="tab-qpcr" aria-controls="panel-qpcr" aria-selected="false" tabindex="-1"><b>نسبة التغير في qPCR</b><span>ΔΔCt مع الإحصاءات</span></button>
+        </div>
+        <div class="panel" role="tabpanel" id="panel-km" aria-labelledby="tab-km">
+          <figure><svg id="fig-km" viewBox="0 0 560 380" role="img" aria-label="منحنيات كابلان-ماير: المرضى ذوو التعبير المرتفع لديهم معدل بقاء أقل من ذوي التعبير المنخفض."></svg>
+            <figcaption>بيانات توضيحية، 240 مريضًا.</figcaption></figure>
+          <div class="panel-copy">
+            <h3>هل يتنبأ المؤشر بالبقاء؟</h3>
+            <dl>
+              <div><dt>ماذا يوضح</dt><dd>البقاء الكلي للمرضى ذوي التعبير المرتفع والمنخفض، مع تمييز الحالات المراقَبة ونسبة الخطر من نموذج كوكس.</dd></div>
+              <div><dt>في تقريرك</dt><dd>جداول كوكس أحادية ومتعددة المتغيرات معدلة حسب المرحلة والعمر، وطريقة تحديد نقطة القطع، وأعداد المعرضين للخطر.</dd></div>
+            </dl>
+          </div>
+        </div>
+        <div class="panel" role="tabpanel" id="panel-roc" aria-labelledby="tab-roc" hidden>
+          <figure><svg id="fig-roc" viewBox="0 0 560 380" role="img" aria-label="منحنيات ROC: لوحة من ثلاثة miRNA تصل إلى AUC بقيمة 0.87، مقابل 0.76 لأفضل miRNA منفرد."></svg>
+            <figcaption>بيانات توضيحية، الورم مقابل النسيج الطبيعي.</figcaption></figure>
+          <div class="panel-copy">
+            <h3>هل يميز الورم عن النسيج الطبيعي؟</h3>
+            <dl>
+              <div><dt>ماذا يوضح</dt><dd>مدى قدرة مؤشر منفرد ولوحة مجمعة على الفصل بين المجموعتين، ملخصة بالمساحة تحت المنحنى.</dd></div>
+              <div><dt>في تقريرك</dt><dd>قيمة AUC مع فترات ثقة 95%، والحساسية والنوعية عند نقطة القطع المختارة، والتحقق في مجموعة مستقلة.</dd></div>
+            </dl>
+          </div>
+        </div>
+        <div class="panel" role="tabpanel" id="panel-qpcr" aria-labelledby="tab-qpcr" hidden>
+          <figure><svg id="fig-qpcr" viewBox="0 0 560 380" role="img" aria-label="مخطط شريطي لنسبة التغير لخمسة miRNA مقاسة بـ qPCR."></svg>
+            <figcaption>بيانات توضيحية، المتوسط ± الانحراف المعياري، 12 عينة لكل مجموعة.</figcaption></figure>
+          <div class="panel-copy">
+            <h3>هل تغير التعبير في عيناتك؟</h3>
+            <dl>
+              <div><dt>ماذا يوضح</dt><dd>نسبة التغير اللوغاريتمية لكل هدف بعد التطبيع، مع أشرطة الخطأ والدلالة من الاختبار المناسب.</dd></div>
+              <div><dt>في تقريرك</dt><dd>ثبات الجينات المرجعية، وتنبيهات جودة العينات، وجدول ΔCt الكامل، والاختبار الإحصائي المستخدم لكل هدف.</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case studies -->
+  <section class="section" id="work-examples" aria-labelledby="casesTitle">
+    <div class="wrap">
+      <div class="head reveal">
+        <h2 id="casesTitle">أعمال حديثة</h2>
+        <p class="prose">مثالان على المشاريع التي ننفذها. تبقى تفاصيل العملاء سرية.</p>
+      </div>
+      <div class="cases">
+        <article class="case">
+          <span class="kind">خزعة سائلة، شركة تشخيص</span>
+          <h3>إشارات النسيج المصدر في miRNA البول</h3>
+          <dl>
+            <div><dt>السؤال</dt><dd>هل يمكن لمقياس miRNA خاص بالأنسجة رصد إشارات البنكرياس في البول، وما مقدار الإشارة الناتج عن عُدّة المختبر وليس عن البيولوجيا؟</dd></div>
+            <div><dt>ما قمنا به</dt><dd>شغّلنا خط تقييم للأنسجة على مجموعة من 417 عينة بول، وطورنا نهجًا لفصل تأثيرات العُدّة وتحضير المكتبات عن البيولوجيا الحقيقية، وقارنا عينات بول وبلازما مزدوجة عبر الأنسجة وأنواع خلايا البيئة الدقيقة للورم.</dd></div>
+            <div><dt>النتيجة</dt><dd>سُلّم على ثلاث مراحل بسعر ثابت، راجع الفريق العلمي للعميل كل مرحلة ووافق عليها.</dd></div>
+          </dl>
+          <ul class="tags"><li>miRNA البول والبلازما</li><li>تأثيرات الدفعات</li><li>أطالس الأنسجة</li><li>Python</li></ul>
+        </article>
+        <article class="case">
+          <span class="kind">مؤشرات حيوية للسرطان، دراسة منشورة</span>
+          <h3>مؤشرات miRNA الحيوية لتطور سرطان الكبد والبقاء</h3>
+          <dl>
+            <div><dt>السؤال</dt><dd>ما جزيئات miRNA النسيجية والدائرة التي ترتبط بتطور سرطان الخلايا الكبدية والبقاء؟</dd></div>
+            <div><dt>ما قمنا به</dt><dd>حللنا بيانات الأنسجة من TCGA-LIHC إلى جانب مجموعات مستقلة من GEO، واختبرنا التعبير التفاضلي والارتباط بالمرحلة والبقاء لكل مرشح.</dd></div>
+            <div><dt>النتيجة</dt><dd>نُشرت في مجلة Non-coding RNA Research المحكّمة عام 2026.</dd></div>
+          </dl>
+          <ul class="tags"><li>TCGA-LIHC</li><li>GEO</li><li>تحليل البقاء</li><li>miRNA الدائر</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who -->
+  <section class="section" id="work" aria-labelledby="workTitle">
+    <div class="wrap">
+      <div class="head reveal">
+        <h2 id="workTitle">مصممة لفرق البحث</h2>
+        <p class="prose">نعمل عن بُعد مع فرق البحث حول العالم، بنطاق عمل واضح وسعر ثابت متفق عليه كتابيًا.</p>
+      </div>
+      <div class="audience">
+        <div><h3>المستشفيات ومراكز الأبحاث</h3><p>تحليل البيانات السريرية والجينومية بواسطة محلل مخصص، دون الحاجة إلى توظيف إحصائي داخلي.</p></div>
+        <div><h3>المجموعات البحثية الجامعية</h3><p>أعضاء هيئة التدريس والأطباء المقيمون وطلاب الدراسات العليا الذين لديهم بيانات تنتظر أن تصبح بحثًا أو رسالة أو منحة.</p></div>
+        <div><h3>شركات التشخيص والتقنية الحيوية</h3><p>مؤشرات حيوية مرشحة وأدلة إثبات مفهوم، جاهزة للشركاء والمستثمرين.</p></div>
+      </div>
+      <div class="plans">
+        <article class="plan">
+          <span class="kind">لكل مشروع</span>
+          <h3>تحليل بسعر ثابت</h3>
+          <p>دراسة واحدة ونطاق متفق عليه. تحصل على خطة تحليل وعرض سعر ثابت قبل بدء أي عمل.</p>
+          <p class="fit">لبحث واحد أو فصل من رسالة أو تقرير</p>
+        </article>
+        <article class="plan lead">
+          <span class="kind">شهريًا</span>
+          <h3>دعم التحليل البحثي</h3>
+          <p>عدد محدد من ساعات التحليل شهريًا لقسمك أو مجموعتك، مع أولوية في التسليم ومحلل واحد يعرف بياناتك.</p>
+          <p class="fit">للفرق التي لديها دراسات مستمرة</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Free tools -->
+  <section class="section" id="tools" aria-labelledby="toolsTitle">
+    <div class="wrap">
+      <div class="head reveal">
+        <h2 id="toolsTitle">أدوات مجانية للباحثين</h2>
+        <p class="prose">تطبيقات مفتوحة المصدر لمشكلات تحليل نصادفها مرارًا. مجانية الاستخدام، ومتحقق منها بحسابات مستقلة، والكود متاح على GitHub.</p>
+      </div>
+      <div class="tools">
+        <article class="tool">
+          <div class="tool-top">
+            <svg viewBox="0 0 52 52" aria-hidden="true"><rect width="52" height="52" rx="14" fill="var(--eosin-wash)"/><path d="M10 38c8 0 9-1 13-8s5-17 19-18" fill="none" stroke="var(--eosin)" stroke-width="2.6" stroke-linecap="round"/><path d="M10 32h32" stroke="var(--haem)" stroke-width="1.6" stroke-dasharray="3 3"/></svg>
+            <div><h3>miRNA qPCR Analyzer</h3><p class="sub">لملفات QuantStudio وBio-Rad CFX</p></div>
+          </div>
+          <p>ارفع ملف جهازك كما هو. يفحص التطبيق جودة العينات قبل أي حساب، ثم يقدم نسب التغير والإحصاءات وشكلًا جاهزًا للنشر.</p>
+          <ul class="checks">
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>فحص انحلال الدم للمصل والبلازما (miR-23a / miR-451a)</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>استرداد المعايير المضافة لاكتشاف الاستخلاص الفاشل</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>التطبيع بالجين المرجعي أو المعايير المضافة أو المتوسط العام</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>44 اختبارًا آليًا مقابل حسابات مستقلة</li>
+          </ul>
+          <div class="actions">
+            <a class="btn solid" href="https://mirna-qpcr-analyzer.streamlit.app" target="_blank" rel="noopener">افتح تطبيق qPCR</a>
+            <a class="btn line" href="https://github.com/ToobaAwais/qpcr-analyzer" target="_blank" rel="noopener">اطّلع على الكود</a>
+          </div>
+        </article>
+        <article class="tool">
+          <div class="tool-top">
+            <svg viewBox="0 0 52 52" aria-hidden="true"><rect width="52" height="52" rx="14" fill="var(--haem-wash)"/><rect x="13" y="12" width="26" height="30" rx="4" fill="none" stroke="var(--haem)" stroke-width="2.2"/><path d="M19 21l2 2 4-4M19 30l2 2 4-4" fill="none" stroke="var(--eosin)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M29 21h5M29 30h5" stroke="var(--haem)" stroke-width="2" stroke-linecap="round"/></svg>
+            <div><h3>KAP Survey Analyzer</h3><p class="sub">لدراسات المعرفة والاتجاهات والممارسات</p></div>
+          </div>
+          <p>ارفع ملف الاستبيان الخام بصيغة CSV أو Excel. يحسب التطبيق درجات كل محور، ويجري الإحصاءات التي تتوقعها المجلات، ويكتب تقرير Word بجداول ثلاثية الخطوط.</p>
+          <ul class="checks">
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>التصحيح بمفتاح الإجابات، وتحويل مقياس ليكرت، ونقاط قطع بلوم</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>الموثوقية بمعامل KR-20 وألفا كرونباخ مع فترات الثقة</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>مربع كاي، ومقارنات المجموعات، والانحدار اللوجستي مع نسب الأرجحية المعدلة</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>تُعالج البيانات في الذاكرة ولا تُحفظ أبدًا</li>
+          </ul>
+          <div class="actions">
+            <a class="btn solid" href="https://kap-analyzer.streamlit.app" target="_blank" rel="noopener">افتح تطبيق KAP</a>
+            <a class="btn line" href="https://github.com/ToobaAwais/kap-survey-analyzer" target="_blank" rel="noopener">اطّلع على الكود</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="section" id="process" aria-labelledby="processTitle">
+    <div class="wrap">
+      <div class="head reveal">
+        <h2 id="processTitle">كيف يسير المشروع</h2>
+        <p class="prose">تعرف النطاق والجدول الزمني والسعر كتابيًا قبل بدء أي عمل.</p>
+      </div>
+      <ol class="steps" id="steps">
+        <li><span class="num">1</span><h3>شارك سؤالك</h3><p>أرسل وصفًا مختصرًا للدراسة وعينة من البيانات أو صيغتها.</p></li>
+        <li><span class="num">2</span><h3>اتفق على النطاق</h3><p>تتلقى خطة تحليل وجدولًا زمنيًا وسعرًا ثابتًا للموافقة عليها.</p></li>
+        <li><span class="num">3</span><h3>تحليل مع مراجعات</h3><p>مراقبة الجودة أولًا ثم التحليل، مع الإبلاغ عن أي مشكلة في البيانات فور اكتشافها.</p></li>
+        <li><span class="num">4</span><h3>التسليم</h3><p>أشكال وجداول وكود وملخص تقني، منظمة لتجد كل شيء وتعيد تشغيله بسهولة.</p></li>
+      </ol>
+      <div class="receive">
+        <div>
+          <h3>يتضمن كل مشروع</h3>
+          <p class="prose">يُسلم في مجلد منظم، جاهز لمخطوطتك أو رسالتك أو تقريرك الداخلي.</p>
+        </div>
+        <ul>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>جداول النتائج بصيغة Excel</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>أشكال جاهزة للنشر بصيغ PNG وSVG وPDF</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>كود أو دفتر ملاحظات موثق يمكنك إعادة تشغيله</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>ملخص تقني لكل خطوة ومعامل</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>نتائج مراقبة الجودة لعيناتك</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>اتفاقية سرية عند الطلب</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq" aria-labelledby="faqTitle">
+    <div class="wrap">
+      <div class="head reveal">
+        <h2 id="faqTitle">أسئلة يطرحها العملاء</h2>
+        <p class="prose">إذا لم تجد سؤالك هنا، أرسله عبر النموذج أدناه.</p>
+      </div>
+      <div class="faq">
+        <div class="faq-col">
+          <details><summary>كيف يُحدد السعر؟<span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p>لكل مشروع سعر ثابت يعتمد على النطاق المتفق عليه. توافق على خطة التحليل والسعر كتابيًا قبل بدء أي عمل، فلا توجد مفاجآت.</p></details>
+          <details><summary>كيف تُحفظ سرية بياناتي؟<span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p>نعمل مع بيانات مجهولة الهوية فقط، ولا نتعامل أبدًا مع معرّفات المرضى. يمكن توقيع اتفاقية سرية قبل أن تشارك أي شيء.</p></details>
+          <details><summary>ماذا لو لم يكن بالإمكان إخراج بياناتنا من المستشفى؟<span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p>يمكننا تطوير التحليل واختباره على عينة أو بيانات محاكاة، ثم نسلمك كودًا موثقًا لتشغيله على نظامك.</p></details>
+        </div>
+        <div class="faq-col">
+          <details><summary>ما صيغ الملفات التي تقبلونها؟<span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p>ملفات FASTQ، ومصفوفات العدّ، ومخرجات 10x Genomics، وملفات الأجهزة، وExcel وCSV وSPSS. إذا لم تجد صيغتك، اسألنا.</p></details>
+          <details><summary>كم يستغرق المشروع؟<span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p>يعتمد ذلك على البيانات والنطاق. الجدول الزمني جزء من خطة التحليل التي توافق عليها، ونبلغك فورًا إذا أثرت مشكلة في البيانات عليه.</p></details>
+          <details><summary>هل سأتمكن من إعادة إنتاج النتائج؟<span class="chev"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p>نعم. يتضمن كل مشروع الكود أو دفتر الملاحظات الموثق وملخصًا تقنيًا لكل خطوة ومعامل، لتتمكن أنت أو أي مراجع من إعادة تشغيل كل شيء.</p></details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <div class="wrap">
+    <section class="contact" id="contact" aria-labelledby="contactTitle">
+      <canvas class="contact-dots" id="dots" aria-hidden="true"></canvas>
+      <div class="contact-inner">
+        <div>
+          <h2 id="contactTitle">أخبرنا عن مشروعك</h2>
+          <p class="prose">شارك دراستك والبيانات المتوفرة لديك، وستتلقى خطة تحليل وعرض سعر ثابت قبل بدء أي عمل.</p>
+          <ul class="c-list">
+            <li><span class="ic"><svg aria-hidden="true"><use href="#i-mail"/></svg></span><span><small>البريد الإلكتروني</small><a href="mailto:contact@novagen-bio.com">contact@novagen-bio.com</a></span></li>
+            <li><span class="ic"><svg aria-hidden="true"><use href="#i-in"/></svg></span><span><small>لينكدإن</small><a href="https://www.linkedin.com/company/novagenbioinformatics-company/" target="_blank" rel="noopener">نوفاجين على لينكدإن</a></span></li>
+            <li><span class="ic"><svg aria-hidden="true"><use href="#i-globe"/></svg></span><span><small>أين نعمل</small><span class="v">عن بُعد، مع فرق حول العالم</span></span></li>
+          </ul>
+        </div>
+
+        <form class="form" id="form" novalidate>
+          <div class="field"><label for="f-name">الاسم</label><input id="f-name" name="name" autocomplete="name" required><span class="err-msg" aria-live="polite"></span></div>
+          <div class="field"><label for="f-email">البريد الإلكتروني</label><input id="f-email" name="email" type="email" autocomplete="email" required><span class="err-msg" aria-live="polite"></span></div>
+          <div class="field"><label for="f-org">الجهة <span>(اختياري)</span></label><input id="f-org" name="organisation" autocomplete="organization"></div>
+          <div class="field"><label for="f-svc">الخدمة</label>
+            <select id="f-svc" name="service">
+              <option value="Not sure yet">لست متأكدًا بعد</option>
+              <option value="Single-cell RNA-seq analysis">تحليل تسلسل RNA للخلية المفردة</option>
+              <option value="Bulk RNA-seq analysis">تحليل تسلسل RNA الكلي</option>
+              <option value="Multi-omics integration">دمج بيانات الأوميكس المتعددة</option>
+              <option value="Gene or miRNA evidence report">تقرير الأدلة لجين أو miRNA</option>
+              <option value="Pathway and enrichment analysis">تحليل المسارات والإثراء</option>
+              <option value="Biomarker discovery report">تقرير اكتشاف المؤشرات الحيوية</option>
+              <option value="Liquid biopsy miRNA biomarkers">مؤشرات miRNA الحيوية في الخزعة السائلة</option>
+              <option value="AI and machine learning models">نماذج الذكاء الاصطناعي وتعلم الآلة</option>
+              <option value="Study design and sample size">تصميم الدراسة وحجم العينة</option>
+              <option value="Clinical statistics">الإحصاء السريري</option>
+              <option value="Meta-analysis">التحليل التجميعي</option>
+              <option value="Reviewer response support">دعم الرد على المراجعين</option>
+              <option value="Publication-ready figures">أشكال جاهزة للنشر</option>
+              <option value="Custom apps and pipelines">تطبيقات وخطوط تحليل مخصصة</option>
+              <option value="Monthly research analytics support">دعم شهري للتحليل البحثي</option>
+            </select>
+          </div>
+          <div class="field full"><label for="f-msg">مشروعك</label><textarea id="f-msg" name="message" required placeholder="سؤال الدراسة، ونوع البيانات وعدد العينات، والموعد النهائي أو المجلة المستهدفة."></textarea><span class="err-msg" aria-live="polite"></span></div>
+          <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="btn" type="submit" id="sendBtn">أرسل الاستفسار</button>
+          <p class="fine">يُرجى عدم إرسال بيانات تكشف هوية المرضى. تُستخدم بياناتك للرد عليك فقط. <a href="privacy.html">سياسة الخصوصية</a></p>
+        </form>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 نوفاجين. نعمل عن بُعد مع فرق البحث حول العالم.</span>
+    <span class="foot-links"><a href="mailto:contact@novagen-bio.com">contact@novagen-bio.com</a><a href="privacy.html">الخصوصية</a><a href="https://www.linkedin.com/company/novagenbioinformatics-company/" target="_blank" rel="noopener">لينكدإن</a></span>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="العودة إلى الأعلى"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 16V4M4.5 9.5L10 4l5.5 5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+
+<script>
+(function () {
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const css = () => { const s = getComputedStyle(document.documentElement); return n => s.getPropertyValue(n).trim(); };
+  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+
+  /* Header: scrolled state, progress bar, active link, mobile menu, back to top, process line */
+  const top = $("#top"), prog = $("#progress"), toTop = $("#toTop"), steps = $("#steps");
+  const links = $$("#nav a"), targets = links.map(a => document.querySelector(a.getAttribute("href")));
+  function onScroll() {
+    const y = scrollY, max = document.documentElement.scrollHeight - innerHeight;
+    top.classList.toggle("scrolled", y > 8);
+    prog.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
+    toTop.classList.toggle("show", y > 900);
+    let cur = -1; targets.forEach((t, i) => { if (t && t.getBoundingClientRect().top < 140) cur = i; });
+    links.forEach((a, i) => a.classList.toggle("here", i === cur));
+    const r = steps.getBoundingClientRect();
+    const p = Math.max(0, Math.min(1, (innerHeight * 0.8 - r.top) / (innerHeight * 0.45)));
+    steps.style.setProperty("--p", p.toFixed(3));
+    steps.querySelectorAll("li").forEach((li, i) => li.classList.toggle("lit", p >= i / 3 - 0.02));
+  }
+  addEventListener("scroll", onScroll, { passive: true }); onScroll();
+  toTop.addEventListener("click", () => scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" }));
+  const menuBtn = $("#menuBtn");
+  const setMenu = open => { top.classList.toggle("open", open); menuBtn.setAttribute("aria-expanded", String(open)); menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu"); };
+  menuBtn.addEventListener("click", () => setMenu(!top.classList.contains("open")));
+  links.forEach(a => a.addEventListener("click", () => setMenu(false)));
+
+  /* Reveal section headings once */
+  if ("IntersectionObserver" in window && !reduce) {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px" });
+    $$(".reveal").forEach(el => io.observe(el));
+  } else $$(".reveal").forEach(el => el.classList.add("in"));
+
+  /* Seeded random numbers so every visitor sees the same plots */
+  function rng(seed) { return function () { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  function gauss(r) { let u = 0, v = 0; while (!u) u = r(); while (!v) v = r(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
+
+  /* Hero volcano plot */
+  const cv = $("#volcano"), readout = $("#readout");
+  const named = [
+    { n: "miR-21-5p", x: 3.1, y: 18.2, label: true }, { n: "miR-224-5p", x: 3.8, y: 14.6, label: true },
+    { n: "miR-182-5p", x: 2.6, y: 12.1 }, { n: "miR-221-3p", x: 2.1, y: 10.4 }, { n: "miR-96-5p", x: 2.9, y: 9.0 }, { n: "miR-183-5p", x: 2.3, y: 7.7 },
+    { n: "miR-122-5p", x: -3.4, y: 16.3, label: true }, { n: "miR-199a-5p", x: -2.7, y: 13.1, label: true },
+    { n: "miR-139-5p", x: -2.2, y: 11.0 }, { n: "miR-145-5p", x: -1.9, y: 9.6 }, { n: "miR-375-3p", x: -3.0, y: 8.4 }, { n: "miR-195-5p", x: -1.6, y: 6.8 },
+  ];
+  const r = rng(42), pts = [];
+  for (let i = 0; i < 1300; i++) {
+    const fc = gauss(r) * 0.85;
+    const y = Math.max(0.02, Math.abs(fc) * (0.9 + r() * 2.4) + -Math.log10(r() + 1e-9) * 0.5);
+    pts.push({ x: Math.max(-4.9, Math.min(4.9, fc)), y: Math.min(19.5, y), d: r() });
+  }
+  named.forEach(p => { p.d = 0.6 + r() * 0.4; p.named = true; });
+  const all = pts.concat(named);
+  const cls = p => (p.y > 1.3 && p.x >= 1) ? "up" : (p.y > 1.3 && p.x <= -1) ? "down" : "ns";
+  let hover = null, vprog = reduce ? 1 : 0, vg = null;
+  const sup = n => String(n).split("").map(c => ({ "-": "⁻", 0: "⁰", 1: "¹", 2: "²", 3: "³", 4: "⁴", 5: "⁵", 6: "⁶", 7: "⁷", 8: "⁸", 9: "⁹" })[c]).join("");
+  const pText = y => { const e = Math.floor(y); const m = Math.pow(10, -(y - e)) * 10; return `${m.toFixed(1)} × 10${sup(-(e + 1))}`; };
+
+  function drawVolcano() {
+    const v = css(), dpr = devicePixelRatio || 1, w = cv.clientWidth, h = cv.clientHeight;
+    if (!w || !h) return;
+    cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+    const c = cv.getContext("2d"); c.setTransform(dpr, 0, 0, dpr, 0, 0); c.clearRect(0, 0, w, h);
+    const L = 50, R = 12, T = 8, B = 42, pw = w - L - R, ph = h - T - B;
+    const X = x => L + (x + 5) / 10 * pw, Y = y => T + ph - (y / 20) * ph;
+    vg = { X, Y };
+    const font = v("--sans");
+    c.font = `500 12px ${font}`; c.fillStyle = v("--ink-soft"); c.strokeStyle = v("--rule"); c.lineWidth = 1;
+    c.textAlign = "right"; c.textBaseline = "middle";
+    for (let y = 0; y <= 20; y += 5) { c.beginPath(); c.moveTo(L, Y(y)); c.lineTo(L + pw, Y(y)); c.stroke(); c.fillText(y, L - 8, Y(y)); }
+    c.textAlign = "center"; c.textBaseline = "top";
+    for (let x = -4; x <= 4; x += 2) c.fillText(x, X(x), T + ph + 8);
+    c.font = `600 12px ${font}`; c.fillStyle = v("--ink");
+    c.fillText("log₂ fold change", L + pw / 2, T + ph + 24);
+    c.save(); c.translate(11, T + ph / 2); c.rotate(-Math.PI / 2); c.textBaseline = "middle"; c.fillText("−log₁₀ adjusted p", 0, 0); c.restore();
+    c.setLineDash([4, 4]); c.strokeStyle = v("--null"); c.lineWidth = 1.2;
+    [[X(-1), T, X(-1), T + ph], [X(1), T, X(1), T + ph], [L, Y(1.3), L + pw, Y(1.3)]].forEach(([a, b, d, e]) => { c.beginPath(); c.moveTo(a, b); c.lineTo(d, e); c.stroke(); });
+    c.setLineDash([]);
+    const col = { up: v("--eosin"), down: v("--haem"), ns: v("--null") };
+    const ease = t => 1 - Math.pow(1 - t, 3);
+    all.forEach(p => {
+      const k = cls(p);
+      const t = ease(Math.max(0, Math.min(1, (vprog - p.d * 0.35) / 0.65)));
+      c.globalAlpha = k === "ns" ? 0.55 : (hover && hover !== p ? 0.55 : 0.9);
+      c.fillStyle = col[k];
+      c.beginPath(); c.arc(X(p.x), Y(p.y * t), p.named ? 4.6 : (k === "ns" ? 2.1 : 2.8), 0, 7); c.fill();
+    });
+    c.globalAlpha = 1;
+    if (vprog >= 1) {
+      c.font = `600 12.5px ${font}`; c.textBaseline = "middle";
+      named.forEach(p => {
+        if (!(p.label || p === hover)) return;
+        const px = X(p.x), py = Y(p.y), right = p.x > 0;
+        c.strokeStyle = v("--ink"); c.lineWidth = p === hover ? 2 : 1;
+        c.beginPath(); c.arc(px, py, p === hover ? 8 : 6.5, 0, 7); c.stroke();
+        c.textAlign = right ? "right" : "left";
+        const tx = right ? px - 12 : px + 12;
+        c.lineWidth = 4; c.strokeStyle = v("--surface"); c.strokeText(p.n, tx, py);
+        c.fillStyle = v("--ink"); c.fillText(p.n, tx, py);
+      });
+    }
+  }
+  function setReadout(p) {
+    if (!p) { readout.innerHTML = "<span>مرّر المؤشر على جزيء miRNA مميز لقراءة نتيجته.</span><span>بيانات توضيحية</span>"; return; }
+    const dir = p.x > 0 ? "أعلى" : "أقل";
+    readout.innerHTML = `<span><b>${p.n}</b> ${dir} بمقدار ${Math.pow(2, Math.abs(p.x)).toFixed(1)}× في الورم، قيمة p المعدلة ${pText(p.y)}</span><span>بيانات توضيحية</span>`;
+  }
+  function pick(e) {
+    if (!vg || vprog < 1) return;
+    const b = cv.getBoundingClientRect(), mx = e.clientX - b.left, my = e.clientY - b.top;
+    let best = null, bd = 34;
+    named.forEach(p => { const d = Math.hypot(vg.X(p.x) - mx, vg.Y(p.y) - my); if (d < bd) { bd = d; best = p; } });
+    if (best !== hover) { hover = best; setReadout(hover); drawVolcano(); }
+  }
+  cv.addEventListener("pointermove", pick);
+  cv.addEventListener("pointerdown", pick);
+  cv.addEventListener("pointerleave", () => { hover = null; setReadout(null); drawVolcano(); });
+  if (!reduce) {
+    let start = null;
+    const step = ts => { if (!start) start = ts; vprog = Math.min(1, (ts - start) / 1400); drawVolcano(); if (vprog < 1) requestAnimationFrame(step); };
+    const io = new IntersectionObserver(es => { if (es[0].isIntersecting) { io.disconnect(); requestAnimationFrame(step); } });
+    io.observe(cv);
+  }
+
+  /* Contact background */
+  const dots = $("#dots");
+  function drawDots() {
+    const v = css(), dpr = devicePixelRatio || 1, w = dots.clientWidth, h = dots.clientHeight;
+    if (!w || !h) return;
+    dots.width = w * dpr; dots.height = h * dpr;
+    const c = dots.getContext("2d"); c.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const rr = rng(7);
+    for (let i = 0; i < 220; i++) {
+      const x = w * (rr() * 0.5), y = h * rr(), lift = 1 - x / (w * 0.5);
+      c.globalAlpha = 0.06 + rr() * 0.22 * lift;
+      c.fillStyle = rr() < 0.2 * lift ? v("--eosin") : v("--paper");
+      c.beginPath(); c.arc(x, y, 1.2 + rr() * 2.4, 0, 7); c.fill();
+    }
+  }
+
+  /* Services: filters and accordions */
+  const svcs = $$(".svc"), filters = $$(".filter");
+  filters.forEach(f => { const k = f.dataset.f; f.querySelector(".c").textContent = k === "all" ? svcs.length : svcs.filter(s => s.dataset.cat === k).length; });
+  function applyFilter(k) {
+    filters.forEach(f => f.setAttribute("aria-pressed", String(f.dataset.f === k)));
+    svcs.forEach(s => {
+      const show = k === "all" || s.dataset.cat === k;
+      s.classList.toggle("out", !show);
+      s.classList.remove("enter"); if (show && !reduce) { void s.offsetWidth; s.classList.add("enter"); }
+    });
+  }
+  filters.forEach(f => f.addEventListener("click", () => applyFilter(f.dataset.f)));
+  svcs.forEach(s => {
+    const b = s.querySelector(".svc-btn");
+    b.addEventListener("click", () => { const open = !s.classList.contains("open"); s.classList.toggle("open", open); b.setAttribute("aria-expanded", String(open)); });
+  });
+
+  /* Jump to the form with a service pre-selected */
+  const form = $("#form"), svcSel = $("#f-svc");
+  function goContact(service) {
+    if (service) [...svcSel.options].forEach(o => { if (o.value === service) svcSel.value = o.value; });
+    $("#contact").scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
+    setTimeout(() => { const n = $("#f-name"); if (n) n.focus({ preventScroll: true }); }, reduce ? 0 : 700);
+  }
+  $$(".ask").forEach(b => b.addEventListener("click", () => goContact(b.closest(".svc").dataset.name)));
+
+  /* Finder */
+  const info = id => { const el = document.getElementById(id); return { name: el.dataset.name, t: el.querySelector("h3").firstChild.textContent.trim(), d: el.querySelector(".svc-btn p").textContent }; };
+  const picks = {
+    rnaseq: { q: "لديك بيانات تسلسل RNA", s: ["svc-rnaseq", "svc-path", "svc-figures"] },
+    sc: { q: "لديك بيانات الخلية المفردة", s: ["svc-sc", "svc-multi", "svc-figures"] },
+    idea: { q: "لديك هدف أو نوع سرطان تريد دراسته", s: ["svc-public", "svc-discovery", "svc-multi"] },
+    liquid: { q: "لديك عينات مصل أو بلازما", s: ["svc-liquid", "svc-ai", "svc-discovery"] },
+    clinical: { q: "لديك بيانات سريرية أو بيانات مستشفى", s: ["svc-clinical", "svc-ai", "svc-figures"] },
+    plan: { q: "تخطط لدراسة", s: ["svc-design", "svc-clinical", "svc-apps"] },
+    review: { q: "لديك مخطوطة قيد المراجعة", s: ["svc-reviewer", "svc-figures", "svc-meta"] },
+    studies: { q: "لديك نتائج من دراسات منشورة", s: ["svc-meta", "svc-reviewer", "svc-figures"] },
+  };
+  let current = "rnaseq";
+  function showPick(k) {
+    current = k;
+    $$(".choice").forEach(c => c.setAttribute("aria-pressed", String(c.dataset.pick === k)));
+    $("#ansQ").textContent = picks[k].q;
+    $("#recs").innerHTML = picks[k].s.map((id, i) => { const x = info(id); return `<li><span class="n">${i + 1}</span><span><b>${x.t}</b><span>${x.d}</span></span></li>`; }).join("");
+  }
+  $$(".choice").forEach(c => c.addEventListener("click", () => showPick(c.dataset.pick)));
+  $("#ansBtn").addEventListener("click", () => goContact(info(picks[current].s[0]).name));
+  showPick("rnaseq");
+
+  /* Form: validation, sending through FormSubmit, email fallback */
+  const fields = { name: $("#f-name"), email: $("#f-email"), message: $("#f-msg") };
+  const rules = { name: v => v.trim().length > 1 || "أدخل اسمك.", email: v => /^\S+@\S+\.\S+$/.test(v) || "أدخل بريدًا إلكترونيًا صحيحًا.", message: v => v.trim().length > 9 || "أخبرنا قليلًا عن المشروع." };
+  function check() {
+    let ok = true;
+    for (const k in fields) {
+      const res = rules[k](fields[k].value), wrap = fields[k].closest(".field");
+      wrap.classList.toggle("bad", res !== true); wrap.querySelector(".err-msg").textContent = res === true ? "" : res;
+      if (res !== true && ok) { fields[k].focus(); ok = false; }
+    }
+    return ok;
+  }
+  Object.values(fields).forEach(f => f.addEventListener("input", () => { const w = f.closest(".field"); if (w.classList.contains("bad")) { const k = Object.keys(fields).find(x => fields[x] === f); if (rules[k](f.value) === true) { w.classList.remove("bad"); w.querySelector(".err-msg").textContent = ""; } } }));
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    if (!check()) return;
+    const data = Object.fromEntries(new FormData(form));
+    if (data._honey) return;
+    const btn = $("#sendBtn"); btn.disabled = true; btn.textContent = "جارٍ الإرسال…";
+    const body = { name: data.name, email: data.email, organisation: data.organisation || "", service: data.service, message: data.message, _subject: `New enquiry (Arabic page): ${data.service}`, _replyto: data.email, _template: "table", _captcha: "false" };
+    let sent = false;
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/contact@novagen-bio.com", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(body) });
+      const j = await res.json().catch(() => ({}));
+      sent = res.ok && String(j.success) === "true";
+    } catch (err) { sent = false; }
+    if (sent) {
+      const first = data.name.trim().split(" ")[0].replace(/[<>&"]/g, "");
+      form.innerHTML = `<div class="form-done"><svg viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="26" fill="currentColor" opacity=".12"/><path d="M17 29l7.5 7.5L40 21" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>تم إرسال الاستفسار</h3><p>شكرًا لك يا ${first}. ستصلك إجابة على بريدك الإلكتروني مع الخطوات التالية لمشروعك.</p></div>`;
+    } else {
+      const mail = `mailto:contact@novagen-bio.com?subject=${encodeURIComponent("Project enquiry: " + data.service)}&body=${encodeURIComponent(`Name: ${data.name}\nOrganisation: ${data.organisation || "-"}\nService: ${data.service}\n\n${data.message}`)}`;
+      btn.disabled = false; btn.textContent = "أرسل الاستفسار";
+      let note = form.querySelector(".fallback");
+      if (!note) { note = document.createElement("p"); note.className = "fine fallback"; form.appendChild(note); }
+      note.innerHTML = `تعذر إرسال النموذج الآن. <a href="${mail}">أرسله عبر البريد الإلكتروني بدلًا من ذلك</a>، رسالتك مكتوبة مسبقًا.`;
+    }
+  });
+
+  /* Sample figures (SVG) */
+  const NS = "http://www.w3.org/2000/svg";
+  function el(svg, tag, attrs, text) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; svg.appendChild(e); return e; }
+  function frame(svg, o) {
+    const { L, T, W, H, xs, ys, xl, yl, xf, yf, big } = o;
+    ys.forEach(t => { el(svg, "line", { x1: L, x2: L + W, y1: yf(t), y2: yf(t), class: "grid" }); el(svg, "text", { x: L - 10, y: yf(t) + 5, "text-anchor": "end", class: "tick" }, t); });
+    xs.forEach(t => el(svg, "text", { x: xf(t), y: T + H + (big ? 28 : 22), "text-anchor": "middle", class: "tick" }, t));
+    el(svg, "line", { x1: L, x2: L + W, y1: T + H, y2: T + H, class: "ax" });
+    el(svg, "text", { x: L + W / 2, y: T + H + (big ? 62 : 48), "text-anchor": "middle", class: "axlab" }, xl);
+    el(svg, "text", { x: 0, y: 0, transform: `translate(${big ? 22 : 16} ${T + H / 2}) rotate(-90)`, "text-anchor": "middle", class: "axlab" }, yl);
+  }
+  const small = matchMedia("(max-width: 560px)");
+  function legendRow(svg, x, y, cls, label, sub, big) {
+    el(svg, "rect", { x, y: y - (big ? 15 : 11), width: big ? 16 : 12, height: big ? 16 : 12, rx: 3, class: cls });
+    el(svg, "text", { x: x + (big ? 26 : 20), y, class: "note", "font-weight": "600" }, label);
+    if (sub) el(svg, "text", { x: x + (big ? 26 : 20), y: y + (big ? 26 : 20), class: "tick" }, sub);
+  }
+  function km(svg, big) {
+    const L = big ? 88 : 64, T = 20, W = 560 - L - 26, H = 270, tMax = 60;
+    const xf = t => L + t / tMax * W, yf = s => T + H - s * H;
+    svg.setAttribute("viewBox", `0 0 560 ${big ? 470 : 380}`);
+    frame(svg, { L, T, W, H, xs: big ? [0, 24, 48] : [0, 12, 24, 36, 48, 60], ys: [0, 0.25, 0.5, 0.75, 1], xl: "Months from diagnosis", yl: "Overall survival", xf, yf, big });
+    const rr = rng(11);
+    function group(rate, n) {
+      const d = [];
+      for (let i = 0; i < n; i++) { const ev = -Math.log(rr()) / rate, cen = 8 + rr() * 70; d.push(ev <= cen ? { t: Math.min(ev, 61), e: ev <= 60 } : { t: Math.min(cen, 60), e: false }); }
+      d.sort((a, b) => a.t - b.t);
+      let s = 1, risk = n; const st = [[0, 1]], cens = [];
+      d.forEach(p => { if (p.t > 60) return; if (p.e) { s *= (risk - 1) / risk; st.push([p.t, s]); } else cens.push([p.t, s]); risk--; });
+      return { st, cens };
+    }
+    [[group(0.034, 120), "s-up", "ctick-up"], [group(0.013, 120), "s-down", "ctick-down"]].forEach(([g, sc, cc]) => {
+      let d = `M${xf(0)},${yf(1)}`;
+      g.st.slice(1).forEach(([t, s]) => { d += ` H${xf(t).toFixed(1)} V${yf(s).toFixed(1)}`; });
+      d += ` H${xf(60)}`;
+      el(svg, "path", { d, class: sc });
+      g.cens.forEach(([t, s]) => el(svg, "line", { x1: xf(t), x2: xf(t), y1: yf(s) - 5, y2: yf(s) + 5, class: cc + " fade" }));
+    });
+    if (big) {
+      legendRow(svg, L, T + H + 104, "f-down", "Low expression, n = 120", null, true);
+      legendRow(svg, L, T + H + 138, "f-up", "High expression, n = 120", null, true);
+      el(svg, "text", { x: L + 12, y: T + H - 44, class: "note fade", "font-weight": "600" }, "HR 2.4 (1.7–3.4)");
+      el(svg, "text", { x: L + 12, y: T + H - 16, class: "note fade" }, "Log-rank p < 0.001");
+    } else {
+      legendRow(svg, L + W - 210, T + 17, "f-down", "Low expression, n = 120");
+      legendRow(svg, L + W - 210, T + 39, "f-up", "High expression, n = 120");
+      el(svg, "text", { x: L + 14, y: T + H - 40, class: "note fade", "font-weight": "600" }, "HR 2.4 (95% CI 1.7–3.4)");
+      el(svg, "text", { x: L + 14, y: T + H - 20, class: "note fade" }, "Log-rank p < 0.001");
+    }
+  }
+  function roc(svg, big) {
+    const L = big ? 88 : 64, T = 20, W = big ? 440 : 290, H = big ? 300 : 290;
+    const xf = x => L + x * W, yf = y => T + H - y * H;
+    svg.setAttribute("viewBox", `0 0 560 ${big ? 560 : 380}`);
+    frame(svg, { L, T, W, H, xs: [0, 0.5, 1], ys: [0, 0.25, 0.5, 0.75, 1], xl: "1 − specificity", yl: "Sensitivity", xf, yf, big });
+    el(svg, "line", { x1: L, x2: L, y1: T, y2: T + H, class: "ax" });
+    el(svg, "line", { x1: xf(0), y1: yf(0), x2: xf(1), y2: yf(1), class: "s-ref" });
+    const pathOf = k => { let d = ""; for (let i = 0; i <= 100; i++) { const x = i / 100; d += (i ? " L" : "M") + xf(x).toFixed(1) + "," + yf(1 - Math.pow(1 - x, k)).toFixed(1); } return d; };
+    el(svg, "path", { d: pathOf(6.69) + ` L${xf(1)},${yf(0)} L${xf(0)},${yf(0)} Z`, class: "f-up-wash fade" });
+    el(svg, "path", { d: pathOf(3.17), class: "s-down" });
+    el(svg, "path", { d: pathOf(6.69), class: "s-up" });
+    if (big) {
+      const y0 = T + H + 104;
+      legendRow(svg, L, y0, "f-up", "3-miRNA panel", "AUC 0.87 (0.82–0.91)", true);
+      legendRow(svg, L, y0 + 72, "f-down", "Best single miRNA", "AUC 0.76 (0.70–0.82)", true);
+    } else {
+      const lx = L + W + 32;
+      legendRow(svg, lx, T + 41, "f-up", "3-miRNA panel", "AUC 0.87 (0.82–0.91)");
+      legendRow(svg, lx, T + 103, "f-down", "Best single miRNA", "AUC 0.76 (0.70–0.82)");
+      el(svg, "line", { x1: lx, x2: lx + 14, y1: T + 160, y2: T + 160, class: "s-ref" });
+      el(svg, "text", { x: lx + 20, y: T + 164, class: "tick" }, "Chance");
+    }
+  }
+  function qpcr(svg, big) {
+    const L = big ? 88 : 64, T = 24, W = 560 - L - 26, H = 270, lo = -2.5, hi = 2.5;
+    const yf = v => T + (hi - v) / (hi - lo) * H;
+    svg.setAttribute("viewBox", `0 0 560 ${big ? 470 : 380}`);
+    const data = [["miR-21-5p", 2.07, 0.28, "***"], ["miR-224-5p", 1.63, 0.34, "**"], ["miR-16-5p", 0.07, 0.22, "ns"], ["miR-375-3p", -1.15, 0.31, "**"], ["miR-122-5p", -1.64, 0.36, "***"]];
+    [-2, -1, 0, 1, 2].forEach(t => { el(svg, "line", { x1: L, x2: L + W, y1: yf(t), y2: yf(t), class: t === 0 ? "ax" : "grid" }); el(svg, "text", { x: L - 10, y: yf(t) + 5, "text-anchor": "end", class: "tick" }, t); });
+    el(svg, "text", { x: 0, y: 0, transform: `translate(${big ? 22 : 16} ${T + H / 2}) rotate(-90)`, "text-anchor": "middle", class: "axlab" }, big ? "log₂ fold change" : "log₂ fold change, tumour vs normal");
+    const bw = W / data.length;
+    data.forEach(([n, v, sd, sig], i) => {
+      const cx = L + bw * i + bw / 2, cl = sig === "ns" ? "f-ns" : (v > 0 ? "f-up" : "f-down");
+      const bar = el(svg, "rect", { x: cx - bw * 0.28, y: Math.min(yf(v), yf(0)), width: bw * 0.56, height: Math.abs(yf(v) - yf(0)) || 1, rx: 4, class: cl + " bar" });
+      bar.style.setProperty("--origin", v >= 0 ? "50% 100%" : "50% 0%"); bar.style.animationDelay = (i * 0.07) + "s";
+      el(svg, "line", { x1: cx, x2: cx, y1: yf(v - sd), y2: yf(v + sd), class: "err fade" });
+      [v - sd, v + sd].forEach(e => el(svg, "line", { x1: cx - 7, x2: cx + 7, y1: yf(e), y2: yf(e), class: "err fade" }));
+      const sy = v >= 0 ? yf(v + sd) - 10 : yf(v - sd) + (big ? 26 : 22);
+      el(svg, "text", { x: cx, y: sy, "text-anchor": "middle", class: "note fade", "font-weight": "700" }, sig);
+      if (big) el(svg, "text", { x: 0, y: 0, transform: `translate(${cx + 6} ${T + H + 14}) rotate(-40)`, "text-anchor": "end", class: "tick" }, n);
+      else el(svg, "text", { x: cx, y: T + H + 28, "text-anchor": "middle", class: "tick" }, n);
+    });
+    el(svg, "text", { x: big ? L : L + W, y: big ? T + H + 150 : T + H + 56, "text-anchor": big ? "start" : "end", class: "tick" }, big ? "** p < 0.01, *** p < 0.001" : "** p < 0.01, *** p < 0.001, ns not significant");
+  }
+  const charts = { "fig-km": km, "fig-roc": roc, "fig-qpcr": qpcr };
+  function drawChart(id, animate) {
+    const s = document.getElementById(id); s.textContent = ""; charts[id](s, small.matches);
+    s.classList.remove("drawing");
+    if (animate && !reduce) {
+      s.querySelectorAll(".s-up, .s-down").forEach(p => p.style.setProperty("--len", Math.ceil(p.getTotalLength())));
+      void s.getBoundingClientRect(); s.classList.add("drawing");
+    }
+  }
+  Object.keys(charts).forEach(id => drawChart(id, false));
+  try { small.addEventListener("change", () => Object.keys(charts).forEach(id => drawChart(id, false))); } catch (e) {}
+  if ("IntersectionObserver" in window && !reduce) {
+    const io2 = new IntersectionObserver(es => { if (es[0].isIntersecting) { io2.disconnect(); drawChart("fig-km", true); } }, { threshold: 0.35 });
+    io2.observe($("#fig-km"));
+  }
+  const tabs = $$('[role="tab"]');
+  function select(t, focus) {
+    tabs.forEach(x => { const on = x === t; x.setAttribute("aria-selected", on); x.tabIndex = on ? 0 : -1; document.getElementById(x.getAttribute("aria-controls")).hidden = !on; });
+    drawChart(document.getElementById(t.getAttribute("aria-controls")).querySelector("svg").id, true);
+    if (focus) t.focus();
+  }
+  tabs.forEach((t, i) => {
+    t.addEventListener("click", () => select(t));
+    t.addEventListener("keydown", e => {
+      const k = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+      if (k) { e.preventDefault(); select(tabs[(i + k + tabs.length) % tabs.length], true); }
+    });
+  });
+
+  const redraw = () => { drawVolcano(); drawDots(); };
+  addEventListener("resize", redraw);
+  try { matchMedia("(prefers-color-scheme: dark)").addEventListener("change", redraw); } catch (e) {}
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(redraw);
+  redraw();
+})();
+</script>
+</body>
+</html>
