@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://novagen-bio.com/</loc><lastmod>2026-10-13</lastmod></url>
-  <url><loc>https://novagen-bio.com/ar.html</loc><lastmod>2026-10-13</lastmod></url>
+  <url><loc>https://novagen-bio.com/</loc><lastmod>2026-10-14</lastmod></url>
+  <url><loc>https://novagen-bio.com/ar.html</loc><lastmod>2026-10-14</lastmod></url>
+  <url><loc>https://novagen-bio.com/rna-seq-analysis.html</loc><lastmod>2026-10-14</lastmod></url>
+  <url><loc>https://novagen-bio.com/biomarker-discovery.html</loc><lastmod>2026-10-14</lastmod></url>
+  <url><loc>https://novagen-bio.com/tcga-geo-analysis.html</loc><lastmod>2026-10-14</lastmod></url>
+  <url><loc>https://novagen-bio.com/machine-learning-models.html</loc><lastmod>2026-10-14</lastmod></url>
+  <url><loc>https://novagen-bio.com/clinical-statistics.html</loc><lastmod>2026-10-14</lastmod></url>
   <url><loc>https://novagen-bio.com/privacy.html</loc><lastmod>2026-10-13</lastmod></url>
 </urlset>
